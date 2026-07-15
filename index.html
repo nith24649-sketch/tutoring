@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New England Tutoring — Armidale tutoring, portal, timetable & enrolments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="Small-group tutoring in Armidale NSW for Years 5–10 and one-on-one HSC coaching, with a live portal, free K–12 placement test and a $175 term prize pool.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF3; --paper-deep:#F4F1E6; --card:#FFFFFF;
+  --rule:#C9D6E6; --line:#DDD8C9; --hole:#E4DFCF;
+  --ink:#182741; --ink-soft:#54617B; --board:#152238;
+  --red:#C63C34; --red-deep:#A82F28; --green:#2F7D51; --gold:#A97C10;
+  --maxw:1080px;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Atkinson Hyperlegible',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* the ruled margin — every page in an exercise book has one */
+body::before{content:"";position:fixed;top:0;bottom:0;left:clamp(14px,4vw,64px);width:0;
+  border-left:2px solid var(--red);opacity:.45;z-index:0;pointer-events:none}
+/* punch holes down the left edge */
+@media(min-width:900px){
+  body::after{content:"";position:fixed;top:90px;bottom:0;left:14px;width:16px;z-index:0;pointer-events:none;
+    background-image:radial-gradient(circle 7px at 50% 50%,var(--hole) 64%,rgba(23,39,65,.14) 68%,transparent 72%);
+    background-size:16px 240px;background-repeat:repeat-y}
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 0 clamp(36px,8vw,96px);position:relative;z-index:1}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 18px;z-index:99;border-radius:0 0 8px 0;font-weight:700}
+.skip-link:focus{left:0}
+h1,h2,h3{font-family:var(--display);line-height:1.12;font-weight:640;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:680;font-variation-settings:"opsz" 72}
+h2{font-size:clamp(1.35rem,2.9vw,1.9rem);margin-bottom:.5em;font-variation-settings:"opsz" 40}
+h3{font-size:1.1rem;font-weight:600}
+em,.disp-i{font-style:italic}
+.annotation{font-family:'Caveat',cursive;color:var(--red);font-size:1.35rem;transform:rotate(-2deg);display:inline-block}
+a{color:var(--red-deep)}
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:20;background:rgba(251,250,243,.98);backdrop-filter:blur(7px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:11px 20px 11px clamp(36px,8vw,96px);flex-wrap:wrap;gap:8px}
+.logo{font-family:var(--display);font-weight:640;font-size:1.08rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.logo span{color:var(--red);font-style:italic}
+.tabs{display:flex;gap:2px;flex-wrap:wrap}
+.tab-btn{font-family:var(--body);font-weight:700;font-size:.85rem;border:none;background:none;color:var(--ink-soft);padding:8px 12px;border-radius:6px;cursor:pointer;position:relative;transition:color .15s}
+.tab-btn:hover{color:var(--red)}
+.tab-btn.active{color:var(--ink)}
+.tab-btn.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:3px;background:var(--red);border-radius:2px}
+@media(max-width:640px){
+  nav .wrap{padding-left:20px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab-btn{white-space:nowrap}
+}
+.tab-btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:4px}
+/* ============ PAGES ============ */
+.page{display:none;padding:clamp(30px,5vw,60px) 0 72px}
+.page.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,60,52,.35)}50%{box-shadow:0 0 0 10px rgba(198,60,52,0)}}
+@keyframes drawmark{to{stroke-dashoffset:0}}
+.section-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:10px}
+.lede{color:var(--ink-soft);max-width:660px;margin:14px 0 26px;font-size:1.06rem}
+.muted{color:var(--ink-soft);font-size:.88rem}
+/* ============ HERO ============ */
+.hero{position:relative;padding:clamp(10px,2vw,26px) 0 8px;
+  background-image:repeating-linear-gradient(transparent 0 35px,var(--rule) 35px 36px);
+  background-origin:content-box}
+.hero h1{max-width:15ch}
+.hero .marked{position:relative;display:inline-block;white-space:nowrap}
+.hero .marked svg{position:absolute;inset:-14% -9% -18% -7%;width:116%;height:136%;overflow:visible;pointer-events:none}
+.hero .marked path{fill:none;stroke:var(--red);stroke-width:3.2;stroke-linecap:round;
+  stroke-dasharray:560;stroke-dashoffset:560;animation:drawmark 1s ease .55s forwards}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.hero-facts{display:flex;gap:26px;flex-wrap:wrap;margin:30px 0 6px;padding:14px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.hero-facts div{font-size:.86rem;color:var(--ink-soft)}
+.hero-facts strong{display:block;font-family:var(--mono);font-size:1.15rem;color:var(--ink);font-weight:600}
+/* ============ BUTTONS ============ */
+.btn{display:inline-block;font-family:var(--body);font-weight:700;padding:13px 24px;border-radius:8px;text-decoration:none;font-size:.96rem;border:none;cursor:pointer;transition:transform .12s ease,background .15s;line-height:1.3}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--red);color:#fff;box-shadow:0 2px 0 var(--red-deep)}
+.btn-primary:hover{background:var(--red-deep)}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:0 2px 0 #0D1830}
+.btn-ghost{border:2px solid var(--ink);color:var(--ink);background:transparent;box-shadow:none}
+.btn-sm{padding:7px 14px;font-size:.84rem;border-radius:6px;box-shadow:none}
+/* ============ CARDS ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:0 1px 0 var(--line);animation:popIn .3s ease;position:relative}
+.card p{color:var(--ink-soft);font-size:.94rem}
+.price{font-family:var(--mono);font-size:1.7rem;font-weight:600;margin:8px 0 2px;color:var(--ink)}
+.price small{font-family:var(--body);font-size:.85rem;font-weight:400;color:var(--ink-soft)}
+.badge{display:inline-block;background:rgba(47,125,81,.12);color:var(--green);font-family:var(--mono);font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.badge.red{background:rgba(198,60,52,.1);color:var(--red)}
+.badge.gold{background:rgba(169,124,16,.14);color:var(--gold)}
+.tick-list{list-style:none;margin-top:12px}
+.tick-list li{padding-left:27px;position:relative;margin-bottom:8px;color:var(--ink-soft);font-size:.93rem}
+.tick-list li::before{content:"✓";position:absolute;left:2px;top:-1px;color:var(--red);font-weight:700;font-size:1.05rem;transform:rotate(-6deg)}
+/* ============ HOW IT WORKS ============ */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:24px;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 22px 22px;position:relative;counter-increment:step}
+.step::before{content:counter(step);position:absolute;top:-15px;left:18px;width:34px;height:34px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--red);color:var(--red);font-family:var(--display);font-weight:640;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;transform:rotate(-4deg)}
+.step h3{margin:4px 0 8px}
+.step p{color:var(--ink-soft);font-size:.93rem}
+.step .step-note{font-family:'Caveat',cursive;color:var(--red);font-size:1.15rem;display:block;margin-top:10px;transform:rotate(-1.5deg)}
+/* ============ TUTOR ============ */
+.tutor-card{display:grid;grid-template-columns:120px 1fr;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;max-width:720px;align-items:start}
+.tutor-photo{width:120px;height:120px;border-radius:10px;background:var(--paper-deep);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.tutor-card p{color:var(--ink-soft);font-size:.95rem;margin-bottom:8px}
+@media(max-width:560px){.tutor-card{grid-template-columns:1fr}}
+/* ============ FAQ ============ */
+.faq{max-width:720px;margin-top:20px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq summary{cursor:pointer;font-weight:700;padding:16px 20px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--display);color:var(--red);font-size:1.4rem;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 20px 18px;color:var(--ink-soft);font-size:.94rem}
+/* ============ FORMS ============ */
+label{display:block;font-weight:700;font-size:.87rem;margin:14px 0 5px}
+input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-bottom:2px solid var(--rule);border-radius:7px;font-family:var(--body);font-size:.96rem;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{border-bottom-color:var(--red)}
+textarea{resize:vertical;min-height:80px}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;max-width:560px}
+.msg{margin-top:13px;padding:11px 15px;border-radius:8px;font-size:.92rem;display:none}
+.msg.ok{display:block;background:rgba(47,125,81,.1);color:var(--green)}
+.msg.err{display:block;background:rgba(198,60,52,.08);color:var(--red)}
+/* ============ PROGRESS ============ */
+.progress-track{background:var(--paper-deep);border:1px solid var(--line);border-radius:99px;height:14px;overflow:hidden;margin:6px 0 2px}
+.progress-fill{height:100%;background:var(--green);border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.3,1);min-width:4px}
+.progress-fill.low{background:var(--red)}
+.progress-fill.mid{background:var(--gold)}
+/* ============ HOMEWORK ============ */
+.hw-item{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:9px;transition:transform .15s}
+.hw-item:hover{transform:translateX(3px)}
+.hw-item input[type=checkbox]{width:20px;height:20px;margin-top:3px;accent-color:var(--green);cursor:pointer;flex:0 0 auto}
+.hw-item.done .hw-text{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--ink-soft)}
+.hw-due{font-family:var(--mono);font-size:.74rem;color:var(--red);font-weight:600;margin-left:auto;white-space:nowrap}
+.hw-due.overdue{animation:pulse 1.6s infinite;border-radius:99px;padding:2px 8px;background:rgba(198,60,52,.1)}
+/* ============ TABLES ============ */
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.92rem}
+th{font-family:var(--mono);font-weight:600;text-align:left;padding:10px 13px;background:var(--board);color:#fff;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+td{padding:10px 13px;border-top:1px solid var(--paper-deep);color:var(--ink-soft)}
+td:first-child{color:var(--ink);font-weight:700}
+.lb-row-me{background:rgba(47,125,81,.08)}
+/* ============ LAYOUT ============ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:780px){.grid-2{grid-template-columns:1fr}}
+.pill-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;animation:popIn .35s ease}
+.pill-stat .n{font-family:var(--mono);font-weight:600;font-size:1.5rem;color:var(--ink)}
+.pill-stat .l{font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:10px;margin:18px 0}
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 24px;border-bottom:2px solid var(--line);padding-bottom:12px}
+.subtab-btn{font-family:var(--body);font-weight:700;font-size:.85rem;background:var(--card);border:1px solid var(--line);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:transform .1s}
+.subtab-btn:hover{transform:translateY(-1px)}
+.subtab-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+.subpage{display:none}
+.subpage.active{display:block;animation:fadeUp .3s ease}
+/* ============ PRIZE BANNER ============ */
+.prize-banner{background:linear-gradient(125deg,var(--board) 55%,#243755);color:#fff;border-radius:14px;padding:22px 26px;margin:20px 0;display:flex;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+.prize-banner::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(transparent 0 27px,rgba(255,255,255,.05) 27px 28px);pointer-events:none}
+.prize-banner .pz{font-family:var(--display);font-weight:640;font-size:1.4rem}
+.prize-banner .pz small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;color:#C7D0E4;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+/* ============ ADMIN ============ */
+.admin-student{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:12px;padding:15px 17px}
+.admin-student summary{cursor:pointer;font-weight:700}
+.admin-student summary code{font-family:var(--mono);font-size:.82rem;background:var(--paper-deep);padding:1px 7px;border-radius:4px}
+.inline-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.inline-form input,.inline-form select{width:auto;flex:1;min-width:105px}
+.del{background:none;border:none;color:var(--red);cursor:pointer;font-weight:700;font-size:.83rem;text-decoration:underline dotted}
+/* ============ BANK BOX ============ */
+.bank-box{background:var(--board);color:#fff;border-radius:12px;padding:26px}
+.bank-box p{color:#C7D0E4;margin-bottom:10px;font-size:.94rem}
+.bank-row{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.15);padding:9px 0;font-size:.95rem;gap:10px}
+.bank-row span:last-child{font-family:var(--mono);font-size:.9rem}
+.bank-row code{background:rgba(255,255,255,.12);padding:2px 8px;border-radius:5px;font-family:var(--mono)}
+footer{padding:34px 0 50px;color:var(--ink-soft);font-size:.85rem;border-top:1px dashed var(--line);margin-top:20px}
+/* ============ INVOICES ============ */
+.invoice{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden}
+.invoice::before{content:"";position:absolute;top:0;bottom:0;left:14px;width:0;border-left:2px solid var(--red);opacity:.4}
+.invoice .inv-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.inv-num{font-family:var(--mono);font-weight:600}
+.inv-status{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:4px}
+.inv-status.paid{background:rgba(47,125,81,.14);color:var(--green)}
+.inv-status.unpaid{background:rgba(198,60,52,.12);color:var(--red)}
+.inv-amount{font-family:var(--mono);font-size:1.5rem;font-weight:600;margin:6px 0}
+/* ============ CHAT ============ */
+.chat-box{background:var(--card);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;height:420px}
+.chat-scroll{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:82%;padding:10px 14px;border-radius:12px;font-size:.93rem;line-height:1.45;animation:popIn .25s ease}
+.bubble.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:3px}
+.bubble.them{align-self:flex-start;background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:3px;white-space:pre-wrap}
+.bubble .who{font-family:var(--mono);font-size:.62rem;opacity:.75;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-input input{flex:1}
+.typing{align-self:flex-start;color:var(--ink-soft);font-size:.85rem;font-style:italic}
+/* ============ NEWS ============ */
+.news-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px 16px 36px;margin-bottom:12px;position:relative;animation:popIn .3s ease}
+.news-item::before{content:"📌";position:absolute;left:11px;top:15px;font-size:.85rem}
+.news-item .nd{font-family:var(--mono);font-size:.68rem;color:var(--red);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.news-item p{color:var(--ink-soft);font-size:.94rem;margin-top:4px}
+/* ============ TIMETABLE ============ */
+.tt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:16px;margin-top:24px}
+.tt-day{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tt-day-head{background:var(--board);color:#fff;font-family:var(--display);font-weight:640;padding:11px 16px;font-size:1rem}
+.tt-slot{padding:14px 16px;border-top:1px solid var(--paper-deep)}
+.tt-slot .t{font-family:var(--mono);font-size:.72rem;color:var(--red);font-weight:600;letter-spacing:.06em}
+.tt-slot h4{font-family:var(--body);font-weight:700;font-size:.98rem;margin:3px 0 1px}
+.tt-slot .spots{font-size:.8rem;font-weight:700}
+.spots.open{color:var(--green)}
+.spots.full{color:var(--red)}
+/* ============ TESTIMONIALS ============ */
+.testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin-top:22px}
+.testi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative}
+.testi::before{content:"\201C";font-family:var(--display);font-size:3.2rem;color:var(--red);opacity:.3;position:absolute;top:4px;left:14px;line-height:1}
+.testi p{color:var(--ink-soft);font-size:.94rem;padding-left:16px;font-style:italic}
+.testi .who{padding-left:16px;margin-top:12px;font-weight:700;font-size:.86rem;font-style:normal}
+.testi .who span{display:block;font-weight:400;color:var(--ink-soft);font-size:.8rem}
+/* ============ TOAST & CONFETTI ============ */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--board);color:#fff;padding:13px 26px;border-radius:99px;font-weight:700;z-index:50;transition:transform .3s ease;box-shadow:0 8px 24px rgba(21,34,56,.35)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+.confetti{position:fixed;width:9px;height:9px;z-index:49;pointer-events:none;animation:cfall 1.1s ease-in forwards}
+@keyframes cfall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(46vh) rotate(400deg)}}
+/* ============ SESSION LOG ============ */
+.session-log{background:var(--paper);border:1px dashed var(--line);border-radius:8px;padding:11px 14px;margin-top:8px;font-size:.88rem;color:var(--ink-soft)}
+.session-log .sd{font-family:var(--mono);color:var(--red);font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}
+/* ============ PODIUM & LEADERBOARD ============ */
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin:22px 0 8px;height:190px}
+.pod{display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.pod .pname{font-weight:700;font-size:.92rem;margin-bottom:4px}
+.pod .ppts{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);margin-bottom:6px}
+.pod .block{width:86px;border-radius:8px 8px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-size:1.5rem;transform-origin:bottom;animation:rise .7s cubic-bezier(.2,.8,.3,1)}
+.pod.p1 .block{height:130px;background:linear-gradient(180deg,#E9C46A,var(--gold))}
+.pod.p2 .block{height:96px;background:linear-gradient(180deg,#CBD5E4,#9FB0C9)}
+.pod.p3 .block{height:70px;background:linear-gradient(180deg,#E0A184,#BB6B45)}
+.lb-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.lb-bar-name{width:90px;font-weight:700;font-size:.88rem;text-align:right;flex:0 0 auto}
+.lb-bar-track{flex:1;background:var(--paper-deep);border:1px solid var(--line);border-radius:99px;height:22px;overflow:hidden}
+.lb-bar-fill{height:100%;background:var(--ink);border-radius:99px;display:flex;align-items:center;justify-content:flex-end;padding-right:9px;color:#fff;font-family:var(--mono);font-size:.7rem;font-weight:600;min-width:34px;transition:width 1s cubic-bezier(.2,.8,.3,1)}
+.lb-bar-fill.me{background:var(--green)}
+/* ============ ACHIEVEMENTS ============ */
+.badge-shelf{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
+.ach{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.83rem;font-weight:700;display:flex;align-items:center;gap:8px;animation:popIn .3s ease}
+.ach .a-ic{font-size:1.15rem}
+.ach.locked{opacity:.38;filter:grayscale(1)}
+.ach small{display:block;font-weight:400;color:var(--ink-soft);font-size:.72rem}
+/* ============ CALENDAR ============ */
+.cal{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;max-width:560px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-head h3{font-size:1.15rem}
+.cal-nav{display:flex;gap:6px}
+.cal-nav button{background:var(--paper);border:1px solid var(--line);border-radius:8px;width:36px;height:36px;font-size:1.1rem;cursor:pointer;font-weight:800;color:var(--ink)}
+.cal-nav button:hover{background:var(--paper-deep)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-family:var(--mono);font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);text-align:center;padding:4px 0}
+.cal-day{aspect-ratio:1;border-radius:9px;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:.85rem;position:relative;cursor:default;transition:transform .1s}
+.cal-day.inmonth{background:var(--paper);border-color:var(--paper-deep)}
+.cal-day.today{border:2px solid var(--red);font-weight:600}
+.cal-day.clickable{cursor:pointer}
+.cal-day.clickable:hover{transform:scale(1.06);border-color:var(--ink)}
+.cal-day .dots{display:flex;gap:2px;position:absolute;bottom:5px}
+.cal-day .dot{width:6px;height:6px;border-radius:50%}
+.dot.due{background:var(--red)}
+.dot.session{background:var(--ink)}
+.cal-day.away{background:rgba(169,124,16,.18);border-color:var(--gold)}
+.cal-day.away::after{content:"✈";position:absolute;top:3px;right:5px;font-size:.6rem}
+.cal-legend{display:flex;gap:16px;margin-top:12px;font-size:.8rem;color:var(--ink-soft);flex-wrap:wrap}
+.cal-legend span{display:flex;align-items:center;gap:5px}
+.cal-legend .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.cal-list{margin-top:14px}
+.cal-list .cl-item{font-size:.88rem;padding:7px 0;border-top:1px dashed var(--line);color:var(--ink-soft)}
+.cal-list .cl-item strong{color:var(--ink)}
+/* ============ DAILY QUESTION ============ */
+.dq-card{background:linear-gradient(120deg,#FFF8E4,#FBF1D3);border:2px solid var(--gold);border-radius:14px;padding:24px;margin-bottom:20px;animation:popIn .35s ease}
+.dq-card h3{color:var(--gold)}
+.dq-q{font-family:var(--display);font-size:1.15rem;font-weight:600;margin:8px 0 12px}
+.stump-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+/* ============ CHARTS ============ */
+.chart-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+.chart-card h3{margin-bottom:6px}
+svg text{font-family:var(--mono)}
+.donut-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+/* ============ PLACEMENT TEST ============ */
+.pt-progress{background:var(--paper-deep);border:1px solid var(--line);border-radius:99px;height:10px;overflow:hidden;margin:18px 0}
+.pt-progress div{height:100%;background:var(--red);border-radius:99px;transition:width .4s ease}
+.pt-qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px;max-width:640px;animation:popIn .3s ease}
+.pt-qnum{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.pt-qtext{font-family:var(--display);font-size:1.3rem;font-weight:600;margin:12px 0 20px;line-height:1.35}
+.pt-opt{display:block;width:100%;text-align:left;background:var(--paper);border:2px solid var(--paper-deep);border-radius:10px;padding:13px 16px;margin-bottom:10px;font-size:.98rem;cursor:pointer;font-family:var(--body);color:var(--ink);transition:all .12s ease}
+.pt-opt:hover{border-color:var(--ink);transform:translateX(3px)}
+.pt-opt.sel{border-color:var(--red);background:rgba(198,60,52,.06);font-weight:700}
+.pt-band{font-family:var(--display);font-size:1.6rem;font-weight:640;padding:14px 26px;border-radius:12px;display:inline-block;margin:12px 0;border:2px dashed currentColor}
+.pt-band.b1{background:rgba(47,125,81,.1);color:var(--green)}
+.pt-band.b2{background:rgba(24,39,65,.07);color:var(--ink)}
+.pt-band.b3{background:rgba(169,124,16,.12);color:var(--gold)}
+.pt-band.b4{background:rgba(198,60,52,.08);color:var(--red)}
+.pt-topic{margin-bottom:12px;max-width:520px}
+/* ============ PRINT (placement results) ============ */
+@media print{
+  nav,footer,.btn,#toast,.prize-banner,body::before,body::after{display:none!important}
+  body{background:#fff}
+  .page{display:none!important}
+  #page-test{display:block!important;padding:0}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#page-home">Skip to content</a>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#" onclick="showPage('home');return false">New England<span> Tutoring</span></a>
+    <div class="tabs">
+      <button class="tab-btn active" data-page="home" onclick="showPage('home')">Home</button>
+      <button class="tab-btn" data-page="timetable" onclick="showPage('timetable')">Timetable</button>
+      <button class="tab-btn" data-page="test" onclick="showPage('test')">Placement Test</button>
+      <button class="tab-btn" data-page="portal" onclick="showPage('portal')">Portal</button>
+      <button class="tab-btn" data-page="waitlist" onclick="showPage('waitlist')">Waitlist</button>
+      <button class="tab-btn" data-page="pay" onclick="showPage('pay')">Fees</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<div class="page active" id="page-home">
+  <div class="wrap">
+
+    <div class="hero">
+      <p class="section-label">Armidale &amp; Invergowrie · Years K–12 · NSW syllabus</p>
+      <h1>Marks go up when the work gets <span class="marked">marked<svg viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M14,42 C8,14 118,4 168,14 C198,20 196,52 160,64 C110,78 22,74 12,50 C8,40 30,28 52,26"/></svg></span>.</h1>
+      <p class="lede">Small-group tutoring for Years 5–10 and one-on-one HSC coaching — with a live portal: homework calendar, progress charts, marked practice papers, a daily bonus question, an AI study helper, and a $175 term prize pool.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="showPage('test')">Take the free placement test</button>
+        <button class="btn btn-ghost" onclick="showPage('waitlist')">Join the waitlist</button>
+      </div>
+      <p style="margin-top:14px"><span class="annotation">20 minutes · all subjects · K–12 ✓</span></p>
+      <div class="hero-facts">
+        <div><strong>5</strong>students max per group</div>
+        <div><strong>$30–$60</strong>per hour, by program</div>
+        <div><strong>$175</strong>term prize pool</div>
+        <div><strong>24h</strong>reply time on messages</div>
+      </div>
+    </div>
+
+    <div class="prize-banner">
+      <div class="pz">🏆 $175 term prize pool<small>Study leaderboard — every term</small></div>
+      <div style="font-size:.95rem;color:#C7D0E4">🥇 1st <strong style="color:#fff">$100</strong> · 🥈 2nd <strong style="color:#fff">$50</strong> · 📈 Most improved <strong style="color:#fff">$25</strong><br>Points for homework, the daily question — and stumping the tutor.</div>
+    </div>
+
+    <div style="margin-top:48px">
+      <p class="section-label">How it works</p>
+      <h2>Three steps from "struggling" to "sorted"</h2>
+      <div class="steps" style="margin-top:28px">
+        <div class="step">
+          <h3>Sit the free placement test</h3>
+          <p>Forty questions written to the NSW syllabus for your child's year — about twenty minutes, online, no obligation. It shows exactly which topics need work.</p>
+          <span class="step-note">every result reviewed personally ✓</span>
+        </div>
+        <div class="step">
+          <h3>Get placed in the right group</h3>
+          <p>Groups are built by level, not just by age, and capped at five students. Years 11–12 work one-on-one. If the right group is full, the waitlist holds your place in order.</p>
+          <span class="step-note">max 5 per group, no exceptions</span>
+        </div>
+        <div class="step">
+          <h3>Work the plan, week by week</h3>
+          <p>A weekly session, homework in the portal, practice papers marked with feedback, and progress charts parents can check any time. Points and prizes keep it moving.</p>
+          <span class="step-note">everything lives in the portal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards" style="margin-top:48px">
+      <div class="card">
+        <span class="badge">Years 5–8</span>
+        <h3>Foundations group</h3>
+        <p class="price">$30 <small>/ student / hour</small></p>
+        <p>Maths fluency, times tables to algebra, fractions and core literacy. Groups of 3–5, one session weekly.</p>
+        <ul class="tick-list"><li>Weekly 60-minute session</li><li>Printed workbook &amp; portal homework</li><li>Parent progress view &amp; term report</li></ul>
+      </div>
+      <div class="card">
+        <span class="badge">Years 9–10</span>
+        <h3>Stage 5 group</h3>
+        <p class="price">$35 <small>/ student / hour</small></p>
+        <p>Maths (Core → 5.3), Science and essay skills, built around your school's assessment calendar.</p>
+        <ul class="tick-list"><li>Weekly 60-minute session</li><li>Marked practice papers linked to results</li><li>Live grades &amp; session logs in the portal</li></ul>
+      </div>
+      <div class="card">
+        <span class="badge red">Years 11–12 · Limited places</span>
+        <h3>HSC one-on-one</h3>
+        <p class="price">$60 <small>/ hour</small></p>
+        <p>Individual, exam-focused coaching from a tutor who sat the current syllabus — past papers marked with feedback.</p>
+        <ul class="tick-list"><li>Fully individual sessions</li><li>Marked past papers with feedback</li><li>Only a handful of places each term</li></ul>
+      </div>
+    </div>
+
+    <div style="margin-top:56px">
+      <p class="section-label">Your tutor</p>
+      <h2>Meet Nith</h2>
+      <!-- ✏️ EDIT ME: replace the placeholder text below with your real background,
+           results and a photo before launch. Don't publish anything you can't back up. -->
+      <div class="tutor-card" style="margin-top:20px">
+        <div class="tutor-photo" aria-hidden="true">✏️</div>
+        <div>
+          <p><strong>Add a short, honest introduction here</strong> — who you are, what you studied, and why you tutor. Two or three sentences is plenty.</p>
+          <p>Mention the things families actually ask about: which subjects you cover, that you sat the current HSC syllabus, and your Working With Children Check.</p>
+          <p class="muted">One good photo beats a paragraph — swap the pencil for a friendly headshot.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:56px">
+      <p class="section-label">What families say</p>
+      <h2>Word travels fast in Armidale</h2>
+      <!-- ⚠️ PLACEHOLDER TESTIMONIALS — replace with real, permissioned quotes before launch.
+           Publishing invented reviews breaches Australian Consumer Law. -->
+      <div class="testis">
+        <div class="testi"><p>Your first real parent quote goes here — ask after the week-9 progress report, when results are fresh.</p><div class="who">Parent name <span>Child's year level · school</span></div></div>
+        <div class="testi"><p>Second quote — one that mentions a specific result, like a jump in a school assessment mark.</p><div class="who">Parent name <span>Child's year level · school</span></div></div>
+        <div class="testi"><p>Third quote — from a student, about the sessions, the leaderboard or the prize pool.</p><div class="who">Student first name <span>Year level</span></div></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:56px">
+      <div>
+        <h2>One portal. Everyone in the loop.</h2>
+        <ul class="tick-list">
+          <li><strong>Students</strong> — homework calendar, points, streaks and badges, podium leaderboard, daily question, AI study helper</li>
+          <li><strong>Parents</strong> — progress charts, grades with marked papers, invoices, and an away-dates calendar</li>
+          <li><strong>Messages</strong> — ask a question any time, answered within 24 hours</li>
+          <li><strong>Noticeboard</strong> — times, changes and news posted daily</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">Try the demo</h3>
+        <p style="margin-bottom:12px">See the full student &amp; parent dashboard with code:</p>
+        <p style="font-family:var(--mono);font-size:1.4rem;font-weight:600;letter-spacing:.05em">DEMO-2027</p>
+        <button class="btn btn-dark btn-sm" style="margin-top:10px" onclick="demoLogin()">Open demo dashboard</button>
+      </div>
+    </div>
+
+    <div style="margin-top:56px">
+      <p class="section-label">Common questions</p>
+      <h2>Before you ask</h2>
+      <div class="faq">
+        <details>
+          <summary>Is the placement test really free?</summary>
+          <p>Yes — free and no obligation. It takes about twenty minutes online, and every result is reviewed personally before any group recommendation. It's how groups get built by level rather than just by year.</p>
+        </details>
+        <details>
+          <summary>How do groups stay small?</summary>
+          <p>Every group is capped at five students — no exceptions. When a group is full, the timetable shows it as waitlist-only, and you'll be offered the next place in the right group in order.</p>
+        </details>
+        <details>
+          <summary>What happens if we're away one week?</summary>
+          <p>Mark the date on the portal calendar (one click) and Nith sees it straight away, so a make-up session can be planned instead of the week being lost.</p>
+        </details>
+        <details>
+          <summary>Do siblings get a discount?</summary>
+          <p>Yes — 10% off the second child's term fees.</p>
+        </details>
+        <details>
+          <summary>How does payment work?</summary>
+          <p>Itemised invoices appear in the portal under Parent view. Pay by bank transfer or PayID with the invoice number as the reference, and a receipt is sent once payment clears. Fees are due at the end of week 1 each term.</p>
+        </details>
+        <details>
+          <summary>What's the AI Study Helper — and is it doing the homework?</summary>
+          <p>No. It explains the steps and the method between sessions, then leaves the final step to the student. Anything important still gets checked with Nith at the next session.</p>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ TIMETABLE ============ -->
+<div class="page" id="page-timetable">
+  <div class="wrap">
+    <p class="section-label">Weekly timetable</p>
+    <h1>Groups &amp; times</h1>
+    <p class="lede">Every group is capped at five students. Green means places are open — join the waitlist and you'll be offered the next spot in the right group.</p>
+    <div class="tt-grid" id="tt-public"></div>
+    <p class="muted" style="margin-top:18px">HSC one-on-one times are arranged individually on Tuesday and Thursday evenings.</p>
+  </div>
+</div>
+
+<!-- ============ PORTAL ============ -->
+<div class="page" id="page-portal">
+  <div class="wrap">
+
+    <div id="portal-login">
+      <p class="section-label">Student &amp; parent portal</p>
+      <h1>Log in with your access code</h1>
+      <p class="lede">Your family's code is on your enrolment email. Students and parents use the same code.</p>
+      <div class="form-card">
+        <label for="access-code">Access code</label>
+        <input id="access-code" placeholder="e.g. DEMO-2027" autocomplete="off">
+        <button class="btn btn-primary" style="margin-top:16px" onclick="portalLogin()">Log in</button>
+        <div class="msg" id="login-msg"></div>
+      </div>
+    </div>
+
+    <div id="portal-dash" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+        <div><p class="section-label" id="dash-program">—</p><h1 id="dash-name">—</h1></div>
+        <button class="btn btn-ghost btn-sm" onclick="portalLogout()">Log out</button>
+      </div>
+
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="student" onclick="showSub('student')">🎒 Student</button>
+        <button class="subtab-btn" data-sub="calendar" onclick="showSub('calendar')">📅 Calendar</button>
+        <button class="subtab-btn" data-sub="parent" onclick="showSub('parent')">👪 Parent view</button>
+        <button class="subtab-btn" data-sub="challenges" onclick="showSub('challenges')">⚡ Challenges</button>
+        <button class="subtab-btn" data-sub="ai" onclick="showSub('ai')">🤖 AI Helper</button>
+        <button class="subtab-btn" data-sub="messages" onclick="showSub('messages')">💬 Messages</button>
+        <button class="subtab-btn" data-sub="news" onclick="showSub('news')">📌 Noticeboard</button>
+      </div>
+
+      <!-- STUDENT -->
+      <div class="subpage active" id="sub-student">
+        <div class="prize-banner" id="dash-prize"></div>
+        <div class="stat-row">
+          <div class="pill-stat"><div class="n" id="stat-points">0</div><div class="l">Points</div></div>
+          <div class="pill-stat"><div class="n" id="stat-rank">—</div><div class="l">Rank</div></div>
+          <div class="pill-stat"><div class="n" id="stat-tasks">0</div><div class="l">Tasks done</div></div>
+          <div class="pill-stat"><div class="n" id="stat-hw">0</div><div class="l">Homework due</div></div>
+          <div class="pill-stat"><div class="n" id="stat-streak">0</div><div class="l">Day streak 🔥</div></div>
+          <div class="pill-stat"><div class="n" id="stat-time">0m</div><div class="l">Time on portal</div></div>
+        </div>
+        <div class="badge-shelf" id="badge-shelf"></div>
+        <div class="grid-2">
+          <div>
+            <h2>📋 Homework this week</h2>
+            <p class="muted" style="margin-bottom:12px">Each task earns 10 points. Overdue tasks pulse red.</p>
+            <div id="hw-list"></div>
+            <h2 style="margin-top:30px">🗒 Your group's session log</h2>
+            <div id="session-log"></div>
+          </div>
+          <div>
+            <h2>🏆 Leaderboard</h2>
+            <div class="podium" id="podium"></div>
+            <div id="lb-bars"></div>
+            <p class="muted" style="margin-top:10px">📈 Most improved ($25) is judged on progress gains — anyone can win it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALENDAR -->
+      <div class="subpage" id="sub-calendar">
+        <h2>📅 Homework &amp; availability calendar</h2>
+        <p class="muted" style="margin-bottom:16px">Red dots are homework due dates, navy dots are your group session. <strong>Parents:</strong> click any date to mark your family away (gold ✈) so sessions can be rescheduled — click again to unmark.</p>
+        <div class="grid-2">
+          <div class="cal" id="cal-main"></div>
+          <div>
+            <h3>Coming up</h3>
+            <div class="cal-list" id="cal-upcoming"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARENT -->
+      <div class="subpage" id="sub-parent">
+        <div class="grid-2">
+          <div class="chart-card"><h3>📊 Grades over the term</h3><p class="muted">Each topic test as a percentage.</p><div id="chart-grades"></div></div>
+          <div class="chart-card"><h3>⚡ Points earned over time</h3><p class="muted">Effort, week by week.</p><div id="chart-points"></div></div>
+        </div>
+        <div class="chart-card">
+          <h3>✅ Homework completion</h3>
+          <div class="donut-wrap"><div id="chart-donut"></div><div id="donut-caption" class="muted"></div></div>
+        </div>
+        <h2 style="margin-top:8px">📈 Topic progress</h2>
+        <div id="progress-list" style="margin-bottom:26px"></div>
+        <div class="grid-2">
+          <div><h2>📝 Grades &amp; marked papers</h2><div id="grades-wrap"></div></div>
+          <div><h2>🧾 Invoices</h2><div id="invoices-wrap"></div></div>
+        </div>
+      </div>
+
+      <!-- CHALLENGES -->
+      <div class="subpage" id="sub-challenges">
+        <div class="dq-card" id="dq-card"></div>
+        <div class="stump-card">
+          <h3>🧠 Stump the tutor — 15 points</h3>
+          <p class="muted" style="margin:6px 0 12px">Send a maths or science question. If Nith can't answer it at your next session, you get 15 points. (It has to be from your course — no PhD questions!)</p>
+          <div class="inline-form">
+            <input id="stump-text" placeholder="Your toughest question…">
+            <button class="btn btn-dark btn-sm" onclick="submitStump()">Submit</button>
+          </div>
+          <div id="stump-mine" style="margin-top:14px"></div>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <div class="subpage" id="sub-ai">
+        <h2>🤖 AI Study Helper</h2>
+        <p class="muted" style="margin-bottom:14px">Stuck on homework between sessions? Ask here. It explains the steps — it won't just hand you the answer. Anything important still gets checked with Nith.</p>
+        <div class="chat-box">
+          <div class="chat-scroll" id="ai-scroll"><div class="bubble them"><span class="who">Study Helper</span>Hi! Ask me anything from your homework — I'll walk you through how to solve it.</div></div>
+          <div class="chat-input">
+            <input id="ai-text" placeholder="e.g. How do I factorise x² + 5x + 6?" onkeydown="if(event.key==='Enter')askAI()">
+            <button class="btn btn-dark btn-sm" onclick="askAI()">Ask</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGES -->
+      <div class="subpage" id="sub-messages">
+        <h2>💬 Message Nith</h2>
+        <p class="muted" style="margin-bottom:14px">Questions about sessions or fees — replies within 24 hours.</p>
+        <div class="chat-box">
+          <div class="chat-scroll" id="chat-scroll"></div>
+          <div class="chat-input">
+            <input id="chat-text" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="btn btn-dark btn-sm" onclick="sendChat()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWS -->
+      <div class="subpage" id="sub-news">
+        <h2>📌 Noticeboard</h2>
+        <div id="news-list" style="margin-top:12px"></div>
+      </div>
+    </div>
+
+    <!-- ============ ADMIN ============ -->
+    <div id="portal-admin" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <h1>Tutor admin</h1>
+        <button class="btn btn-ghost btn-sm" onclick="portalLogout()">Log out</button>
+      </div>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="a-students" onclick="showSub('a-students')">Students</button>
+        <button class="subtab-btn" data-sub="a-groups" onclick="showSub('a-groups')">Groups</button>
+        <button class="subtab-btn" data-sub="a-calendar" onclick="showSub('a-calendar')">Calendar</button>
+        <button class="subtab-btn" data-sub="a-challenges" onclick="showSub('a-challenges')">Challenges</button>
+        <button class="subtab-btn" data-sub="a-invoices" onclick="showSub('a-invoices')">Invoices</button>
+        <button class="subtab-btn" data-sub="a-messages" onclick="showSub('a-messages')">Messages</button>
+        <button class="subtab-btn" data-sub="a-news" onclick="showSub('a-news')">Noticeboard</button>
+        <button class="subtab-btn" data-sub="a-waitlist" onclick="showSub('a-waitlist')">Waitlist</button>
+        <button class="subtab-btn" data-sub="a-placements" onclick="showSub('a-placements')">Placements</button>
+      </div>
+
+      <div class="subpage active" id="sub-a-students">
+        <h2>Add a student</h2>
+        <div class="form-card" style="max-width:none">
+          <div class="inline-form">
+            <input id="new-s-name" placeholder="First name">
+            <select id="new-s-program">
+              <option value="Foundations (Years 5–8)">Foundations (Years 5–8)</option>
+              <option value="Stage 5 (Years 9–10)">Stage 5 (Years 9–10)</option>
+              <option value="HSC one-on-one">HSC one-on-one</option>
+            </select>
+            <select id="new-s-group"></select>
+            <input id="new-s-code" placeholder="Access code e.g. PEARL-8A">
+            <button class="btn btn-dark btn-sm" onclick="adminAddStudent()">Add</button>
+          </div>
+          <div class="msg" id="admin-msg"></div>
+        </div>
+        <h2 style="margin-top:28px">Students</h2>
+        <div id="admin-students"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-groups">
+        <h2>Add a group</h2>
+        <div class="form-card" style="max-width:none">
+          <div class="inline-form">
+            <input id="new-g-name" placeholder="Group name e.g. Year 8 Maths A">
+            <select id="new-g-program"><option value="Foundations (Years 5–8)">Foundations (Years 5–8)</option><option value="Stage 5 (Years 9–10)">Stage 5 (Years 9–10)</option></select>
+            <select id="new-g-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option></select>
+            <input id="new-g-time" placeholder="Time e.g. 4:00–5:00pm" style="max-width:150px">
+            <input id="new-g-cap" type="number" value="5" min="1" max="8" style="max-width:75px" aria-label="Capacity">
+            <button class="btn btn-dark btn-sm" onclick="adminAddGroup()">Add</button>
+          </div>
+        </div>
+        <h2 style="margin-top:28px">Groups &amp; session logs</h2>
+        <div id="admin-groups"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-calendar">
+        <h2>Family away dates &amp; due dates</h2>
+        <p class="muted" style="margin-bottom:14px">Every date a family has marked unavailable, plus all homework due dates — use this to plan make-up sessions.</p>
+        <div id="admin-calendar"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-challenges">
+        <h2>Set the daily question</h2>
+        <div class="form-card" style="max-width:none">
+          <div class="inline-form">
+            <input id="dq-question" placeholder="Question e.g. What is 7 × 13 − 4²?">
+            <input id="dq-answer" placeholder="Answer (exact match) e.g. 75" style="max-width:200px">
+            <button class="btn btn-dark btn-sm" onclick="adminSetDaily()">Publish (+20 pts)</button>
+          </div>
+          <p class="muted" style="margin-top:8px">Answers are checked automatically — keep them to a single number or word. Publishing a new question resets who has answered.</p>
+        </div>
+        <h2 style="margin-top:28px">Stump-the-tutor submissions</h2>
+        <div id="admin-stumps"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-invoices">
+        <h2>Issue an invoice</h2>
+        <div class="form-card" style="max-width:none">
+          <div class="inline-form">
+            <select id="inv-student"></select>
+            <input id="inv-desc" placeholder="Description e.g. Term 1 2027 — 9 weeks">
+            <input id="inv-amount" type="number" placeholder="$" style="max-width:100px">
+            <button class="btn btn-dark btn-sm" onclick="adminIssueInvoice()">Issue</button>
+          </div>
+          <p class="muted" style="margin-top:10px">Quick amounts: Foundations 9 wks = $270 · Stage 5 9 wks = $315 · HSC 9 wks = $540 · Sibling −10%.</p>
+        </div>
+        <h2 style="margin-top:28px">All invoices</h2>
+        <div id="admin-invoices"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-messages"><h2>Family message threads</h2><div id="admin-messages"></div></div>
+
+      <div class="subpage" id="sub-a-news">
+        <h2>Post to the noticeboard</h2>
+        <div class="form-card">
+          <label for="news-title">Title</label><input id="news-title" placeholder="e.g. Wednesday groups moved to 4:15pm this week">
+          <label for="news-body">Details</label><textarea id="news-body"></textarea>
+          <button class="btn btn-dark" style="margin-top:14px" onclick="adminPostNews()">Post</button>
+        </div>
+        <h2 style="margin-top:28px">Posted</h2>
+        <div id="admin-news-list"></div>
+      </div>
+
+      <div class="subpage" id="sub-a-waitlist"><h2>Waitlist enquiries</h2><div id="admin-waitlist"></div></div>
+
+      <div class="subpage" id="sub-a-placements">
+        <h2>Placement test results</h2>
+        <p class="muted" style="margin-bottom:14px">Every completed test — score, band and topic-by-topic breakdown. Use these to build groups by level, not just by year.</p>
+        <div id="admin-placements"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PLACEMENT TEST ============ -->
+<div class="page" id="page-test">
+  <div class="wrap">
+    <div id="pt-setup">
+      <p class="section-label">Free placement test · K–12</p>
+      <h1>Find your child's starting point.</h1>
+      <p class="lede">Forty multiple-choice questions aligned to the NSW syllabus for their year — Maths, English, Science, History and Geography (with logical-reasoning questions in the senior papers). Takes about twenty minutes and shows exactly which topics need work. Free, no obligation.</p>
+      <div class="form-card">
+        <label for="pt-name">Student's first name</label>
+        <input id="pt-name" placeholder="e.g. Pearl">
+        <label for="pt-year">Year level (current)</label>
+        <select id="pt-year">
+          <option value="K">Kindergarten</option><option value="1">Year 1</option><option value="2">Year 2</option>
+          <option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option>
+          <option value="6">Year 6</option><option value="7" selected>Year 7</option><option value="8">Year 8</option>
+          <option value="9">Year 9</option><option value="10">Year 10</option><option value="11">Year 11</option>
+          <option value="12">Year 12</option>
+        </select>
+        <label for="pt-contact">Parent contact (optional — for your results &amp; group recommendation)</label>
+        <input id="pt-contact" placeholder="Mobile or email">
+        <p class="muted" id="pt-assist-note" style="margin-top:10px;display:none">👪 For K–2, a parent should read the questions aloud and enter the child's answers.</p>
+        <button class="btn btn-primary" style="margin-top:16px" onclick="startPlacement()">Start the test</button>
+        <div class="msg" id="pt-msg"></div>
+      </div>
+      <p class="muted" style="margin-top:16px;max-width:560px">This is a guide for grouping and teaching focus, not a formal assessment. Questions are written to NSW syllabus stage outcomes; results are reviewed personally before any group placement.</p>
+    </div>
+
+    <div id="pt-quiz" style="display:none">
+      <p class="section-label" id="pt-quiz-label">Placement test</p>
+      <div class="pt-progress"><div id="pt-bar" style="width:0%"></div></div>
+      <div class="pt-qcard">
+        <div class="pt-qnum" id="pt-qnum">Question 1 of 12</div>
+        <div class="pt-qtext" id="pt-qtext"></div>
+        <div id="pt-opts"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:16px">
+          <span class="muted" id="pt-topic-tag"></span>
+          <button class="btn btn-dark btn-sm" id="pt-next" onclick="ptNext()" disabled>Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="pt-results" style="display:none">
+      <p class="section-label">Results</p>
+      <h1 id="pt-r-title">—</h1>
+      <div class="pt-band" id="pt-r-band"></div>
+      <p class="lede" id="pt-r-summary"></p>
+      <h2 style="margin-top:20px">Topic breakdown</h2>
+      <div id="pt-r-topics" style="margin-top:14px"></div>
+      <div class="prize-banner" style="margin-top:28px">
+        <div class="pz">Ready for the next step?<small>Results are saved for your group placement</small></div>
+        <button class="btn btn-primary" onclick="showPage('waitlist')">Join the waitlist</button>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn btn-dark btn-sm" onclick="window.print()">Print or save these results</button>
+        <button class="btn btn-ghost btn-sm" onclick="ptReset()">Take another test</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WAITLIST ============ -->
+<div class="page" id="page-waitlist">
+  <div class="wrap">
+    <p class="section-label">Enrolments</p>
+    <h1>Join the waitlist</h1>
+    <p class="lede">Groups are capped at five. You'll be contacted, in order, as soon as a place in the right group opens.</p>
+    <div class="form-card">
+      <label for="wl-parent">Parent / carer name</label><input id="wl-parent" autocomplete="name">
+      <label for="wl-child">Student's first name</label><input id="wl-child">
+      <label for="wl-year">Year level (2027)</label>
+      <select id="wl-year"><option>Year 5</option><option>Year 6</option><option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option></select>
+      <label for="wl-school">School</label><input id="wl-school" placeholder="e.g. Armidale Secondary College">
+      <label for="wl-subject">Main subject of concern</label><input id="wl-subject" placeholder="e.g. Maths">
+      <label for="wl-contact">Best contact (mobile or email)</label><input id="wl-contact">
+      <button class="btn btn-primary" style="margin-top:18px" onclick="joinWaitlist()">Join the waitlist</button>
+      <div class="msg" id="wl-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FEES ============ -->
+<div class="page" id="page-pay">
+  <div class="wrap">
+    <p class="section-label">Fees</p>
+    <h1>Fees &amp; payment</h1>
+    <p class="lede">Enrolled families: itemised invoices live in the <a href="#" onclick="showPage('portal');return false">Portal</a> under Parent view. Pay by bank transfer or PayID with your invoice number as reference.</p>
+    <div class="grid-2">
+      <div class="form-card">
+        <h3 style="margin-bottom:6px">Estimate a term</h3>
+        <label for="pay-program">Program</label>
+        <select id="pay-program" onchange="calcInvoice()">
+          <option value="30">Foundations group — $30/week</option>
+          <option value="35">Stage 5 group — $35/week</option>
+          <option value="60">HSC one-on-one — $60/week</option>
+        </select>
+        <label for="pay-weeks">Weeks in term</label>
+        <select id="pay-weeks" onchange="calcInvoice()"><option>10</option><option selected>9</option><option>8</option><option>7</option><option>6</option><option>5</option></select>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:800;margin:14px 0" id="pay-total">Total: $315</div>
+        <p class="muted">Sibling discount: 10% off the second child. Fees due end of week 1 each term.</p>
+      </div>
+      <div class="bank-box">
+        <h3 style="margin-bottom:14px">Payment details</h3>
+        <div class="bank-row"><span>Account name</span><span>New England Tutoring</span></div>
+        <div class="bank-row"><span>BSB</span><span>000-000</span></div>
+        <div class="bank-row"><span>Account</span><span>0000 0000</span></div>
+        <div class="bank-row"><span>PayID</span><span>0400 000 000</span></div>
+        <div class="bank-row"><span>Reference</span><span><code>Your invoice number</code></span></div>
+        <p style="margin-top:16px">Use the invoice number (e.g. INV-0007) as the transfer reference. A receipt is sent once payment clears.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">+10 points!</div>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <span>© 2027 <strong>New England <em>Tutoring</em></strong> · Armidale NSW</span>
+    <span>Working With Children Check held · Text 0400 000 000</span>
+  </div>
+</footer>
+
+<script>
+/* ================= CONFIG ================= */
+const ADMIN_CODE="NITH-ADMIN-2027"; // change before going live
+const POINTS_PER_HW=10, POINTS_DAILY=20, POINTS_STUMP=15;
+const PRIZES={first:100,second:50,improved:25,label:"Winners announced week 10 · Term 1"};
+
+/* ================= STORAGE ================= */
+const mem={};
+const hasStore=typeof window.storage!=="undefined";
+async function sGet(k){ if(hasStore){try{const r=await window.storage.get(k,true);return r?JSON.parse(r.value):null;}catch(e){return null;}} return mem[k]??null; }
+async function sSet(k,v){ if(hasStore){try{await window.storage.set(k,JSON.stringify(v),true);return true;}catch(e){return false;}} mem[k]=v; return true; }
+
+/* ================= DATE HELPERS ================= */
+function iso(d){ return d.toISOString().slice(0,10); }
+function offsetDate(n){ const d=new Date(); d.setDate(d.getDate()+n); return iso(d); }
+function fmtDate(isoStr){ if(!isoStr)return""; const d=new Date(isoStr+"T12:00"); return d.toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"}); }
+function todayIso(){ return iso(new Date()); }
+
+/* ================= SEED DATA ================= */
+const SEED_GROUPS=[
+  {id:"g1",name:"Year 7–8 Maths A",program:"Foundations (Years 5–8)",day:"Monday",time:"4:00–5:00pm",cap:5,notes:[{date:"Last Monday",text:"Covered fractions → decimals conversion, and short-division speed drills. Homework set: worksheet Q1–20."}]},
+  {id:"g2",name:"Year 9–10 Maths",program:"Stage 5 (Years 9–10)",day:"Wednesday",time:"4:00–5:00pm",cap:5,notes:[{date:"Last Wednesday",text:"Expanding binomials and factorising by grouping. Marked last week's indices quiz in session."}]},
+  {id:"g3",name:"Year 5–6 Foundations",program:"Foundations (Years 5–8)",day:"Thursday",time:"5:15–6:15pm",cap:5,notes:[]}
+];
+function seedStudents(){
+  return {
+    "DEMO-2027":{name:"Demo Student",program:"Stage 5 (Years 9–10)",group:"g2",points:120,tasksDone:12,timeOnSite:8460,
+      homework:[
+        {id:"h1",text:"Indices worksheet Q1–15",due:offsetDate(2),done:false},
+        {id:"h2",text:"Finish linear equations set B",due:offsetDate(-1),done:true},
+        {id:"h3",text:"10 mins times-table drill, 3 days",due:offsetDate(5),done:false},
+        {id:"h4",text:"Measurement revision sheet",due:offsetDate(-2),done:false}
+      ],
+      progress:[{topic:"Algebra — expanding & factorising",pct:80},{topic:"Indices & scientific notation",pct:55},{topic:"Linear equations",pct:90},{topic:"Measurement",pct:30}],
+      grades:[
+        {task:"Week 3 quiz — algebra",mark:17,outOf:20,date:"14 Feb",link:"https://example.com/marked-paper-algebra"},
+        {task:"Week 6 quiz — indices",mark:13,outOf:20,date:"7 Mar",link:"https://example.com/marked-paper-indices"},
+        {task:"School assessment (reported)",mark:72,outOf:100,date:"21 Mar",link:""}
+      ],
+      invoices:[
+        {id:"INV-0001",desc:"Term 1 2027 — Stage 5 group, 9 weeks",amount:315,status:"paid",date:"3 Feb"},
+        {id:"INV-0002",desc:"Term 2 2027 — Stage 5 group, 10 weeks",amount:350,status:"unpaid",date:"20 Apr"}
+      ],
+      log:[{d:offsetDate(-28),p:20},{d:offsetDate(-21),p:45},{d:offsetDate(-14),p:70},{d:offsetDate(-7),p:100},{d:todayIso(),p:120}]
+    },
+    "SAMPLE-2":{name:"Alex",program:"Foundations (Years 5–8)",group:"g1",points:180,tasksDone:18,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
+    "SAMPLE-3":{name:"Ruby",program:"Stage 5 (Years 9–10)",group:"g2",points:95,tasksDone:9,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
+    "SAMPLE-4":{name:"Tom",program:"Foundations (Years 5–8)",group:"g3",points:60,tasksDone:6,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]}
+  };
+}
+const SEED_NEWS=[{id:"n1",date:"Today",title:"Welcome to Term 1!",body:"All groups start this week at their usual times. Don't forget the daily question in Challenges — 20 points, first come first served each day."}];
+const SEED_MSGS={"DEMO-2027":[{from:"parent",text:"Hi Nith — is there extra work we can do on measurement at home?",ts:"Mon 10:12am"},{from:"tutor",text:"Absolutely — I've added a measurement drill to this week's homework. Ten minutes a day beats an hour on Sunday!",ts:"Mon 4:45pm"}]};
+const SEED_DAILY={id:"d1",question:"What is 7 × 13 − 4²?",answer:"75",answeredBy:{}};
+
+async function loadAll(){
+  let students=await sGet("net-students-v4");
+  let groups=await sGet("net-groups");
+  let news=await sGet("net-news");
+  let msgs=await sGet("net-messages");
+  let daily=await sGet("net-daily");
+  let stumps=await sGet("net-stumps");
+  let away=await sGet("net-away");
+  if(!students){students=seedStudents();await sSet("net-students-v4",students);}
+  if(!groups){groups=SEED_GROUPS;await sSet("net-groups",groups);}
+  if(!news){news=SEED_NEWS;await sSet("net-news",news);}
+  if(!msgs){msgs=SEED_MSGS;await sSet("net-messages",msgs);}
+  if(!daily){daily=SEED_DAILY;await sSet("net-daily",daily);}
+  if(!stumps){stumps=[];await sSet("net-stumps",stumps);}
+  if(!away){away={};await sSet("net-away",away);}
+  return {students,groups,news,msgs,daily,stumps,away};
+}
+
+/* ================= NAV / FX ================= */
+let currentCode=null, calYear, calMonth, timeTimer=null, sessionSecs=0, aiHistory=[];
+function showPage(p){
+  document.querySelectorAll(".page").forEach(el=>el.classList.remove("active"));
+  document.getElementById("page-"+p).classList.add("active");
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===p));
+  if(p==="timetable")renderPublicTimetable();
+  window.scrollTo({top:0});
+}
+function showSub(s){
+  const c=document.getElementById(currentCode===ADMIN_CODE?"portal-admin":"portal-dash");
+  c.querySelectorAll(".subpage").forEach(el=>el.classList.remove("active"));
+  c.querySelector("#sub-"+s).classList.add("active");
+  c.querySelectorAll(".subtab-btn").forEach(b=>b.classList.toggle("active",b.dataset.sub===s));
+}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1900);}
+function confetti(n=26){const colors=["#C93A3A","#2E7D4F","#B8860B","#1B2A4A"];for(let i=0;i<n;i++){const c=document.createElement("div");c.className="confetti";c.style.left=(30+Math.random()*40)+"vw";c.style.top=(18+Math.random()*12)+"vh";c.style.background=colors[i%4];c.style.animationDelay=(Math.random()*.3)+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),1700);}}
+function countUp(el,target,suffix=""){
+  const dur=700,t0=performance.now();
+  function step(t){const k=Math.min(1,(t-t0)/dur);el.textContent=Math.round(target*(1-Math.pow(1-k,3)))+suffix;if(k<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+function fillBarClass(p){return p<40?"low":(p<70?"mid":"");}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function fmtSecs(sec){const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60);return h?`${h}h ${m}m`:`${m}m`;}
+
+/* ================= PUBLIC TIMETABLE ================= */
+async function renderPublicTimetable(){
+  const {students,groups}=await loadAll();
+  const days=["Monday","Tuesday","Wednesday","Thursday"];
+  const counts={};Object.values(students).forEach(s=>{if(s.group)counts[s.group]=(counts[s.group]||0)+1;});
+  const wrap=document.getElementById("tt-public");wrap.innerHTML="";
+  days.forEach(day=>{
+    const dg=groups.filter(g=>g.day===day);
+    const dv=document.createElement("div");dv.className="tt-day";
+    dv.innerHTML=`<div class="tt-day-head">${day}</div>`+(dg.length
+      ?dg.map(g=>{const used=counts[g.id]||0,left=Math.max(0,g.cap-used);
+        return `<div class="tt-slot"><div class="t">${esc(g.time)}</div><h4>${esc(g.name)}</h4><div class="muted" style="font-size:.82rem">${esc(g.program)}</div><div class="spots ${left?"open":"full"}">${left?left+" place"+(left>1?"s":"")+" open ✓":"Full — waitlist only"}</div></div>`;}).join("")
+      :`<div class="tt-slot"><p class="muted">No groups this day.</p></div>`);
+    wrap.appendChild(dv);
+  });
+}
+
+/* ================= LOGIN ================= */
+function demoLogin(){showPage('portal');document.getElementById("access-code").value="DEMO-2027";portalLogin();}
+async function portalLogin(){
+  const code=document.getElementById("access-code").value.trim().toUpperCase();
+  const msg=document.getElementById("login-msg");msg.className="msg";
+  if(!code){msg.className="msg err";msg.textContent="Enter your access code.";return;}
+  if(code===ADMIN_CODE){currentCode=code;renderAdmin();return;}
+  const {students}=await loadAll();
+  if(!students[code]){msg.className="msg err";msg.textContent="Code not recognised — check your enrolment email or text 0400 000 000.";return;}
+  currentCode=code;
+  const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();
+  startTimeTracking();
+  renderDashboard();
+}
+function portalLogout(){
+  currentCode=null;stopTimeTracking();aiHistory=[];
+  document.getElementById("portal-dash").style.display="none";
+  document.getElementById("portal-admin").style.display="none";
+  document.getElementById("portal-login").style.display="block";
+  document.getElementById("access-code").value="";
+}
+
+/* ================= TIME TRACKING ================= */
+function startTimeTracking(){
+  stopTimeTracking();sessionSecs=0;
+  timeTimer=setInterval(async()=>{
+    sessionSecs+=15;
+    const el=document.getElementById("stat-time");
+    if(el){const students=await sGet("net-students-v4");const s=students[currentCode];if(s)el.textContent=fmtSecs((s.timeOnSite||0)+sessionSecs);}
+    if(sessionSecs%60===0){ // persist each minute
+      const students=await sGet("net-students-v4");
+      if(students&&students[currentCode]){students[currentCode].timeOnSite=(students[currentCode].timeOnSite||0)+60;await sSet("net-students-v4",students);}
+    }
+  },15000);
+}
+function stopTimeTracking(){if(timeTimer){clearInterval(timeTimer);timeTimer=null;}}
+
+/* ================= CHARTS (hand-rolled SVG) ================= */
+function chartLine(values,labels,color){
+  if(values.length<2)return "<p class='muted'>Not enough data yet — check back after a few weeks.</p>";
+  const W=340,H=150,pad=26,max=Math.max(...values,1);
+  const pts=values.map((v,i)=>[pad+i*(W-2*pad)/(values.length-1),H-pad-(v/max)*(H-2*pad)]);
+  const path=pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
+  const area=path+` L${pts[pts.length-1][0]},${H-pad} L${pts[0][0]},${H-pad} Z`;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:420px">
+    <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#D5E0EC"/>
+    <path d="${area}" fill="${color}" opacity=".12"/>
+    <path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
+    ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${color}"/><text x="${p[0]}" y="${p[1]-8}" font-size="9" text-anchor="middle" fill="#4A5875">${values[i]}</text>`).join("")}
+    ${labels.map((l,i)=>`<text x="${pts[i][0]}" y="${H-9}" font-size="8" text-anchor="middle" fill="#4A5875">${l}</text>`).join("")}
+  </svg>`;
+}
+function chartDonut(done,total){
+  const pct=total?Math.round(done/total*100):0;
+  const r=44,c=2*Math.PI*r,off=c*(1-pct/100);
+  return `<svg viewBox="0 0 110 110" style="width:110px">
+    <circle cx="55" cy="55" r="${r}" fill="none" stroke="#D5E0EC" stroke-width="12"/>
+    <circle cx="55" cy="55" r="${r}" fill="none" stroke="#2E7D4F" stroke-width="12" stroke-linecap="round"
+      stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1s ease"/>
+    <text x="55" y="61" text-anchor="middle" font-size="20" font-weight="800" fill="#1B2A4A">${pct}%</text>
+  </svg>`;
+}
+
+/* ================= CALENDAR ================= */
+function buildDueMap(s,groups){
+  const due={}; s.homework.forEach(h=>{if(h.due){(due[h.due]=due[h.due]||[]).push((h.done?"✅ ":"")+h.text);}});
+  const g=groups.find(x=>x.id===s.group);
+  return {due,sessionDow:g?["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].indexOf(g.day):-1,gName:g?g.name:""};
+}
+async function renderCalendar(){
+  const {students,groups,away}=await loadAll();
+  const s=students[currentCode];if(!s)return;
+  const {due,sessionDow,gName}=buildDueMap(s,groups);
+  const myAway=new Set(away[currentCode]||[]);
+  const first=new Date(calYear,calMonth,1);
+  const startDow=(first.getDay()+6)%7; // Monday-first
+  const daysIn=new Date(calYear,calMonth+1,0).getDate();
+  const monthName=first.toLocaleDateString("en-AU",{month:"long",year:"numeric"});
+  let html=`<div class="cal-head"><h3>${monthName}</h3><div class="cal-nav">
+    <button aria-label="Previous month" onclick="calNav(-1)">‹</button>
+    <button aria-label="Next month" onclick="calNav(1)">›</button></div></div><div class="cal-grid">`;
+  ["Mo","Tu","We","Th","Fr","Sa","Su"].forEach(d=>html+=`<div class="cal-dow">${d}</div>`);
+  for(let i=0;i<startDow;i++)html+=`<div class="cal-day"></div>`;
+  for(let d=1;d<=daysIn;d++){
+    const ds=iso(new Date(calYear,calMonth,d,12));
+    const isToday=ds===todayIso();
+    const dow=new Date(calYear,calMonth,d).getDay();
+    const dots=[];
+    if(due[ds])dots.push(`<span class="dot due" title="Homework due"></span>`);
+    if(dow===sessionDow)dots.push(`<span class="dot session" title="Group session"></span>`);
+    html+=`<div class="cal-day inmonth clickable ${isToday?"today":""} ${myAway.has(ds)?"away":""}" onclick="toggleAway('${ds}')" title="${due[ds]?due[ds].join('; '):''}">${d}${dots.length?`<span class="dots">${dots.join("")}</span>`:""}</div>`;
+  }
+  html+=`</div><div class="cal-legend">
+    <span><span class="dot due"></span> Homework due</span>
+    <span><span class="dot session"></span> ${esc(gName||"Group session")}</span>
+    <span>✈ Family away</span></div>`;
+  document.getElementById("cal-main").innerHTML=html;
+
+  // upcoming list
+  const items=[];
+  s.homework.filter(h=>!h.done&&h.due).sort((a,b)=>a.due.localeCompare(b.due)).forEach(h=>{
+    const overdue=h.due<todayIso();
+    items.push(`<div class="cl-item">${overdue?"⚠️ <strong style='color:var(--red)'>OVERDUE</strong> — ":""}<strong>${fmtDate(h.due)}</strong> · ${esc(h.text)}</div>`);
+  });
+  [...myAway].sort().filter(d=>d>=todayIso()).forEach(d=>items.push(`<div class="cl-item">✈ <strong>${fmtDate(d)}</strong> · Family marked away</div>`));
+  document.getElementById("cal-upcoming").innerHTML=items.join("")||"<p class='muted'>Nothing coming up — all clear.</p>";
+}
+function calNav(dir){calMonth+=dir;if(calMonth<0){calMonth=11;calYear--;}if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
+async function toggleAway(ds){
+  const away=await sGet("net-away")||{};
+  const list=new Set(away[currentCode]||[]);
+  if(list.has(ds)){list.delete(ds);toast("Away date removed");}else{list.add(ds);toast("Marked away ✈ — Nith will see this");}
+  away[currentCode]=[...list];
+  await sSet("net-away",away);
+  renderCalendar();
+}
+
+/* ================= DASHBOARD ================= */
+async function renderDashboard(){
+  const {students,groups,news,msgs,daily,stumps}=await loadAll();
+  const s=students[currentCode];if(!s)return portalLogout();
+  document.getElementById("portal-login").style.display="none";
+  document.getElementById("portal-admin").style.display="none";
+  document.getElementById("portal-dash").style.display="block";
+
+  document.getElementById("dash-name").textContent=s.name+"'s dashboard";
+  document.getElementById("dash-program").textContent=s.program;
+  countUp(document.getElementById("stat-points"),s.points);
+  countUp(document.getElementById("stat-tasks"),s.tasksDone||0);
+  countUp(document.getElementById("stat-hw"),s.homework.filter(h=>!h.done).length);
+  document.getElementById("stat-time").textContent=fmtSecs((s.timeOnSite||0)+sessionSecs);
+
+  const ranked=Object.values(students).sort((a,b)=>b.points-a.points);
+  const rank=ranked.findIndex(x=>x.name===s.name)+1;
+  document.getElementById("stat-rank").textContent="#"+rank;
+
+  // daily-question streak (alive if answered today or yesterday)
+  const streakNow=(s.lastDaily===todayIso()||s.lastDaily===offsetDate(-1))?(s.streak||0):0;
+  document.getElementById("stat-streak").textContent=streakNow;
+
+  // achievements
+  const ach=[
+    {ic:"✏️",n:"First marks",d:"Earn your first 10 points",ok:s.points>=10},
+    {ic:"💯",n:"Century",d:"Reach 100 points",ok:s.points>=100},
+    {ic:"📚",n:"Ten tasks",d:"Finish 10 homework tasks",ok:(s.tasksDone||0)>=10},
+    {ic:"🔥",n:"On a roll",d:"3-day daily-question streak",ok:streakNow>=3},
+    {ic:"🥇",n:"Top of the board",d:"Hold 1st place",ok:rank===1},
+    {ic:"🧠",n:"Stumper",d:"Stump the tutor once",ok:stumps.some(x=>x.code===currentCode&&x.status==="awarded")}
+  ];
+  document.getElementById("badge-shelf").innerHTML=ach.map(a=>
+    `<div class="ach ${a.ok?"":"locked"}" title="${a.d}"><span class="a-ic">${a.ic}</span><span>${a.n}<small>${a.d}</small></span></div>`).join("");
+
+  document.getElementById("dash-prize").innerHTML=
+    `<div class="pz">🏆 $${PRIZES.first+PRIZES.second+PRIZES.improved} prize pool<small>${PRIZES.label}</small></div>
+     <div style="font-size:.93rem;color:#C7D0E4">🥇 $${PRIZES.first} · 🥈 $${PRIZES.second} · 📈 Most improved $${PRIZES.improved}${rank===1?"<br><strong style='color:#fff'>You're in 1st — defend it!</strong>":(rank===2?"<br><strong style='color:#fff'>You're 2nd — "+(ranked[0].points-s.points)+" points off the lead.</strong>":"<br><strong style='color:#fff'>"+(ranked[rank-2]?(ranked[rank-2].points-s.points+1)+" points to move up a place.":"")+"</strong>")}</div>`;
+
+  // homework
+  const hw=document.getElementById("hw-list");
+  hw.innerHTML=s.homework.length?"":"<p class='muted'>No homework set — enjoy it while it lasts.</p>";
+  s.homework.slice().sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999")).forEach(h=>{
+    const overdue=!h.done&&h.due&&h.due<todayIso();
+    const d=document.createElement("div");
+    d.className="hw-item"+(h.done?" done":"");
+    d.innerHTML=`<input type="checkbox" ${h.done?"checked":""} aria-label="Mark ${esc(h.text)} as done">
+      <span class="hw-text">${esc(h.text)}</span><span class="hw-due ${overdue?"overdue":""}">${h.due?("due "+fmtDate(h.due)):""}</span>`;
+    d.querySelector("input").addEventListener("change",()=>toggleHomework(h.id));
+    hw.appendChild(d);
+  });
+
+  // session log
+  const g=groups.find(x=>x.id===s.group);
+  document.getElementById("session-log").innerHTML=(g&&g.notes.length)
+    ?g.notes.slice().reverse().map(n=>`<div class="session-log"><span class="sd">${esc(n.date)} · ${esc(g.name)}</span><br>${esc(n.text)}</div>`).join("")
+    :"<p class='muted'>Session notes appear here after each week's lesson.</p>";
+
+  // podium + bars
+  const medals=["🥇","🥈","🥉"];
+  const top3=ranked.slice(0,3);
+  const order=[1,0,2]; // 2nd, 1st, 3rd visual order
+  document.getElementById("podium").innerHTML=order.filter(i=>top3[i]).map(i=>{
+    const x=top3[i];
+    return `<div class="pod p${i+1}"><div class="pname">${esc(x.name)}</div><div class="ppts">${x.points} pts${i===0?" · $"+PRIZES.first:(i===1?" · $"+PRIZES.second:"")}</div><div class="block">${medals[i]}</div></div>`;
+  }).join("");
+  const maxPts=Math.max(...ranked.map(x=>x.points),1);
+  document.getElementById("lb-bars").innerHTML=ranked.map(x=>`
+    <div class="lb-bar-row"><div class="lb-bar-name">${esc(x.name)}</div>
+    <div class="lb-bar-track"><div class="lb-bar-fill ${x.name===s.name?"me":""}" style="width:${Math.max(8,x.points/maxPts*100)}%">${x.points}</div></div></div>`).join("");
+
+  // calendar
+  renderCalendar();
+
+  // parent charts
+  const gradesPct=s.grades.map(g=>Math.round(g.mark/g.outOf*100));
+  document.getElementById("chart-grades").innerHTML=chartLine(gradesPct,s.grades.map(g=>g.date),"#C93A3A");
+  const log=s.log||[];
+  document.getElementById("chart-points").innerHTML=chartLine(log.map(l=>l.p),log.map(l=>fmtDate(l.d).split(" ").slice(1).join(" ")),"#2E7D4F");
+  const doneN=s.homework.filter(h=>h.done).length+ (s.tasksDone||0)-s.homework.filter(h=>h.done).length; // total historical
+  const openN=s.homework.filter(h=>!h.done).length;
+  const totalHist=(s.tasksDone||0)+openN;
+  document.getElementById("chart-donut").innerHTML=chartDonut(s.tasksDone||0,Math.max(totalHist,1));
+  document.getElementById("donut-caption").innerHTML=`<strong>${s.tasksDone||0}</strong> tasks completed all-term · <strong>${openN}</strong> currently open.<br>Time on the portal: <strong>${fmtSecs((s.timeOnSite||0)+sessionSecs)}</strong>.`;
+
+  // progress bars (animate from 0)
+  const pl=document.getElementById("progress-list");
+  pl.innerHTML=s.progress.length?"":"<p class='muted'>Progress bars appear after the first session.</p>";
+  s.progress.forEach(p=>{
+    const d=document.createElement("div");d.style.marginBottom="16px";d.style.maxWidth="640px";
+    d.innerHTML=`<div style="display:flex;justify-content:space-between;font-size:.92rem"><strong>${esc(p.topic)}</strong><span class="muted">${p.pct}%</span></div>
+      <div class="progress-track"><div class="progress-fill ${fillBarClass(p.pct)}" style="width:0%"></div></div>`;
+    pl.appendChild(d);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{d.querySelector(".progress-fill").style.width=p.pct+"%";}));
+  });
+
+  // grades table with marked-paper links
+  document.getElementById("grades-wrap").innerHTML=s.grades.length
+    ?"<table><tr><th>Task</th><th>Mark</th><th>%</th><th>Paper</th></tr>"+s.grades.map(g=>{
+      const pct=Math.round(g.mark/g.outOf*100);
+      return `<tr><td>${esc(g.task)}<br><span class="muted" style="font-size:.78rem">${esc(g.date)}</span></td><td>${g.mark}/${g.outOf}</td>
+        <td style="color:${pct>=70?'var(--green)':(pct>=50?'var(--gold)':'var(--red)')};font-weight:700">${pct}%</td>
+        <td>${g.link?`<a href="${esc(g.link)}" target="_blank" rel="noopener" style="color:var(--red);font-weight:700">View marked paper →</a>`:"<span class='muted'>—</span>"}</td></tr>`;
+    }).join("")+"</table>"
+    :"<p class='muted'>No grades recorded yet.</p>";
+
+  // invoices
+  document.getElementById("invoices-wrap").innerHTML=(s.invoices&&s.invoices.length)
+    ?s.invoices.slice().reverse().map(inv=>`<div class="invoice">
+      <div class="inv-head"><span class="inv-num">${esc(inv.id)}</span><span class="inv-status ${inv.status}">${inv.status}</span></div>
+      <div class="muted">${esc(inv.desc)} · issued ${esc(inv.date)}</div><div class="inv-amount">$${inv.amount}</div>
+      ${inv.status==="unpaid"?`<div class="muted">Pay by transfer/PayID with reference <strong>${esc(inv.id)}</strong> — details on the Fees page.</div>`:""}</div>`).join("")
+    :"<p class='muted'>No invoices issued yet.</p>";
+
+  // challenges
+  renderChallenges(daily,stumps,s);
+
+  // chat + news
+  renderChat(msgs[currentCode]||[]);
+  document.getElementById("news-list").innerHTML=news.length
+    ?news.slice().reverse().map(n=>`<div class="news-item"><span class="nd">${esc(n.date)}</span><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p></div>`).join("")
+    :"<p class='muted'>Nothing posted yet.</p>";
+}
+
+/* ================= CHALLENGES ================= */
+function renderChallenges(daily,stumps,s){
+  const answered=daily&&daily.answeredBy&&daily.answeredBy[currentCode];
+  document.getElementById("dq-card").innerHTML=daily&&daily.question
+    ?`<h3>⭐ Daily question — ${POINTS_DAILY} points</h3>
+      <div class="dq-q">${esc(daily.question)}</div>
+      ${answered?`<p style="color:var(--green);font-weight:800">✓ You've answered today's question — +${POINTS_DAILY} points banked!</p>`
+      :`<div class="inline-form"><input id="dq-input" placeholder="Your answer…" onkeydown="if(event.key==='Enter')answerDaily()"><button class="btn btn-dark btn-sm" onclick="answerDaily()">Answer</button></div>
+        <div class="msg" id="dq-msg"></div>`}`
+    :`<h3>⭐ Daily question</h3><p class="muted">No question published yet — check back soon.</p>`;
+  const mine=stumps.filter(x=>x.code===currentCode);
+  document.getElementById("stump-mine").innerHTML=mine.length
+    ?mine.slice().reverse().map(x=>`<div class="session-log"><span class="sd">${x.status==="awarded"?"🏅 STUMPED — +"+POINTS_STUMP+" pts":(x.status==="answered"?"Answered at session":"Pending review")}</span><br>${esc(x.question)}</div>`).join("")
+    :"";
+}
+async function answerDaily(){
+  const inp=document.getElementById("dq-input");if(!inp)return;
+  const val=inp.value.trim().toLowerCase();if(!val)return;
+  const daily=await sGet("net-daily");
+  const msg=document.getElementById("dq-msg");
+  if(!daily||daily.answeredBy[currentCode])return;
+  if(val===String(daily.answer).trim().toLowerCase()){
+    daily.answeredBy[currentCode]=true;await sSet("net-daily",daily);
+    const students=await sGet("net-students-v4");
+    const st=students[currentCode];
+    st.points+=POINTS_DAILY;
+    if(st.lastDaily!==todayIso()){
+      st.streak=(st.lastDaily===offsetDate(-1))?(st.streak||0)+1:1;
+      st.lastDaily=todayIso();
+    }
+    (st.log=st.log||[]).push({d:todayIso(),p:st.points});
+    await sSet("net-students-v4",students);
+    toast("+"+POINTS_DAILY+" points! ⭐");confetti(36);
+    renderDashboard();showSub("challenges");
+  } else {
+    msg.className="msg err";msg.textContent="Not quite — think it through and try again.";
+  }
+}
+async function submitStump(){
+  const inp=document.getElementById("stump-text");
+  const q=inp.value.trim();if(!q)return;
+  const stumps=await sGet("net-stumps")||[];
+  const students=await sGet("net-students-v4");
+  stumps.push({code:currentCode,name:students[currentCode].name,question:q,status:"pending"});
+  await sSet("net-stumps",stumps);
+  inp.value="";toast("Question sent to Nith 🧠");
+  renderChallenges(await sGet("net-daily"),stumps,students[currentCode]);
+}
+
+/* ================= AI HELPER ================= */
+async function askAI(){
+  const inp=document.getElementById("ai-text");
+  const q=inp.value.trim();if(!q)return;
+  const box=document.getElementById("ai-scroll");
+  box.insertAdjacentHTML("beforeend",`<div class="bubble me"><span class="who">You</span>${esc(q)}</div>`);
+  inp.value="";box.scrollTop=box.scrollHeight;
+  aiHistory.push({role:"user",content:q});
+  const typing=document.createElement("div");typing.className="typing";typing.textContent="Study Helper is thinking…";
+  box.appendChild(typing);box.scrollTop=box.scrollHeight;
+  try{
+    const response=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-6",max_tokens:1000,
+        system:"You are the Study Helper for New England Tutoring, a small tutoring business in Armidale NSW for Years 5-12 students following the NSW curriculum. A student is asking for homework help between sessions. Explain concepts step by step in plain, encouraging language suited to their level. Guide them to the answer rather than just handing it over - show the method, then let them try the final step where sensible. Keep answers concise (under 200 words). If asked about fees, scheduling or anything non-academic, tell them to use the Messages tab to ask Nith directly. Never help with anything that isn't schoolwork.",
+        messages:aiHistory
+      })
+    });
+    const data=await response.json();
+    typing.remove();
+    const text=(data.content||[]).map(i=>i.type==="text"?i.text:"").filter(Boolean).join("\n")||"Hmm, I couldn't work that one out — try rephrasing, or send it to Nith in Messages.";
+    aiHistory.push({role:"assistant",content:text});
+    if(aiHistory.length>16)aiHistory=aiHistory.slice(-16);
+    box.insertAdjacentHTML("beforeend",`<div class="bubble them"><span class="who">Study Helper</span>${esc(text)}</div>`);
+  }catch(e){
+    typing.remove();
+    box.insertAdjacentHTML("beforeend",`<div class="bubble them"><span class="who">Study Helper</span>I can't connect right now — send your question to Nith in the Messages tab instead.</div>`);
+  }
+  box.scrollTop=box.scrollHeight;
+}
+
+/* ================= FAMILY CHAT ================= */
+function renderChat(thread){
+  const box=document.getElementById("chat-scroll");
+  box.innerHTML=thread.length
+    ?thread.map(m=>`<div class="bubble ${m.from==='tutor'?'them':'me'}"><span class="who">${m.from==='tutor'?'Nith (tutor)':'You'} · ${esc(m.ts)}</span>${esc(m.text)}</div>`).join("")
+    :"<p class='muted' style='padding:8px'>No messages yet — ask anything.</p>";
+  box.scrollTop=box.scrollHeight;
+}
+async function sendChat(){
+  const inp=document.getElementById("chat-text");
+  const text=inp.value.trim();if(!text)return;
+  const msgs=await sGet("net-messages")||{};
+  if(!msgs[currentCode])msgs[currentCode]=[];
+  msgs[currentCode].push({from:"parent",text,ts:new Date().toLocaleString("en-AU",{weekday:"short",hour:"numeric",minute:"2-digit"})});
+  await sSet("net-messages",msgs);
+  inp.value="";renderChat(msgs[currentCode]);toast("Message sent ✓");
+}
+
+/* ================= HOMEWORK TOGGLE ================= */
+async function toggleHomework(hwId){
+  const students=await sGet("net-students-v4");
+  const s=students[currentCode];
+  const h=s.homework.find(x=>x.id===hwId);if(!h)return;
+  h.done=!h.done;
+  s.points=Math.max(0,s.points+(h.done?POINTS_PER_HW:-POINTS_PER_HW));
+  s.tasksDone=Math.max(0,(s.tasksDone||0)+(h.done?1:-1));
+  (s.log=s.log||[]).push({d:todayIso(),p:s.points});
+  if(s.log.length>30)s.log=s.log.slice(-30);
+  await sSet("net-students-v4",students);
+  if(h.done){toast("+10 points! 🎉");confetti();}
+  renderDashboard();
+}
+
+/* ================= ADMIN ================= */
+async function renderAdmin(){
+  const {students,groups,news,msgs,daily,stumps,away}=await loadAll();
+  document.getElementById("portal-login").style.display="none";
+  document.getElementById("portal-dash").style.display="none";
+  document.getElementById("portal-admin").style.display="block";
+
+  const gOpts=`<option value="">No group (HSC 1:1)</option>`+groups.map(g=>`<option value="${g.id}">${esc(g.name)} — ${g.day} ${esc(g.time)}</option>`).join("");
+  document.getElementById("new-s-group").innerHTML=gOpts;
+  document.getElementById("inv-student").innerHTML=Object.entries(students).map(([c,s])=>`<option value="${c}">${esc(s.name)} (${c})</option>`).join("");
+
+  // students
+  const wrap=document.getElementById("admin-students");wrap.innerHTML="";
+  Object.entries(students).forEach(([code,s])=>{
+    const det=document.createElement("details");det.className="admin-student";
+    det.innerHTML=`
+      <summary>${esc(s.name)} — ${esc(s.program)} · <code>${code}</code> · ${s.points} pts · ${s.tasksDone||0} tasks · ${fmtSecs(s.timeOnSite||0)} on portal</summary>
+      <div style="margin-top:12px">
+        <div class="inline-form"><label style="margin:0;align-self:center;font-size:.84rem">Group:</label><select id="grp-${code}">${gOpts}</select><button class="btn btn-dark btn-sm" onclick="adminSetGroup('${code}')">Save</button></div>
+        <strong style="font-size:.87rem;display:block;margin-top:14px">Homework</strong>
+        ${s.homework.map(h=>`<div style="font-size:.9rem;margin:4px 0">${h.done?"✅":"⬜"} ${esc(h.text)} ${h.due?"<span class='muted'>(due "+fmtDate(h.due)+")</span>":""} <button class="del" onclick="adminDelHw('${code}','${h.id}')">remove</button></div>`).join("")||"<p class='muted'>None set.</p>"}
+        <div class="inline-form"><input id="hw-text-${code}" placeholder="New homework task"><input id="hw-due-${code}" type="date" style="max-width:160px"><button class="btn btn-dark btn-sm" onclick="adminAddHw('${code}')">Add</button></div>
+        <strong style="font-size:.87rem;display:block;margin-top:14px">Progress topics</strong>
+        ${s.progress.map((p,i)=>`<div style="font-size:.9rem;margin:4px 0">${esc(p.topic)} — ${p.pct}% <button class="del" onclick="adminDelProg('${code}',${i})">remove</button></div>`).join("")||"<p class='muted'>None yet.</p>"}
+        <div class="inline-form"><input id="pr-topic-${code}" placeholder="Topic"><input id="pr-pct-${code}" type="number" min="0" max="100" placeholder="%" style="max-width:85px"><button class="btn btn-dark btn-sm" onclick="adminSetProg('${code}')">Set</button></div>
+        <strong style="font-size:.87rem;display:block;margin-top:14px">Grades (with marked-paper link)</strong>
+        ${s.grades.map((g,i)=>`<div style="font-size:.9rem;margin:4px 0">${esc(g.task)}: ${g.mark}/${g.outOf} (${esc(g.date)}) ${g.link?"🔗":""} <button class="del" onclick="adminDelGrade('${code}',${i})">remove</button></div>`).join("")||"<p class='muted'>None yet.</p>"}
+        <div class="inline-form">
+          <input id="gr-task-${code}" placeholder="Task"><input id="gr-mark-${code}" type="number" placeholder="Mark" style="max-width:75px"><input id="gr-out-${code}" type="number" placeholder="Out of" style="max-width:75px"><input id="gr-date-${code}" placeholder="Date" style="max-width:90px">
+          <input id="gr-link-${code}" placeholder="Link to marked paper (optional)"><button class="btn btn-dark btn-sm" onclick="adminAddGrade('${code}')">Add</button>
+        </div>
+        <div class="inline-form" style="margin-top:14px">
+          <input id="pts-${code}" type="number" placeholder="Adjust points ±" style="max-width:145px"><button class="btn btn-dark btn-sm" onclick="adminAdjustPoints('${code}')">Apply</button>
+          <button class="del" style="margin-left:auto" onclick="adminDelStudent('${code}')">Delete student</button>
+        </div>
+      </div>`;
+    wrap.appendChild(det);
+    det.querySelector(`#grp-${code}`).value=s.group||"";
+  });
+
+  // groups
+  const counts={};Object.values(students).forEach(s=>{if(s.group)counts[s.group]=(counts[s.group]||0)+1;});
+  document.getElementById("admin-groups").innerHTML=groups.map(g=>`
+    <details class="admin-student"><summary>${esc(g.name)} — ${g.day} ${esc(g.time)} · ${counts[g.id]||0}/${g.cap} enrolled</summary>
+      <div style="margin-top:10px"><strong style="font-size:.87rem">Session log</strong>
+        ${g.notes.slice().reverse().map((n,i)=>`<div class="session-log"><span class="sd">${esc(n.date)}</span><br>${esc(n.text)} <button class="del" onclick="adminDelNote('${g.id}',${g.notes.length-1-i})">remove</button></div>`).join("")||"<p class='muted'>No entries yet.</p>"}
+        <div class="inline-form"><input id="note-date-${g.id}" placeholder="Date e.g. Mon 16 Feb" style="max-width:140px"><input id="note-text-${g.id}" placeholder="This week we covered…"><button class="btn btn-dark btn-sm" onclick="adminAddNote('${g.id}')">Add</button></div>
+        <div class="inline-form" style="margin-top:10px"><button class="del" onclick="adminDelGroup('${g.id}')">Delete group</button></div>
+      </div></details>`).join("")||"<p class='muted'>No groups yet.</p>";
+
+  // admin calendar view
+  const awayRows=[];
+  Object.entries(away).forEach(([code,dates])=>{
+    const nm=students[code]?students[code].name:code;
+    dates.filter(d=>d>=todayIso()).sort().forEach(d=>awayRows.push(`<tr><td>${esc(nm)}</td><td>✈ Away</td><td>${fmtDate(d)}</td></tr>`));
+  });
+  Object.entries(students).forEach(([code,s])=>{
+    s.homework.filter(h=>!h.done&&h.due).forEach(h=>awayRows.push(`<tr><td>${esc(s.name)}</td><td>${esc(h.text)}</td><td>${h.due<todayIso()?"⚠️ OVERDUE — ":""}${fmtDate(h.due)}</td></tr>`));
+  });
+  document.getElementById("admin-calendar").innerHTML=awayRows.length
+    ?"<table><tr><th>Student</th><th>Item</th><th>Date</th></tr>"+awayRows.join("")+"</table>"
+    :"<p class='muted'>No away dates or open due dates.</p>";
+
+  // stumps
+  document.getElementById("admin-stumps").innerHTML=stumps.length
+    ?stumps.slice().reverse().map((x,ri)=>{const i=stumps.length-1-ri;
+      return `<div class="session-log"><span class="sd">${esc(x.name)} · ${x.status}</span><br>${esc(x.question)}
+        ${x.status==="pending"?`<div class="inline-form"><button class="btn btn-dark btn-sm" onclick="adminStump(${i},'awarded')">Stumped me — award ${POINTS_STUMP} pts</button><button class="btn btn-ghost btn-sm" onclick="adminStump(${i},'answered')">Answered it</button></div>`:""}</div>`;}).join("")
+    :"<p class='muted'>No submissions yet.</p>";
+
+  // invoices
+  const allInv=[];Object.entries(students).forEach(([code,s])=>(s.invoices||[]).forEach(inv=>allInv.push({...inv,sName:s.name,code})));
+  document.getElementById("admin-invoices").innerHTML=allInv.length
+    ?"<table><tr><th>No.</th><th>Student</th><th>Description</th><th>Amount</th><th>Status</th><th></th></tr>"+
+      allInv.sort((a,b)=>b.id.localeCompare(a.id)).map(inv=>`<tr><td>${esc(inv.id)}</td><td>${esc(inv.sName)}</td><td>${esc(inv.desc)}</td><td>$${inv.amount}</td><td><span class="inv-status ${inv.status}">${inv.status}</span></td><td><button class="del" onclick="adminToggleInvoice('${inv.code}','${inv.id}')">${inv.status==="unpaid"?"mark paid":"mark unpaid"}</button></td></tr>`).join("")+"</table>"
+    :"<p class='muted'>No invoices issued yet.</p>";
+
+  // messages
+  document.getElementById("admin-messages").innerHTML=Object.keys(msgs).length
+    ?Object.entries(msgs).map(([code,thread])=>{
+      const nm=students[code]?students[code].name:code;
+      return `<details class="admin-student"><summary>${esc(nm)} (${code}) — ${thread.length} message${thread.length!==1?"s":""}</summary>
+        <div style="margin-top:10px">${thread.map(m=>`<div class="bubble ${m.from==='tutor'?'me':'them'}" style="margin:6px 0;max-width:100%"><span class="who">${m.from==='tutor'?'You':'Family'} · ${esc(m.ts)}</span>${esc(m.text)}</div>`).join("")}
+        <div class="inline-form"><input id="reply-${code}" placeholder="Reply…"><button class="btn btn-dark btn-sm" onclick="adminReply('${code}')">Send</button></div></div></details>`;}).join("")
+    :"<p class='muted'>No message threads yet.</p>";
+
+  // news
+  document.getElementById("admin-news-list").innerHTML=news.length
+    ?news.slice().reverse().map(n=>`<div class="news-item"><span class="nd">${esc(n.date)}</span><h3>${esc(n.title)}</h3><p>${esc(n.body)}</p><button class="del" onclick="adminDelNews('${n.id}')">remove</button></div>`).join("")
+    :"<p class='muted'>Nothing posted.</p>";
+
+  // waitlist
+  const wl=await sGet("net-waitlist")||[];
+  document.getElementById("admin-waitlist").innerHTML=wl.length
+    ?"<table><tr><th>#</th><th>Student</th><th>Year</th><th>School</th><th>Subject</th><th>Contact</th><th>Parent</th><th></th></tr>"+
+      wl.map((e,i)=>`<tr><td>${i+1}</td><td>${esc(e.child)}</td><td>${esc(e.year)}</td><td>${esc(e.school)}</td><td>${esc(e.subject)}</td><td>${esc(e.contact)}</td><td>${esc(e.parent)}</td><td><button class="del" onclick="adminDelWl(${i})">remove</button></td></tr>`).join("")+"</table>"
+    :"<p class='muted'>No waitlist entries yet.</p>";
+
+  // placements
+  const placements=await sGet("net-placements")||[];
+  document.getElementById("admin-placements").innerHTML=placements.length
+    ?placements.slice().reverse().map((p,ri)=>{const i=placements.length-1-ri;
+      const topicRows=Object.entries(p.topics).map(([t,v])=>{
+        const tp=Math.round(v.c/v.n*100);
+        return `<div class="pt-topic"><div style="display:flex;justify-content:space-between;font-size:.9rem"><strong>${esc(t)}</strong><span class="muted">${v.c}/${v.n}</span></div>
+          <div class="progress-track"><div class="progress-fill ${fillBarClass(tp)}" style="width:${tp}%"></div></div></div>`;}).join("");
+      return `<details class="admin-student">
+        <summary>${esc(p.name)} — ${p.year==="K"?"Kindergarten":"Year "+p.year} · ${p.score}/${p.total} (${p.pct}%) · <strong>${esc(p.band)}</strong> · ${esc(p.date)}</summary>
+        <div style="margin-top:12px">
+          <p class="muted" style="margin-bottom:10px">Contact: ${p.contact?esc(p.contact):"not provided"}</p>
+          ${topicRows}
+          <button class="del" style="margin-top:8px" onclick="adminDelPlacement(${i})">Delete result</button>
+        </div></details>`;}).join("")
+    :"<p class='muted'>No placement tests completed yet.</p>";
+}
+async function adminDelPlacement(i){const p=await sGet("net-placements")||[];p.splice(i,1);await sSet("net-placements",p);renderAdmin();}
+
+async function mutStudents(fn){const s=await sGet("net-students-v4");fn(s);await sSet("net-students-v4",s);renderAdmin();}
+async function mutGroups(fn){const g=await sGet("net-groups");fn(g);await sSet("net-groups",g);renderAdmin();}
+
+async function adminAddStudent(){
+  const name=document.getElementById("new-s-name").value.trim();
+  const program=document.getElementById("new-s-program").value;
+  const group=document.getElementById("new-s-group").value;
+  const code=document.getElementById("new-s-code").value.trim().toUpperCase();
+  const msg=document.getElementById("admin-msg");msg.className="msg";
+  if(!name||!code){msg.className="msg err";msg.textContent="Name and access code required.";return;}
+  const students=await sGet("net-students-v4");
+  if(students[code]){msg.className="msg err";msg.textContent="That code is already in use.";return;}
+  students[code]={name,program,group,points:0,tasksDone:0,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]};
+  await sSet("net-students-v4",students);
+  msg.className="msg ok";msg.textContent=name+" added with code "+code+".";
+  document.getElementById("new-s-name").value="";document.getElementById("new-s-code").value="";
+  renderAdmin();
+}
+async function adminSetGroup(code){const v=document.getElementById("grp-"+code).value;mutStudents(s=>{s[code].group=v;});toast("Group saved ✓");}
+async function adminDelStudent(code){if(!confirm("Delete this student and all their data?"))return;mutStudents(s=>{delete s[code];});}
+async function adminAddHw(code){
+  const text=document.getElementById("hw-text-"+code).value.trim();
+  const due=document.getElementById("hw-due-"+code).value;
+  if(!text)return;mutStudents(s=>{s[code].homework.push({id:"h"+Date.now(),text,due,done:false});});
+}
+async function adminDelHw(code,id){mutStudents(s=>{s[code].homework=s[code].homework.filter(h=>h.id!==id);});}
+async function adminSetProg(code){
+  const topic=document.getElementById("pr-topic-"+code).value.trim();
+  const pct=Math.max(0,Math.min(100,parseInt(document.getElementById("pr-pct-"+code).value)||0));
+  if(!topic)return;
+  mutStudents(s=>{const ex=s[code].progress.find(p=>p.topic.toLowerCase()===topic.toLowerCase());if(ex)ex.pct=pct;else s[code].progress.push({topic,pct});});
+}
+async function adminDelProg(code,i){mutStudents(s=>{s[code].progress.splice(i,1);});}
+async function adminAddGrade(code){
+  const task=document.getElementById("gr-task-"+code).value.trim();
+  const mark=parseFloat(document.getElementById("gr-mark-"+code).value);
+  const outOf=parseFloat(document.getElementById("gr-out-"+code).value);
+  const date=document.getElementById("gr-date-"+code).value.trim()||"—";
+  const link=document.getElementById("gr-link-"+code).value.trim();
+  if(!task||isNaN(mark)||isNaN(outOf)||outOf<=0)return;
+  mutStudents(s=>{s[code].grades.push({task,mark,outOf,date,link});});
+}
+async function adminDelGrade(code,i){mutStudents(s=>{s[code].grades.splice(i,1);});}
+async function adminAdjustPoints(code){
+  const delta=parseInt(document.getElementById("pts-"+code).value)||0;
+  mutStudents(s=>{s[code].points=Math.max(0,s[code].points+delta);(s[code].log=s[code].log||[]).push({d:todayIso(),p:s[code].points});});
+}
+async function adminAddGroup(){
+  const name=document.getElementById("new-g-name").value.trim();
+  const program=document.getElementById("new-g-program").value;
+  const day=document.getElementById("new-g-day").value;
+  const time=document.getElementById("new-g-time").value.trim()||"4:00–5:00pm";
+  const cap=Math.max(1,parseInt(document.getElementById("new-g-cap").value)||5);
+  if(!name)return;
+  mutGroups(g=>{g.push({id:"g"+Date.now(),name,program,day,time,cap,notes:[]});});
+  document.getElementById("new-g-name").value="";
+}
+async function adminDelGroup(id){
+  if(!confirm("Delete this group? Students in it will be unassigned."))return;
+  mutGroups(g=>{const i=g.findIndex(x=>x.id===id);if(i>-1)g.splice(i,1);});
+  mutStudents(s=>{Object.values(s).forEach(x=>{if(x.group===id)x.group="";});});
+}
+async function adminAddNote(gid){
+  const date=document.getElementById("note-date-"+gid).value.trim()||new Date().toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"});
+  const text=document.getElementById("note-text-"+gid).value.trim();
+  if(!text)return;mutGroups(g=>{g.find(x=>x.id===gid).notes.push({date,text});});
+}
+async function adminDelNote(gid,i){mutGroups(g=>{g.find(x=>x.id===gid).notes.splice(i,1);});}
+async function adminIssueInvoice(){
+  const code=document.getElementById("inv-student").value;
+  const desc=document.getElementById("inv-desc").value.trim();
+  const amount=parseFloat(document.getElementById("inv-amount").value);
+  if(!code||!desc||isNaN(amount))return;
+  const students=await sGet("net-students-v4");
+  let maxN=0;Object.values(students).forEach(s=>(s.invoices||[]).forEach(inv=>{const n=parseInt(inv.id.replace("INV-",""))||0;if(n>maxN)maxN=n;}));
+  const id="INV-"+String(maxN+1).padStart(4,"0");
+  if(!students[code].invoices)students[code].invoices=[];
+  students[code].invoices.push({id,desc,amount,status:"unpaid",date:new Date().toLocaleDateString("en-AU",{day:"numeric",month:"short"})});
+  await sSet("net-students-v4",students);
+  document.getElementById("inv-desc").value="";document.getElementById("inv-amount").value="";
+  toast("Invoice "+id+" issued ✓");renderAdmin();
+}
+async function adminToggleInvoice(code,id){mutStudents(s=>{const inv=(s[code].invoices||[]).find(i=>i.id===id);if(inv)inv.status=inv.status==="unpaid"?"paid":"unpaid";});}
+async function adminReply(code){
+  const text=document.getElementById("reply-"+code).value.trim();if(!text)return;
+  const msgs=await sGet("net-messages")||{};
+  if(!msgs[code])msgs[code]=[];
+  msgs[code].push({from:"tutor",text,ts:new Date().toLocaleString("en-AU",{weekday:"short",hour:"numeric",minute:"2-digit"})});
+  await sSet("net-messages",msgs);renderAdmin();
+}
+async function adminPostNews(){
+  const title=document.getElementById("news-title").value.trim();
+  const body=document.getElementById("news-body").value.trim();
+  if(!title)return;
+  const news=await sGet("net-news")||[];
+  news.push({id:"n"+Date.now(),date:new Date().toLocaleDateString("en-AU",{weekday:"long",day:"numeric",month:"short"}),title,body});
+  await sSet("net-news",news);
+  document.getElementById("news-title").value="";document.getElementById("news-body").value="";
+  toast("Posted ✓");renderAdmin();
+}
+async function adminDelNews(id){const news=await sGet("net-news")||[];const i=news.findIndex(n=>n.id===id);if(i>-1)news.splice(i,1);await sSet("net-news",news);renderAdmin();}
+async function adminDelWl(i){const wl=await sGet("net-waitlist")||[];wl.splice(i,1);await sSet("net-waitlist",wl);renderAdmin();}
+async function adminSetDaily(){
+  const question=document.getElementById("dq-question").value.trim();
+  const answer=document.getElementById("dq-answer").value.trim();
+  if(!question||!answer)return;
+  await sSet("net-daily",{id:"d"+Date.now(),question,answer,answeredBy:{}});
+  document.getElementById("dq-question").value="";document.getElementById("dq-answer").value="";
+  toast("Daily question published ⭐");
+}
+async function adminStump(i,status){
+  const stumps=await sGet("net-stumps")||[];
+  if(!stumps[i])return;
+  stumps[i].status=status;
+  await sSet("net-stumps",stumps);
+  if(status==="awarded"){
+    const students=await sGet("net-students-v4");
+    const st=students[stumps[i].code];
+    if(st){st.points+=POINTS_STUMP;(st.log=st.log||[]).push({d:todayIso(),p:st.points});await sSet("net-students-v4",students);}
+    toast("Awarded "+POINTS_STUMP+" pts 🏅");
+  }
+  renderAdmin();
+}
+
+/* ================= PLACEMENT TEST ================= */
+/* q: question, o: options, a: index of correct answer, t: topic tag */
+const QBANK={
+"K":[
+ {q:"Count: 🍎🍎🍎🍎🍎 — how many apples?",o:["3","4","5","6"],a:2,t:"Counting"},
+ {q:"Which number comes after 7?",o:["6","8","9","5"],a:1,t:"Counting"},
+ {q:"Which shape has 3 sides?",o:["Square","Triangle","Circle","Rectangle"],a:1,t:"Shapes"},
+ {q:"2 + 1 = ?",o:["2","3","4","1"],a:1,t:"Addition"},
+ {q:"Which number is the biggest?",o:["2","9","5","7"],a:1,t:"Counting"},
+ {q:"You have 🍪🍪🍪🍪 and eat 1. How many are left?",o:["2","3","4","5"],a:1,t:"Subtraction"},
+ {q:"Which word starts with the same sound as 'sun'?",o:["Dog","Sock","Tree","Ball"],a:1,t:"English"},
+ {q:"Which letter comes after B?",o:["A","C","D","E"],a:1,t:"English"},
+ {q:"Which one is a living thing?",o:["Rock","Chair","Tree","Car"],a:2,t:"Science"},
+ {q:"The light in the daytime sky comes from the…",o:["Moon","Sun","Stars","A lamp"],a:1,t:"Science"},
+ {q:"Pattern: red, blue, red, blue, … what comes next?",o:["Green","Red","Yellow","Blue"],a:1,t:"Patterns"},
+ {q:"Which is more: 4 or 6?",o:["4","6","They are the same","Neither"],a:1,t:"Counting"},
+ {q:"Which shape is round like a ball?",o:["Cube","Circle","Square","Triangle"],a:1,t:"Shapes"},
+ {q:"3 + 2 = ?",o:["4","5","6","3"],a:1,t:"Addition"},
+ {q:"Counting backwards: 5, 4, 3, …?",o:["2","1","6","0"],a:0,t:"Counting"},
+ {q:"Which number is the smallest?",o:["8","3","6","9"],a:1,t:"Counting"},
+ {q:"How many legs does a dog have?",o:["2","3","4","6"],a:2,t:"Science"},
+ {q:"Which word starts with the same sound as 'mum'?",o:["Moon","Sun","Dad","Cat"],a:0,t:"English"},
+ {q:"1 + 1 + 1 = ?",o:["2","3","4","1"],a:1,t:"Addition"},
+ {q:"You have 2 toys and get 2 more. How many now?",o:["3","4","5","2"],a:1,t:"Problem solving"},
+ {q:"Which word do you say when you meet someone?",o:["Goodbye","Hello","No","Stop"],a:1,t:"English"},
+ {q:"How many letters are in the word 'cat'?",o:["2","3","4","5"],a:1,t:"English"},
+ {q:"Which letter does 'apple' start with?",o:["a","b","c","d"],a:0,t:"English"},
+ {q:"Which word means more than one cat?",o:["Cat","Cats","Catty","Cot"],a:1,t:"English"},
+ {q:"Which word rhymes with 'dog'?",o:["Log","Dig","Day","Dug"],a:0,t:"English"},
+ {q:"Which animal can fly?",o:["Dog","Bird","Fish","Cow"],a:1,t:"Science"},
+ {q:"What do plants need to grow?",o:["Water","Rocks","Toys","Paper"],a:0,t:"Science"},
+ {q:"Which one is hot?",o:["Ice","The sun","Snow","The fridge"],a:1,t:"Science"},
+ {q:"What do cows give us?",o:["Milk","Eggs","Wool","Honey"],a:0,t:"Science"},
+ {q:"Rain falls from…",o:["Trees","Clouds","Roads","Rivers"],a:1,t:"Science"},
+ {q:"Who in a family is usually the oldest?",o:["A grandparent","A baby","A pet","A toy"],a:0,t:"History"},
+ {q:"A photo of you as a baby shows the…",o:["Future","Past","Next week","Tomorrow"],a:1,t:"History"},
+ {q:"Long ago, before cars, people travelled by…",o:["Horse and cart","Aeroplane","Rocket","Train only"],a:0,t:"History"},
+ {q:"Your birthday celebrates the day you were…",o:["Born","Sleeping","Eating","Walking"],a:0,t:"History"},
+ {q:"Something very old is from…",o:["Long ago","Tomorrow","Next year","Today"],a:0,t:"History"},
+ {q:"We live on planet…",o:["Mars","Earth","The Moon","The Sun"],a:1,t:"Geography"},
+ {q:"Where do fish live?",o:["In trees","In water","In the sky","In sand only"],a:1,t:"Geography"},
+ {q:"A map shows us…",o:["Places","Food","Songs","Games"],a:0,t:"Geography"},
+ {q:"Which is a place you can swim?",o:["The beach","The library","The kitchen","The garage"],a:0,t:"Geography"},
+ {q:"The sky is above us. The ground is…",o:["Beside us","Below us","Above us","Inside us"],a:1,t:"Geography"}
+],
+"1":[
+ {q:"8 + 5 = ?",o:["12","13","14","11"],a:1,t:"Addition"},
+ {q:"15 − 6 = ?",o:["8","9","10","7"],a:1,t:"Subtraction"},
+ {q:"Counting by 2s: 2, 4, 6, …?",o:["7","8","9","10"],a:1,t:"Patterns"},
+ {q:"Half of 10 is…",o:["4","5","6","2"],a:1,t:"Fractions"},
+ {q:"When the big hand points straight up to 12, the time is…",o:["Quarter past","Half past","O'clock","Quarter to"],a:2,t:"Time"},
+ {q:"10 + 10 + 3 = ?",o:["13","23","33","20"],a:1,t:"Addition"},
+ {q:"Which word rhymes with 'cat'?",o:["Cot","Hat","Cut","Kit"],a:1,t:"English"},
+ {q:"More than one dog is called…",o:["Doges","Dogs","Dogies","Dog"],a:1,t:"English"},
+ {q:"Which sense uses your ears?",o:["Sight","Hearing","Smell","Taste"],a:1,t:"Science"},
+ {q:"A baby frog is called a…",o:["Puppy","Tadpole","Kitten","Chick"],a:1,t:"Science"},
+ {q:"Pattern: 1, 3, 5, 7, …?",o:["8","9","10","11"],a:1,t:"Patterns"},
+ {q:"Which of these is the heaviest?",o:["A feather","A brick","A leaf","A sheet of paper"],a:1,t:"Measurement"},
+ {q:"7 + 7 = ?",o:["13","14","15","12"],a:1,t:"Addition"},
+ {q:"20 − 10 = ?",o:["5","10","15","20"],a:1,t:"Subtraction"},
+ {q:"Which number is between 14 and 16?",o:["13","15","17","12"],a:1,t:"Counting"},
+ {q:"Counting by 10s: 10, 20, 30, …?",o:["35","40","50","31"],a:1,t:"Patterns"},
+ {q:"Which coin is worth more?",o:["50 cents","One dollar","They are the same","Neither"],a:1,t:"Money"},
+ {q:"Fish breathe using their…",o:["Lungs","Gills","Noses","Skin"],a:1,t:"Science"},
+ {q:"4 + ___ = 10. What goes in the space?",o:["5","6","7","4"],a:1,t:"Addition"},
+ {q:"The first letter of your name needs a…",o:["Full stop","Capital letter","Comma","Space"],a:1,t:"English"},
+ {q:"Which mark ends a question?",o:["Full stop","Question mark","Comma","Dash"],a:1,t:"English"},
+ {q:"Which word is a naming word (noun)?",o:["Run","Dog","Quickly","Happy"],a:1,t:"English"},
+ {q:"'I ___ a sandwich for lunch.' Which word fits?",o:["Ate","Eight","Aid","At"],a:0,t:"English"},
+ {q:"The opposite of 'big' is…",o:["Tall","Small","Wide","Long"],a:1,t:"English"},
+ {q:"Which word is spelled correctly?",o:["Frend","Friend","Freind","Frende"],a:1,t:"English"},
+ {q:"Which animal lives in the water?",o:["Cat","Shark","Bird","Horse"],a:1,t:"Science"},
+ {q:"Plants grow from…",o:["Seeds","Rocks","Sand","Plastic"],a:0,t:"Science"},
+ {q:"At night we can see the moon and the…",o:["Sun","Stars","Rainbows","School"],a:1,t:"Science"},
+ {q:"Which one is a fruit?",o:["Carrot","Apple","Potato","Lettuce"],a:1,t:"Science"},
+ {q:"Ice is water that is very…",o:["Hot","Cold","Soft","Loud"],a:1,t:"Science"},
+ {q:"Your grandparents were once…",o:["Never young","Children","Robots","Teachers only"],a:1,t:"History"},
+ {q:"Which toy did children play with long ago?",o:["A tablet","A spinning top","A video game","A phone"],a:1,t:"History"},
+ {q:"We remember special days with…",o:["Celebrations","Homework","Nothing","Chores"],a:0,t:"History"},
+ {q:"Very old photographs are often…",o:["Black and white","Rainbow coloured","Green","Invisible"],a:0,t:"History"},
+ {q:"A museum keeps things from the…",o:["Past","Future","Moon","Sea only"],a:0,t:"History"},
+ {q:"Australia is a…",o:["City","Country","Street","School"],a:1,t:"Geography"},
+ {q:"Which is a natural feature?",o:["A river","A road","A building","A car"],a:0,t:"Geography"},
+ {q:"A hot, sandy place with very little rain is a…",o:["Forest","Desert","Beach town","City"],a:1,t:"Geography"},
+ {q:"We use a ___ to find where places are.",o:["Map","Spoon","Pillow","Clock"],a:0,t:"Geography"},
+ {q:"The place where you live with your family is your…",o:["Home","Shop","Zoo","Office"],a:0,t:"Geography"}
+],
+"2":[
+ {q:"36 + 27 = ?",o:["53","63","62","64"],a:1,t:"Addition"},
+ {q:"52 − 19 = ?",o:["33","43","31","37"],a:0,t:"Subtraction"},
+ {q:"5 × 3 = ?",o:["8","15","12","18"],a:1,t:"Multiplication"},
+ {q:"Counting by 5s: 5, 10, 15, …?",o:["18","20","25","30"],a:1,t:"Patterns"},
+ {q:"In the number 74, which digit is in the tens place?",o:["7","4","74","0"],a:0,t:"Place value"},
+ {q:"A quarter of 8 is…",o:["2","4","1","3"],a:0,t:"Fractions"},
+ {q:"Tom has 3 bags with 4 apples in each. How many apples altogether?",o:["7","12","10","16"],a:1,t:"Problem solving"},
+ {q:"The sentence 'she went to school' needs a…",o:["Full stop","Capital letter","Comma","Question mark"],a:1,t:"English"},
+ {q:"The opposite of 'hot' is…",o:["Warm","Cold","Wet","Soft"],a:1,t:"English"},
+ {q:"Which of these animals is an insect?",o:["Spider","Ant","Worm","Snail"],a:1,t:"Science"},
+ {q:"Water turns into ice when it is…",o:["Heated","Frozen","Melted","Boiled"],a:1,t:"Science"},
+ {q:"A shape with 4 equal sides and 4 right angles is a…",o:["Rectangle","Square","Rhombus","Triangle"],a:1,t:"Shapes"},
+ {q:"8 × 2 = ?",o:["14","16","18","10"],a:1,t:"Multiplication"},
+ {q:"45 + 55 = ?",o:["90","100","110","95"],a:1,t:"Addition"},
+ {q:"Half of 14 is…",o:["6","7","8","12"],a:1,t:"Fractions"},
+ {q:"Which number is even?",o:["7","13","16","21"],a:2,t:"Number"},
+ {q:"3 metres is the same as…",o:["30 cm","300 cm","3,000 cm","13 cm"],a:1,t:"Measurement"},
+ {q:"Which word is spelled correctly?",o:["Becos","Because","Becuse","Becaus"],a:1,t:"English"},
+ {q:"You can see the moon best at…",o:["Noon","Night","Breakfast","Lunchtime"],a:1,t:"Science"},
+ {q:"If today is Tuesday, tomorrow is…",o:["Monday","Wednesday","Thursday","Sunday"],a:1,t:"Time"},
+ {q:"Which word is a doing word (verb)?",o:["Jump","Table","Blue","Slowly"],a:0,t:"English"},
+ {q:"In 'the boy's hat', the apostrophe shows…",o:["More than one","Ownership","A question","The ending"],a:1,t:"English"},
+ {q:"Which word can join two sentences?",o:["And","Dog","Hat","Blue"],a:0,t:"English"},
+ {q:"The words in a book's title start with…",o:["Small letters","Capital letters","Numbers","Dots"],a:1,t:"English"},
+ {q:"Which sentence is in the correct order?",o:["School to went I","I went to school","Went I to school","To school went I"],a:1,t:"English"},
+ {q:"A caterpillar grows up to become a…",o:["Bird","Butterfly","Bee","Spider"],a:1,t:"Science"},
+ {q:"Pushing and pulling are types of…",o:["Forces","Foods","Sounds","Colours"],a:0,t:"Science"},
+ {q:"Which material keeps water out?",o:["Paper","Plastic","Tissue","Cotton wool"],a:1,t:"Science"},
+ {q:"The sun rises in the morning and sets in the…",o:["Morning","Evening","Middle of the day","Classroom"],a:1,t:"Science"},
+ {q:"Which body part do you use to see?",o:["Ears","Eyes","Nose","Hands"],a:1,t:"Science"},
+ {q:"ANZAC Day remembers…",o:["Soldiers","Painters","Farmers only","Astronauts"],a:0,t:"History"},
+ {q:"Long ago, people wrote with…",o:["Computers","Pen and ink","Phones","Tablets"],a:1,t:"History"},
+ {q:"Old objects made and used long ago are called…",o:["Artefacts","Apps","Gadgets","Downloads"],a:0,t:"History"},
+ {q:"Aboriginal and Torres Strait Islander peoples have lived in Australia…",o:["Only recently","For a very long time, long before ships arrived","Since last year","Never"],a:1,t:"History"},
+ {q:"A timeline shows events in…",o:["Order","Colours","Circles","Songs"],a:0,t:"History"},
+ {q:"The capital city of Australia is…",o:["Sydney","Canberra","Melbourne","Perth"],a:1,t:"Geography"},
+ {q:"Which of these is an ocean?",o:["The Pacific","The Sahara","The Amazon","Mount Everest"],a:0,t:"Geography"},
+ {q:"A farm is usually found in the…",o:["Middle of a city","Countryside","Ocean","Sky"],a:1,t:"Geography"},
+ {q:"Which weather brings water from the sky?",o:["Sunshine","Rain","Wind only","Fog only"],a:1,t:"Geography"},
+ {q:"North, South, East and West are…",o:["Directions","Animals","Foods","Games"],a:0,t:"Geography"}
+],
+"3":[
+ {q:"7 × 8 = ?",o:["54","56","64","48"],a:1,t:"Multiplication"},
+ {q:"345 + 278 = ?",o:["623","613","523","633"],a:0,t:"Addition"},
+ {q:"600 − 234 = ?",o:["366","376","434","364"],a:0,t:"Subtraction"},
+ {q:"Which fraction is bigger?",o:["1/4","1/2","They're equal","Can't tell"],a:1,t:"Fractions"},
+ {q:"42 ÷ 6 = ?",o:["6","7","8","9"],a:1,t:"Division"},
+ {q:"What is the value of the 5 in 3,528?",o:["5","50","500","5,000"],a:2,t:"Place value"},
+ {q:"The perimeter of a square with 6 cm sides is…",o:["12 cm","24 cm","36 cm","18 cm"],a:1,t:"Measurement"},
+ {q:"In 'She ran quickly', the word 'quickly' is a…",o:["Noun","Verb","Adjective","Adverb"],a:3,t:"English"},
+ {q:"The past tense of 'run' is…",o:["Runned","Ran","Runs","Running"],a:1,t:"English"},
+ {q:"Which of these is a solid?",o:["Milk","Steam","Ice","Juice"],a:2,t:"Science"},
+ {q:"Plants make their food using…",o:["Moonlight","Sunlight","Only soil","Wind"],a:1,t:"Science"},
+ {q:"3:30 on a clock is also called…",o:["Half past three","Quarter past three","Three o'clock","Quarter to three"],a:0,t:"Time"},
+ {q:"9 × 6 = ?",o:["52","54","56","45"],a:1,t:"Multiplication"},
+ {q:"1/2 + 1/2 = ?",o:["1/4","1","2","1/2"],a:1,t:"Fractions"},
+ {q:"25 × 10 = ?",o:["250","2,500","25","2,050"],a:0,t:"Multiplication"},
+ {q:"Which is the longest?",o:["1 metre","90 cm","120 cm","Half a metre"],a:2,t:"Measurement"},
+ {q:"72 ÷ 8 = ?",o:["8","9","7","6"],a:1,t:"Division"},
+ {q:"In 'The cat sat on the mat', the verb is…",o:["Cat","Sat","On","Mat"],a:1,t:"English"},
+ {q:"Which material sticks to a magnet?",o:["Wood","Plastic","Iron","Glass"],a:2,t:"Science"},
+ {q:"Sarah buys a $2.50 drink and pays with $5. Her change is…",o:["$2.50","$3.50","$2.00","$1.50"],a:0,t:"Money"},
+ {q:"Which word is an adjective (describing word)?",o:["Happy","Run","Dog","Quickly"],a:0,t:"English"},
+ {q:"The correct plural of 'child' is…",o:["Childs","Children","Childes","Childrens"],a:1,t:"English"},
+ {q:"A synonym for 'fast' is…",o:["Quick","Slow","Heavy","Loud"],a:0,t:"English"},
+ {q:"Which sentence is punctuated correctly?",o:["what time is it","What time is it?","what time is it?","What time is it"],a:1,t:"English"},
+ {q:"Adding 'un' to 'kind' makes a word meaning…",o:["Very kind","Not kind","Kind again","The kindest"],a:1,t:"English"},
+ {q:"The three states of matter are…",o:["Solid, liquid, gas","Hot, cold, warm","Big, small, medium","Rock, water, air only"],a:0,t:"Science"},
+ {q:"Which animal is nocturnal (active at night)?",o:["Owl","Rooster","Butterfly","Magpie"],a:0,t:"Science"},
+ {q:"A thermometer measures…",o:["Temperature","Weight","Length","Sound"],a:0,t:"Science"},
+ {q:"Which is a basic need of all living things?",o:["Water","Television","Toys","Cars"],a:0,t:"Science"},
+ {q:"The Sun gives us light and…",o:["Heat","Rain","Wind","Snow"],a:0,t:"Science"},
+ {q:"The traditional owners of the land across Australia are…",o:["Aboriginal and Torres Strait Islander peoples","The Vikings","The Romans","Pirates"],a:0,t:"History"},
+ {q:"Celebrations like Christmas, Diwali and Eid are examples of…",o:["Traditions","Sports","Jobs","Schools"],a:0,t:"History"},
+ {q:"The First Fleet arrived in Australia in…",o:["1788","1988","1688","1888"],a:0,t:"History"},
+ {q:"We learn about the past from…",o:["Sources like photos and letters","Guessing only","Dreams","Cartoons only"],a:0,t:"History"},
+ {q:"A person who studies the past is called a…",o:["Historian","Dentist","Pilot","Chef"],a:0,t:"History"},
+ {q:"Including Tasmania, Australia has how many states?",o:["4","5","6","8"],a:2,t:"Geography"},
+ {q:"Australia is both a country and a…",o:["Continent","City","Suburb","Street"],a:0,t:"Geography"},
+ {q:"The largest ocean on Earth is the…",o:["Pacific","Atlantic","Indian","Arctic"],a:0,t:"Geography"},
+ {q:"Uluru is found in which part of Australia?",o:["Northern Territory","New South Wales","Tasmania","Victoria"],a:0,t:"Geography"},
+ {q:"A globe is a model of…",o:["The Earth","A house","The Moon only","A car"],a:0,t:"Geography"}
+],
+"4":[
+ {q:"348 × 6 = ?",o:["2,088","1,888","2,048","2,148"],a:0,t:"Multiplication"},
+ {q:"812 ÷ 4 = ?",o:["203","213","223","204"],a:0,t:"Division"},
+ {q:"Which fraction is equivalent to 3/4?",o:["6/8","4/6","9/16","2/3"],a:0,t:"Fractions"},
+ {q:"2.5 + 1.7 = ?",o:["3.2","4.2","4.1","3.9"],a:1,t:"Decimals"},
+ {q:"An angle smaller than 90° is called…",o:["Obtuse","Right","Acute","Straight"],a:2,t:"Geometry"},
+ {q:"The area of a 7 m × 4 m rectangle is…",o:["22 m²","28 m²","11 m²","24 m²"],a:1,t:"Measurement"},
+ {q:"Round 3,764 to the nearest hundred:",o:["3,700","3,800","3,760","4,000"],a:1,t:"Place value"},
+ {q:"Which word completes: '___ going home now.'",o:["Their","There","They're","Theirs"],a:2,t:"English"},
+ {q:"A group of sentences about one main idea is a…",o:["Word","Paragraph","Letter","Title"],a:1,t:"English"},
+ {q:"In a food chain, the producer is the…",o:["Lion","Grass","Rabbit","Eagle"],a:1,t:"Science"},
+ {q:"The Earth orbits the…",o:["Moon","Sun","Mars","Stars"],a:1,t:"Science"},
+ {q:"100 − 47 + 23 = ?",o:["76","66","70","86"],a:0,t:"Mixed operations"},
+ {q:"56 ÷ 7 = ?",o:["6","7","8","9"],a:2,t:"Division"},
+ {q:"3/8 + 2/8 = ?",o:["5/8","5/16","6/8","1/8"],a:0,t:"Fractions"},
+ {q:"0.6 is the same as…",o:["6/10","6/100","1/6","60"],a:0,t:"Decimals"},
+ {q:"A right angle measures…",o:["45°","90°","180°","360°"],a:1,t:"Geometry"},
+ {q:"9 × 7 − 13 = ?",o:["50","49","63","48"],a:0,t:"Mixed operations"},
+ {q:"Which sentence uses speech marks correctly?",o:["\"Hello, said Tom.\"","\"Hello,\" said Tom.","Hello,\" said \"Tom","\"Hello, said, Tom\""],a:1,t:"English"},
+ {q:"Water evaporates fastest when it is…",o:["Cold","Hot","Frozen","In the dark"],a:1,t:"Science"},
+ {q:"A polygon with 5 sides is a…",o:["Hexagon","Pentagon","Octagon","Quadrilateral"],a:1,t:"Geometry"},
+ {q:"Which of these is a compound word?",o:["Sunflower","Happy","Running","Blue"],a:0,t:"English"},
+ {q:"The contraction of 'do not' is…",o:["Don't","Dont'","Do'nt","Donot"],a:0,t:"English"},
+ {q:"Which pair are antonyms (opposites)?",o:["Hot – cold","Big – large","Quick – fast","Happy – glad"],a:0,t:"English"},
+ {q:"A fact is something that…",o:["Can be proven true","Is someone's opinion","Is always a guess","Must rhyme"],a:0,t:"English"},
+ {q:"In 'the enormous elephant', the word 'enormous' is a…",o:["Verb","Adjective","Noun","Adverb"],a:1,t:"English"},
+ {q:"Sound travels as…",o:["Vibrations","Light","Smells","Heat only"],a:0,t:"Science"},
+ {q:"Which of these animals is a vertebrate (has a backbone)?",o:["Worm","Jellyfish","Dog","Snail"],a:2,t:"Science"},
+ {q:"Erosion is mainly caused by…",o:["Wind and water","Music","Electricity","Plastic"],a:0,t:"Science"},
+ {q:"Night and day are caused by the Earth's…",o:["Rotation","Colour","Size","Rings"],a:0,t:"Science"},
+ {q:"Which material conducts electricity?",o:["Rubber","Copper","Wood","Glass"],a:1,t:"Science"},
+ {q:"Captain Cook charted Australia's east coast in…",o:["1770","1901","1850","1600"],a:0,t:"History"},
+ {q:"Convicts were transported to Australia mainly from…",o:["Britain","Brazil","China","Egypt"],a:0,t:"History"},
+ {q:"First Nations peoples traditionally hunted using…",o:["Boomerangs and spears","Tractors","Drones","Cannons"],a:0,t:"History"},
+ {q:"An explorer is someone who…",o:["Travels to learn about unknown places","Stays home","Only reads maps","Builds shops"],a:0,t:"History"},
+ {q:"Gold rushes brought many people to Australia in the…",o:["1850s","1950s","1750s","2000s"],a:0,t:"History"},
+ {q:"Australia's largest state by area is…",o:["Western Australia","New South Wales","Victoria","Tasmania"],a:0,t:"Geography"},
+ {q:"The equator divides the Earth into…",o:["Northern and southern hemispheres","East and west only","Land and sea","Day and night"],a:0,t:"Geography"},
+ {q:"Which country lies directly north of Queensland?",o:["Papua New Guinea","Canada","Brazil","Egypt"],a:0,t:"Geography"},
+ {q:"A map's key (legend) tells you…",o:["What the symbols mean","The price of the map","Who drew it","The road rules"],a:0,t:"Geography"},
+ {q:"The Murray is a famous Australian…",o:["River","Mountain","Desert","Lake"],a:0,t:"Geography"}
+],
+"5":[
+ {q:"6 + 4 × 3 = ?",o:["30","18","22","14"],a:1,t:"Order of operations"},
+ {q:"3.6 × 4 = ?",o:["12.4","14.4","13.6","14.2"],a:1,t:"Decimals"},
+ {q:"7/10 written as a decimal is…",o:["0.7","0.07","7.1","0.17"],a:0,t:"Decimals"},
+ {q:"The lowest common multiple of 4 and 6 is…",o:["12","24","8","6"],a:0,t:"Number"},
+ {q:"The area of a triangle with base 10 cm and height 6 cm is…",o:["60 cm²","30 cm²","16 cm²","26 cm²"],a:1,t:"Measurement"},
+ {q:"25% of 80 = ?",o:["15","20","25","40"],a:1,t:"Percentages"},
+ {q:"Which of these is a factor of 18?",o:["4","5","6","7"],a:2,t:"Number"},
+ {q:"'The bone belongs to one dog' — the correct phrase is…",o:["The dogs' bone","The dog's bone","The dogss bone","The dogs bone"],a:1,t:"English"},
+ {q:"'As brave as a lion' is a…",o:["Metaphor","Simile","Idiom","Pun"],a:1,t:"English"},
+ {q:"The force that pulls objects toward Earth is…",o:["Friction","Gravity","Magnetism","Electricity"],a:1,t:"Science"},
+ {q:"In the water cycle, vapour turning into liquid is called…",o:["Evaporation","Condensation","Precipitation","Freezing"],a:1,t:"Science"},
+ {q:"1,000 mL is the same as…",o:["0.1 L","1 L","10 L","100 L"],a:1,t:"Measurement"},
+ {q:"4.07 × 10 = ?",o:["40.7","4.70","407","0.407"],a:0,t:"Decimals"},
+ {q:"3/4 of 24 = ?",o:["16","18","20","12"],a:1,t:"Fractions"},
+ {q:"Which of these is a prime number?",o:["9","15","17","21"],a:2,t:"Number"},
+ {q:"5² − 3² = ?",o:["16","4","34","8"],a:0,t:"Indices"},
+ {q:"2.35 m converted to centimetres is…",o:["23.5 cm","235 cm","2,350 cm","0.235 cm"],a:1,t:"Measurement"},
+ {q:"In 'Although it rained, we still played', the word 'although' is a…",o:["Noun","Conjunction","Verb","Adjective"],a:1,t:"English"},
+ {q:"Which is a renewable energy source?",o:["Coal","Solar","Oil","Natural gas"],a:1,t:"Science"},
+ {q:"The chance of flipping heads on a fair coin is…",o:["1/4","1/2","1/3","1"],a:1,t:"Probability"},
+ {q:"'Sizzling sausages' is an example of…",o:["Alliteration","Simile","Metaphor","Rhyme"],a:0,t:"English"},
+ {q:"Which is grammatically correct?",o:["Me and him went","He and I went","Him and I went","Me and he went"],a:1,t:"English"},
+ {q:"The main character of a story is the…",o:["Protagonist","Antagonist","Publisher","Illustrator"],a:0,t:"English"},
+ {q:"'___ waiting over there.' Which fits?",o:["They're","Their","There","Theirs"],a:0,t:"English"},
+ {q:"A paragraph usually begins with a…",o:["Topic sentence","Glossary","Index","Title page"],a:0,t:"English"},
+ {q:"Light travels…",o:["In straight lines","In circles","Very slowly","Only at night"],a:0,t:"Science"},
+ {q:"The star at the centre of our solar system is…",o:["The Sun","The Moon","Mars","Polaris"],a:0,t:"Science"},
+ {q:"A solid becomes a liquid by…",o:["Melting","Freezing","Condensing","Evaporating"],a:0,t:"Science"},
+ {q:"Adaptations help animals…",o:["Survive in their environment","Sing","Sleep only","Look pretty"],a:0,t:"Science"},
+ {q:"Which material is a good insulator?",o:["Steel","Wool","Copper","Aluminium"],a:1,t:"Science"},
+ {q:"Australia became one nation (Federation) in…",o:["1901","1788","1770","1945"],a:0,t:"History"},
+ {q:"The Eureka Stockade took place during the…",o:["Gold rushes","World wars","1990s","Convict voyages"],a:0,t:"History"},
+ {q:"Australia's first Prime Minister was…",o:["Edmund Barton","John Howard","Ned Kelly","James Cook"],a:0,t:"History"},
+ {q:"Democracy means power belongs to…",o:["The people","One king","The army","The richest"],a:0,t:"History"},
+ {q:"A primary source is one that was…",o:["Created at the time of the event","Written centuries later","Always a textbook","Always wrong"],a:0,t:"History"},
+ {q:"Most of central Australia is covered by…",o:["Desert","Rainforest","Tundra","Snowfields"],a:0,t:"Geography"},
+ {q:"Lines measuring distance north or south of the equator are…",o:["Latitude","Longitude","Borders","Contours"],a:0,t:"Geography"},
+ {q:"Which natural disaster involves the ground shaking?",o:["Earthquake","Drought","Flood","Heatwave"],a:0,t:"Geography"},
+ {q:"Most Australians live…",o:["Near the coast","In the outback","On remote islands","Underground"],a:0,t:"Geography"},
+ {q:"The Great Barrier Reef lies off the coast of…",o:["Queensland","Western Australia","Victoria","South Australia"],a:0,t:"Geography"}
+],
+"6":[
+ {q:"3/5 written as a percentage is…",o:["35%","60%","53%","65%"],a:1,t:"Percentages"},
+ {q:"−3 + 7 = ?",o:["4","−4","10","−10"],a:0,t:"Integers"},
+ {q:"The ratio of 8 red to 12 blue, simplified, is…",o:["2:3","3:2","4:6","8:12"],a:0,t:"Ratio"},
+ {q:"0.25 × 0.4 = ?",o:["0.1","1","0.01","0.65"],a:0,t:"Decimals"},
+ {q:"The volume of a 3 × 4 × 5 box is…",o:["60 units³","12 units³","47 units³","35 units³"],a:0,t:"Measurement"},
+ {q:"15% of 200 = ?",o:["15","30","45","25"],a:1,t:"Percentages"},
+ {q:"The mean of 4, 8, 6 and 2 is…",o:["5","6","4","20"],a:0,t:"Data"},
+ {q:"'The wind whispered through the trees' is an example of…",o:["Simile","Personification","Alliteration","Rhyme"],a:1,t:"English"},
+ {q:"Which of these is a complete sentence?",o:["Running fast.","The dog barked.","Under the tree.","Because it rained."],a:1,t:"English"},
+ {q:"For electricity to flow, a circuit must be…",o:["Open","Closed","Broken","Wet"],a:1,t:"Science"},
+ {q:"Which change can be reversed?",o:["Burning wood","Melting ice","Cooking an egg","Metal rusting"],a:1,t:"Science"},
+ {q:"Next in the pattern 2, 6, 18, 54, …?",o:["108","162","72","96"],a:1,t:"Patterns"},
+ {q:"2/5 ÷ 2 = ?",o:["1/5","4/5","2/7","1/10"],a:0,t:"Fractions"},
+ {q:"−8 + 3 = ?",o:["−5","5","−11","11"],a:0,t:"Integers"},
+ {q:"7.2 ÷ 0.9 = ?",o:["8","9","7","6.3"],a:0,t:"Decimals"},
+ {q:"If 3 pens cost $4.50, one pen costs…",o:["$1.50","$1.35","$2.00","$1.25"],a:0,t:"Money"},
+ {q:"The angles inside a triangle add up to…",o:["90°","180°","270°","360°"],a:1,t:"Geometry"},
+ {q:"The prefix 'un-' in 'unhappy' means…",o:["Very","Not","Again","Before"],a:1,t:"English"},
+ {q:"The largest planet in our solar system is…",o:["Earth","Mars","Jupiter","Saturn"],a:2,t:"Science"},
+ {q:"The range of 3, 9, 4, 11, 7 is…",o:["8","11","3","6"],a:0,t:"Data"},
+ {q:"A persuasive device using facts and figures is…",o:["Statistics","Rhyme","Simile","Onomatopoeia"],a:0,t:"English"},
+ {q:"'The deafening silence' is an example of…",o:["An oxymoron","A simile","Alliteration","Hyperbole"],a:0,t:"English"},
+ {q:"Which sentence is in passive voice?",o:["The ball was kicked by Tom.","Tom kicked the ball.","Tom kicks the ball.","Kick the ball, Tom!"],a:0,t:"English"},
+ {q:"A bibliography lists…",o:["Sources used","Chapters","Pictures","Jokes"],a:0,t:"English"},
+ {q:"Which spelling is correct?",o:["Definately","Definitely","Definitly","Definetely"],a:1,t:"English"},
+ {q:"Electricity flows easily through…",o:["Conductors","Insulators","A vacuum only","Dry wood"],a:0,t:"Science"},
+ {q:"The force that slows a bike's tyres on the road is…",o:["Friction","Lift","Magnetism","Buoyancy"],a:0,t:"Science"},
+ {q:"Which is a physical (not chemical) change?",o:["Tearing paper","Burning wood","Iron rusting","Baking a cake"],a:0,t:"Science"},
+ {q:"The Earth takes about how long to orbit the Sun?",o:["365 days","24 hours","28 days","7 days"],a:0,t:"Science"},
+ {q:"Micro-organisms include…",o:["Bacteria","Elephants","Eagles","Sharks"],a:0,t:"Science"},
+ {q:"Federation joined the Australian colonies into…",o:["The Commonwealth of Australia","The United Kingdom","New Zealand","The United Nations"],a:0,t:"History"},
+ {q:"Aboriginal and Torres Strait Islander peoples gained the right to vote in federal elections in…",o:["1962","1788","1901","2000"],a:0,t:"History"},
+ {q:"After World War II, many migrants came to Australia mainly from…",o:["Europe","Antarctica","The Pacific Ocean floor","Nowhere"],a:0,t:"History"},
+ {q:"The Stolen Generations refers to…",o:["Aboriginal children removed from their families","Gold stolen from banks","Missing paintings","Stolen cars"],a:0,t:"History"},
+ {q:"Australia's system of government is a…",o:["Parliamentary democracy","Dictatorship","Empire","Absolute monarchy"],a:0,t:"History"},
+ {q:"The largest continent on Earth is…",o:["Asia","Africa","Europe","Australia"],a:0,t:"Geography"},
+ {q:"Which country is NOT in Asia?",o:["Brazil","Japan","India","China"],a:0,t:"Geography"},
+ {q:"Lines of longitude run…",o:["From the North Pole to the South Pole","Around the equator only","Diagonally","In circles"],a:0,t:"Geography"},
+ {q:"Population density measures…",o:["People per area of land","Average height","Rainfall","Temperature"],a:0,t:"Geography"},
+ {q:"New Zealand lies to Australia's…",o:["Southeast","North","West","Far northwest"],a:0,t:"Geography"}
+],
+"7":[
+ {q:"−5 × −4 = ?",o:["−20","20","−9","9"],a:1,t:"Integers"},
+ {q:"Simplify 3a + 5a − 2a:",o:["6a","10a","6","5a"],a:0,t:"Algebra"},
+ {q:"2/3 + 1/6 = ?",o:["5/6","3/9","1/2","4/6"],a:0,t:"Fractions"},
+ {q:"If x + 7 = 15, then x = ?",o:["7","8","9","22"],a:1,t:"Equations"},
+ {q:"Angles on a straight line add up to…",o:["90°","180°","270°","360°"],a:1,t:"Geometry"},
+ {q:"The probability of rolling a 3 on a normal die is…",o:["1/3","1/6","1/2","3/6"],a:1,t:"Probability"},
+ {q:"4² + 3² = ?",o:["25","14","49","12"],a:0,t:"Indices"},
+ {q:"A $150 jacket with 20% off costs…",o:["$120","$130","$30","$100"],a:0,t:"Percentages"},
+ {q:"The main purpose of a persuasive text is to…",o:["Entertain","Inform","Convince","Describe"],a:2,t:"English"},
+ {q:"Which word completes: '___ car is red.'",o:["Their","There","They're","Theirs"],a:0,t:"English"},
+ {q:"The basic unit of all living things is the…",o:["Atom","Cell","Tissue","Organ"],a:1,t:"Science"},
+ {q:"At sea level, water boils at…",o:["90°C","100°C","110°C","212°C"],a:1,t:"Science"},
+ {q:"Simplify 12x ÷ 4:",o:["3x","8x","3","4x"],a:0,t:"Algebra"},
+ {q:"(−2)³ = ?",o:["−8","8","−6","6"],a:0,t:"Integers"},
+ {q:"3/4 of $60 = ?",o:["$45","$40","$50","$35"],a:0,t:"Fractions"},
+ {q:"Which fraction is equivalent to 0.375?",o:["3/8","3/4","3/5","37/100"],a:0,t:"Decimals"},
+ {q:"The angles of a quadrilateral add up to…",o:["180°","270°","360°","540°"],a:2,t:"Geometry"},
+ {q:"Solve x ÷ 3 = 12:",o:["x = 4","x = 36","x = 15","x = 9"],a:1,t:"Equations"},
+ {q:"The antonym (opposite) of 'generous' is…",o:["Kind","Stingy","Wealthy","Giving"],a:1,t:"English"},
+ {q:"Which gas must humans breathe in to survive?",o:["Carbon dioxide","Oxygen","Pure nitrogen","Helium"],a:1,t:"Science"},
+ {q:"Which word is an example of onomatopoeia?",o:["Buzz","Blue","Bright","Bold"],a:0,t:"English"},
+ {q:"A simile compares things using…",o:["'Like' or 'as'","Opposites","Numbers","Capital letters"],a:0,t:"English"},
+ {q:"A story told using 'he', 'she' and 'they' is in…",o:["Third person","First person","Second person","No person"],a:0,t:"English"},
+ {q:"Which sentence has correct subject–verb agreement?",o:["The dogs bark","The dogs barks","The dog bark","The dog barking"],a:0,t:"English"},
+ {q:"The purpose of an information report is to…",o:["Inform","Persuade","Rhyme","Confuse"],a:0,t:"English"},
+ {q:"The process plants use to make their own food is…",o:["Photosynthesis","Respiration","Digestion","Fermentation"],a:0,t:"Science"},
+ {q:"The chemical formula for water is…",o:["H₂O","CO₂","O₂","NaCl"],a:0,t:"Science"},
+ {q:"Salt can be separated from water by…",o:["Evaporation","Using a magnet","Sieving","Picking it out"],a:0,t:"Science"},
+ {q:"Scientists classify living things by their…",o:["Shared features","Colour only","Size only","Name length"],a:0,t:"Science"},
+ {q:"The layer of Earth we live on is the…",o:["Crust","Mantle","Outer core","Inner core"],a:0,t:"Science"},
+ {q:"The ancient Egyptians are famous for building…",o:["Pyramids","Skyscrapers","Castles","Stadiums"],a:0,t:"History"},
+ {q:"Democracy first developed in ancient…",o:["Greece","Rome","Egypt","China"],a:0,t:"History"},
+ {q:"Archaeologists learn about the past by studying…",o:["Artefacts and remains","Only novels","Movies","Weather reports"],a:0,t:"History"},
+ {q:"The Colosseum is an ancient structure in…",o:["Rome","Athens","Cairo","Beijing"],a:0,t:"History"},
+ {q:"Dates written 'BC' or 'BCE' count…",o:["Backwards from year 1","Forwards from 1900","Only leap years","Months, not years"],a:0,t:"History"},
+ {q:"The water cycle is driven mainly by energy from…",o:["The Sun","The Moon","Wind turbines","Volcanoes"],a:0,t:"Geography"},
+ {q:"A landform created where a river deposits sediment at its mouth is a…",o:["Delta","Mesa","Dune","Glacier"],a:0,t:"Geography"},
+ {q:"Which is a renewable source of water?",o:["Rainfall","Coal","Iron ore","Crude oil"],a:0,t:"Geography"},
+ {q:"The latitude of the equator is…",o:["0°","90°","180°","45°"],a:0,t:"Geography"},
+ {q:"Australia is the world's ___ inhabited continent.",o:["Driest","Wettest","Coldest","Highest"],a:0,t:"Geography"}
+],
+"8":[
+ {q:"Solve 3x − 4 = 17:",o:["x = 6","x = 7","x = 8","x = 5"],a:1,t:"Equations"},
+ {q:"Simplify x³ × x⁴:",o:["x⁷","x¹²","x","2x⁷"],a:0,t:"Indices"},
+ {q:"Expand 4(2x − 3):",o:["8x − 3","8x − 12","6x − 12","8x + 12"],a:1,t:"Algebra"},
+ {q:"Circumference of a circle with radius 7 (use π ≈ 22/7):",o:["44","22","154","28"],a:0,t:"Geometry"},
+ {q:"Increase $80 by 15%:",o:["$92","$95","$88","$120"],a:0,t:"Percentages"},
+ {q:"If 5 : 8 = x : 24, then x = ?",o:["12","15","10","18"],a:1,t:"Ratio"},
+ {q:"If y = 2x + 1, then when x = 3, y = ?",o:["6","7","5","9"],a:1,t:"Algebra"},
+ {q:"The mean of 12, 15, 9, 12 and 17 is…",o:["13","12","14","15"],a:0,t:"Data"},
+ {q:"'Don't you want the best for your family?' is an example of…",o:["A statistic","A rhetorical question","Alliteration","Expert opinion"],a:1,t:"English"},
+ {q:"The positively charged particles in an atom are…",o:["Electrons","Protons","Neutrons","Ions"],a:1,t:"Science"},
+ {q:"Photosynthesis produces glucose and…",o:["Carbon dioxide","Oxygen","Nitrogen","Methane"],a:1,t:"Science"},
+ {q:"Congruent shapes are…",o:["Similar in size only","Identical in shape and size","Same shape, different size","Mirror images only"],a:1,t:"Geometry"},
+ {q:"Factorise 6x + 9:",o:["3(2x + 3)","6(x + 9)","3(2x + 9)","2(3x + 9)"],a:0,t:"Algebra"},
+ {q:"(x²)⁵ = ?",o:["x⁷","x¹⁰","x²⁵","5x²"],a:1,t:"Indices"},
+ {q:"Solve 5x + 2 = 3x + 10:",o:["x = 4","x = 6","x = 3","x = 2"],a:0,t:"Equations"},
+ {q:"The area of a circle with radius 10 (π ≈ 3.14) is…",o:["314","62.8","100","31.4"],a:0,t:"Geometry"},
+ {q:"$45 : $60 as a simplified ratio is…",o:["3:4","4:3","9:12","5:6"],a:0,t:"Ratio"},
+ {q:"The probability of NOT rolling a 6 on a die is…",o:["1/6","5/6","1/2","6/6"],a:1,t:"Probability"},
+ {q:"'The waves crashed angrily against the rocks' uses…",o:["Simile","Personification","Rhyme","Pun"],a:1,t:"English"},
+ {q:"The chemical symbol for oxygen is…",o:["O","Ox","Og","Om"],a:0,t:"Science"},
+ {q:"Foreshadowing in a story…",o:["Hints at future events","Describes only weather","Ends the story","Lists the characters"],a:0,t:"English"},
+ {q:"Which of these is a complex sentence?",o:["Although it rained, we still played.","It rained.","We played.","Rain!"],a:0,t:"English"},
+ {q:"Emotive language is used to…",o:["Appeal to the reader's feelings","State formulas","Count syllables","Measure length"],a:0,t:"English"},
+ {q:"The climax of a narrative is…",o:["The point of highest tension","The introduction","The title","The glossary"],a:0,t:"English"},
+ {q:"'Advise' (with an s) is a…",o:["Verb","Noun","Adjective","Adverb"],a:0,t:"English"},
+ {q:"Elements in the periodic table are ordered by…",o:["Atomic number","Alphabet","Colour","Date discovered"],a:0,t:"Science"},
+ {q:"A compound contains…",o:["Two or more elements chemically bonded","A single atom","Only metals","Only gases"],a:0,t:"Science"},
+ {q:"The energy of a moving object is called…",o:["Kinetic energy","Potential energy","Sound energy","Nuclear energy"],a:0,t:"Science"},
+ {q:"Which organ pumps blood around the body?",o:["Heart","Liver","Lungs","Kidney"],a:0,t:"Science"},
+ {q:"Igneous rock forms from…",o:["Cooled magma or lava","Layers of sand","Animal shells","Compressed ice"],a:0,t:"Science"},
+ {q:"Medieval castles were built mainly for…",o:["Defence","Swimming","Farming","Concerts"],a:0,t:"History"},
+ {q:"The Black Death was a…",o:["Plague","War","Festival","Machine"],a:0,t:"History"},
+ {q:"In feudal society, the highest rank was the…",o:["King","Peasant","Knight","Merchant"],a:0,t:"History"},
+ {q:"Samurai were warriors of…",o:["Japan","France","Egypt","Peru"],a:0,t:"History"},
+ {q:"The Vikings came from…",o:["Scandinavia","Africa","South America","Australia"],a:0,t:"History"},
+ {q:"A city with more than 10 million people is called a…",o:["Megacity","Village","Hamlet","Suburb"],a:0,t:"Geography"},
+ {q:"Mount Everest is part of the…",o:["Himalayas","Andes","Alps","Rockies"],a:0,t:"Geography"},
+ {q:"Urbanisation is the movement of people into…",o:["Cities","Farms","Deserts","Forests"],a:0,t:"Geography"},
+ {q:"Plate tectonics helps explain…",o:["Earthquakes and volcanoes","Rainbows","Tides only","The seasons"],a:0,t:"Geography"},
+ {q:"The Sahara Desert is located in…",o:["Africa","Asia","Australia","Europe"],a:0,t:"Geography"}
+],
+"9":[
+ {q:"Expand (x + 3)(x − 2):",o:["x² + x − 6","x² − x − 6","x² + 5x − 6","x² + x + 6"],a:0,t:"Algebra"},
+ {q:"Factorise x² − 9:",o:["(x − 3)(x − 3)","(x + 3)(x − 3)","(x − 9)(x + 1)","x(x − 9)"],a:1,t:"Algebra"},
+ {q:"A right triangle has legs 6 and 8. The hypotenuse is…",o:["10","14","12","9"],a:0,t:"Pythagoras"},
+ {q:"3.2 × 10⁴ = ?",o:["3,200","32,000","320","320,000"],a:1,t:"Scientific notation"},
+ {q:"In a right triangle, tan θ equals…",o:["opposite ÷ adjacent","adjacent ÷ opposite","opposite ÷ hypotenuse","hypotenuse ÷ adjacent"],a:0,t:"Trigonometry"},
+ {q:"Solve 2(x − 3) = x + 5:",o:["x = 11","x = 8","x = 2","x = −1"],a:0,t:"Equations"},
+ {q:"Simplify (2x²)³:",o:["8x⁶","6x⁶","8x⁵","2x⁶"],a:0,t:"Indices"},
+ {q:"15 is what percentage of 60?",o:["20%","25%","30%","40%"],a:1,t:"Percentages"},
+ {q:"Simple interest on $2,000 at 4% p.a. for 3 years is…",o:["$240","$120","$80","$2,240"],a:0,t:"Financial maths"},
+ {q:"'The classroom was a zoo' is a…",o:["Simile","Metaphor","Personification","Hyperbole"],a:1,t:"English"},
+ {q:"In any chemical reaction, total mass is…",o:["Created","Destroyed","Conserved","Doubled"],a:2,t:"Science"},
+ {q:"Speed = distance ÷ …",o:["Mass","Time","Force","Velocity"],a:1,t:"Science"},
+ {q:"Expand (2x + 1)(x + 4):",o:["2x² + 9x + 4","2x² + 8x + 4","2x² + 9x + 5","2x² + 4x + 4"],a:0,t:"Algebra"},
+ {q:"Factorise x² + 7x + 12:",o:["(x + 3)(x + 4)","(x + 2)(x + 6)","(x + 1)(x + 12)","(x − 3)(x − 4)"],a:0,t:"Algebra"},
+ {q:"Solve x/5 − 2 = 3:",o:["x = 25","x = 15","x = 5","x = 1"],a:0,t:"Equations"},
+ {q:"The volume of a cylinder with r = 3 and h = 10 is…",o:["90π","30π","60π","9π"],a:0,t:"Geometry"},
+ {q:"y varies directly with x. If y = 12 when x = 4, then when x = 7, y = ?",o:["21","19","28","16"],a:0,t:"Proportion"},
+ {q:"√64 + ∛27 = ?",o:["11","9","13","17"],a:0,t:"Indices"},
+ {q:"First-person narration uses the pronouns…",o:["He / she","I / we","You","They only"],a:1,t:"English"},
+ {q:"The pH of a neutral solution is…",o:["0","7","14","1"],a:1,t:"Science"},
+ {q:"Dramatic irony occurs when…",o:["The audience knows more than the character","Nobody knows anything","The ending rhymes","The author appears"],a:0,t:"English"},
+ {q:"The force opposing the protagonist is the…",o:["Antagonist","Narrator","Editor","Publisher"],a:0,t:"English"},
+ {q:"'Concise' writing is…",o:["Brief and clear","Long and wordy","Deliberately confusing","Always rhyming"],a:0,t:"English"},
+ {q:"The best use of a quote in an essay is to…",o:["Integrate it and explain its effect","Drop it in with no comment","Use it as the whole paragraph","Change its words"],a:0,t:"English"},
+ {q:"The word 'must' expresses…",o:["High modality","Low modality","No modality","Negative modality only"],a:0,t:"English"},
+ {q:"The 'powerhouse of the cell' is the…",o:["Mitochondria","Cell wall","Vacuole","Ribosome only"],a:0,t:"Science"},
+ {q:"Balancing chemical equations relies on the conservation of…",o:["Mass","Colour","Speed","Volume"],a:0,t:"Science"},
+ {q:"The electromagnetic spectrum includes…",o:["Visible light","Sound waves","Ocean waves","Earthquakes"],a:0,t:"Science"},
+ {q:"The basic cell of the nervous system is the…",o:["Neuron","Red blood cell","Muscle fibre","Platelet"],a:0,t:"Science"},
+ {q:"Acids have a pH…",o:["Below 7","Above 7","Of exactly 7","Above 14"],a:0,t:"Science"},
+ {q:"The Industrial Revolution began in…",o:["Britain","Australia","Japan","Brazil"],a:0,t:"History"},
+ {q:"World War I began in…",o:["1914","1939","1901","1945"],a:0,t:"History"},
+ {q:"The 1915 Gallipoli campaign involved troops from…",o:["Australia and New Zealand","Only the USA","Only Japan","Only Spain"],a:0,t:"History"},
+ {q:"Trench warfare was a defining feature of…",o:["WWI's Western Front","The gold rush","The space race","Federation"],a:0,t:"History"},
+ {q:"The assassination of Archduke Franz Ferdinand helped spark…",o:["World War I","World War II","The Cold War","The Vietnam War"],a:0,t:"History"},
+ {q:"A biome is defined mainly by its…",o:["Climate and vegetation","Flag","Language","Population"],a:0,t:"Geography"},
+ {q:"Food security means…",o:["Reliable access to enough affordable food","Locked pantries","Only expensive food","Only home-grown food"],a:0,t:"Geography"},
+ {q:"The tropics lie between the Tropic of Cancer and the Tropic of…",o:["Capricorn","Aquarius","Gemini","Taurus"],a:0,t:"Geography"},
+ {q:"Deforestation most directly threatens…",o:["Biodiversity","Increased rainfall","Shrinking deserts","Nothing"],a:0,t:"Geography"},
+ {q:"Global trade linking producers and consumers across countries is an example of…",o:["Interconnection","Isolation","Erosion","Federation"],a:0,t:"Geography"}
+],
+"10":[
+ {q:"Solve x² − 5x + 6 = 0:",o:["x = 2 or 3","x = 1 or 6","x = −2 or −3","x = 5 or 6"],a:0,t:"Quadratics"},
+ {q:"Simplify √48:",o:["4√3","2√12","16√3","6√8"],a:0,t:"Surds"},
+ {q:"If x + y = 10 and x − y = 4, then x = ?",o:["7","6","5","8"],a:0,t:"Simultaneous equations"},
+ {q:"The gradient of the line through (1, 2) and (3, 8) is…",o:["3","2","4","6"],a:0,t:"Linear graphs"},
+ {q:"sin 30° = ?",o:["1/2","√3/2","1","√2/2"],a:0,t:"Trigonometry"},
+ {q:"Rolling two dice, P(sum = 7) is…",o:["1/6","1/12","7/36","1/7"],a:0,t:"Probability"},
+ {q:"Solve 2ˣ = 32:",o:["x = 4","x = 5","x = 6","x = 16"],a:1,t:"Indices"},
+ {q:"$1,000 at 10% p.a. compounded annually for 2 years grows to…",o:["$1,200","$1,210","$1,100","$1,220"],a:1,t:"Financial maths"},
+ {q:"The median of 3, 7, 8, 12, 15, 16 is…",o:["10","8","12","9.5"],a:0,t:"Data"},
+ {q:"A topic sentence's job is to…",o:["Conclude the essay","Introduce the paragraph's main idea","Add evidence","Provide a quote"],a:1,t:"English"},
+ {q:"A dominant allele is expressed in the organism's…",o:["Genotype only","Phenotype","Recessive pairs","Mutations"],a:1,t:"Science"},
+ {q:"Newton's third law: every action has…",o:["No reaction","An equal and opposite reaction","A greater reaction","A random reaction"],a:1,t:"Science"},
+ {q:"Solve 3x² = 48:",o:["x = ±4","x = 4 only","x = ±16","x = 8"],a:0,t:"Quadratics"},
+ {q:"(√5)² = ?",o:["5","10","25","√10"],a:0,t:"Surds"},
+ {q:"The midpoint of (2, 4) and (6, 10) is…",o:["(4, 7)","(3, 5)","(8, 14)","(4, 6)"],a:0,t:"Linear graphs"},
+ {q:"cos 60° = ?",o:["1/2","√3/2","1","0"],a:0,t:"Trigonometry"},
+ {q:"Solve 2x + y = 7 and y = x + 1:",o:["x = 2, y = 3","x = 3, y = 4","x = 1, y = 5","x = 2, y = 5"],a:0,t:"Simultaneous equations"},
+ {q:"A bag holds 3 red and 2 blue marbles. P(red, then red, without replacement) = ?",o:["3/10","9/25","3/20","2/5"],a:0,t:"Probability"},
+ {q:"'Ubiquitous' most nearly means…",o:["Rare","Found everywhere","Ancient","Hidden"],a:1,t:"English"},
+ {q:"Electric current is measured in…",o:["Volts","Amperes","Ohms","Watts"],a:1,t:"Science"},
+ {q:"A strong essay thesis should be…",o:["Arguable and specific","Vague","A question","Only a quote"],a:0,t:"English"},
+ {q:"Satire uses humour to…",o:["Criticise people or ideas","Decorate the page","Create rhyme","Summarise the plot"],a:0,t:"English"},
+ {q:"A third-person omniscient narrator…",o:["Knows all characters' thoughts","Knows only one character","Is a character in the story","Is always unreliable"],a:0,t:"English"},
+ {q:"Turning 'destroy' into 'destruction' is an example of…",o:["Nominalisation","Alliteration","Contraction","Onomatopoeia"],a:0,t:"English"},
+ {q:"In text analysis, 'context' refers to…",o:["The time, place and values shaping a text","The font used","The page count","The price"],a:0,t:"English"},
+ {q:"The shape of DNA is a…",o:["Double helix","Triangle","Cube","Straight rod"],a:0,t:"Science"},
+ {q:"The leading scientific theory for the universe's origin is…",o:["The Big Bang","A supernova","The Sun forming","Steady magnetism"],a:0,t:"Science"},
+ {q:"Reaction rates generally increase with…",o:["Higher temperature","Less surface contact","Cooling","Removing the catalyst"],a:0,t:"Science"},
+ {q:"Natural selection was proposed by…",o:["Charles Darwin","Isaac Newton","Albert Einstein","Marie Curie"],a:0,t:"Science"},
+ {q:"Ohm's law states V = …",o:["IR","I + R","I − R","I ÷ R"],a:0,t:"Science"},
+ {q:"World War II ended in…",o:["1945","1918","1939","1950"],a:0,t:"History"},
+ {q:"The attack on Pearl Harbor brought which country fully into WWII?",o:["The USA","Spain","Sweden","Brazil"],a:0,t:"History"},
+ {q:"The Holocaust was…",o:["The Nazi persecution and murder of Jewish people and other minorities","A WWI battle","A gold rush","A treaty"],a:0,t:"History"},
+ {q:"Australia's 1967 referendum…",o:["Included Aboriginal people in the census and allowed federal laws for them","Started Federation","Ended WWII","Introduced television"],a:0,t:"History"},
+ {q:"The Cold War was primarily a rivalry between…",o:["The USA and the USSR","The UK and France","China and Japan","Brazil and Chile"],a:0,t:"History"},
+ {q:"Climate change is linked to increasing…",o:["Greenhouse gases","Moonlight","Gravity","Magnetism"],a:0,t:"Geography"},
+ {q:"Human wellbeing is measured with indicators like…",o:["Life expectancy and income","Hair colour","Car brands","Star signs"],a:0,t:"Geography"},
+ {q:"Coastal erosion can be slowed by…",o:["Sea walls and dune vegetation","More storms","Removing dunes","Nothing"],a:0,t:"Geography"},
+ {q:"Which of these countries is landlocked?",o:["Nepal","Japan","Australia","Chile"],a:0,t:"Geography"},
+ {q:"Sustainable resource use means…",o:["Meeting today's needs without wrecking tomorrow's","Using everything quickly","Never using resources","Importing everything"],a:0,t:"Geography"}
+],
+"11":[
+ {q:"If f(x) = x² − 3x, then f(4) = ?",o:["4","16","28","1"],a:0,t:"Functions"},
+ {q:"The discriminant of x² + 4x + 5 is…",o:["−4","4","36","−16"],a:0,t:"Quadratics"},
+ {q:"log₁₀ 1000 = ?",o:["2","3","10","100"],a:1,t:"Logarithms"},
+ {q:"The exact value of tan 45° is…",o:["0","1","√3","Undefined"],a:1,t:"Trigonometry"},
+ {q:"Simplify (x² − 4) ÷ (x − 2):",o:["x + 2","x − 2","x²","x − 4"],a:0,t:"Algebra"},
+ {q:"sin²θ + cos²θ = ?",o:["0","1","2","θ"],a:1,t:"Trigonometry"},
+ {q:"The 20th term of the sequence 5, 9, 13, … is…",o:["81","85","77","89"],a:0,t:"Sequences"},
+ {q:"All Bloops are Razzies. All Razzies are Lazzies. Therefore…",o:["All Bloops are Lazzies","All Lazzies are Bloops","No Bloops are Lazzies","Cannot be determined"],a:0,t:"Logical reasoning"},
+ {q:"A train travels 240 km in 3 hours. Its average speed is…",o:["70 km/h","80 km/h","90 km/h","60 km/h"],a:1,t:"Logical reasoning"},
+ {q:"A thesis statement…",o:["Summarises the essay's argument","Lists all quotes","Is only in the conclusion","Asks the reader a question"],a:0,t:"English"},
+ {q:"The molar mass of H₂O is approximately…",o:["16 g/mol","18 g/mol","20 g/mol","10 g/mol"],a:1,t:"Science"},
+ {q:"The SI unit of force is the…",o:["Joule","Watt","Newton","Pascal"],a:2,t:"Science"},
+ {q:"If f(x) = 2x + 3 and g(x) = x², then f(g(2)) = ?",o:["11","49","14","25"],a:0,t:"Functions"},
+ {q:"Solve x² − 6x + 9 = 0:",o:["x = 3 (double root)","x = ±3","x = 9","x = −3"],a:0,t:"Quadratics"},
+ {q:"The domain of f(x) = 1/(x − 2) is…",o:["All real numbers","All reals except x = 2","x > 2 only","All reals except x = 0"],a:1,t:"Functions"},
+ {q:"log₂ 8 + log₂ 4 = ?",o:["5","7","12","32"],a:0,t:"Logarithms"},
+ {q:"The exact value of sin 60° is…",o:["1/2","√3/2","√2/2","1"],a:1,t:"Trigonometry"},
+ {q:"Anna beats Ben. Ben beats Cara. Dan beats Anna. Who could have finished last?",o:["Anna","Ben","Cara","Dan"],a:2,t:"Logical reasoning"},
+ {q:"A negatively skewed distribution has its long tail on the…",o:["Right","Left","Both sides","Neither side"],a:1,t:"Statistics"},
+ {q:"Acceleration is the rate of change of…",o:["Distance","Velocity","Mass","Force"],a:1,t:"Science"},
+ {q:"Discourse markers like 'however' and 'furthermore'…",o:["Signal relationships between ideas","Decorate the page","Create rhyme","Pad the word count"],a:0,t:"English"},
+ {q:"An unreliable narrator is one who…",o:["Cannot be fully trusted by the reader","Knows everything","Is always the author","Speaks only in verse"],a:0,t:"English"},
+ {q:"A didactic text aims primarily to…",o:["Teach or instruct","Confuse","Frighten","Advertise"],a:0,t:"English"},
+ {q:"Ethos is an appeal to…",o:["Credibility and character","Emotion","Pure logic","Rhythm"],a:0,t:"English"},
+ {q:"Intertextuality refers to…",o:["One text referencing another","Spelling errors","Page numbering","Font choice"],a:0,t:"English"},
+ {q:"Stoichiometry is used to calculate…",o:["Quantities in chemical reactions","Distances to stars","DNA colour","Wind speed"],a:0,t:"Science"},
+ {q:"A vector quantity has…",o:["Magnitude and direction","Only size","Only direction","No units"],a:0,t:"Science"},
+ {q:"Homeostasis is the maintenance of…",o:["A stable internal environment","Rapid growth","Constant movement","Perfect hearing"],a:0,t:"Science"},
+ {q:"One mole contains approximately…",o:["6.022 × 10²³ particles","1,000 particles","100 grams","6.022 × 10¹⁰ particles"],a:0,t:"Science"},
+ {q:"Isotopes of an element differ in their number of…",o:["Neutrons","Protons","Electrons in the ground state","Charges"],a:0,t:"Science"},
+ {q:"The French Revolution began in…",o:["1789","1889","1689","1917"],a:0,t:"History"},
+ {q:"The 1917 Russian Revolution brought which group to power?",o:["The Bolsheviks","The Romanovs","The Vikings","The Samurai"],a:0,t:"History"},
+ {q:"Historiography is the study of…",o:["How history is written and interpreted","Rocks","Map-making","Banking"],a:0,t:"History"},
+ {q:"'Appeasement' in the 1930s refers to…",o:["Making concessions to avoid war","A treaty ending WWI","A gold rush","A trade agreement with the USA"],a:0,t:"History"},
+ {q:"The Treaty of Versailles formally ended…",o:["World War I","World War II","The Cold War","The Vietnam War"],a:0,t:"History"},
+ {q:"GDP per capita measures…",o:["Average economic output per person","Average height","Annual rainfall","Only exports"],a:0,t:"Geography"},
+ {q:"Urban sprawl refers to…",o:["Cities spreading outward into surrounding land","Only vertical growth","Rural depopulation reversing","Shrinking suburbs"],a:0,t:"Geography"},
+ {q:"A choropleth map uses…",o:["Shading or colour to show data by area","Only photographs","No colours","Sound"],a:0,t:"Geography"},
+ {q:"The Pacific 'Ring of Fire' is known for…",o:["Volcanoes and earthquakes","Calm seas","Deserts","Glaciers only"],a:0,t:"Geography"},
+ {q:"Demography is the study of…",o:["Human populations","Planets","Poetry","Plants"],a:0,t:"Geography"}
+],
+"12":[
+ {q:"d/dx (x³) = ?",o:["3x²","x²","3x","x³"],a:0,t:"Calculus"},
+ {q:"d/dx (sin x) = ?",o:["cos x","−cos x","sin x","−sin x"],a:0,t:"Calculus"},
+ {q:"∫ 2x dx = ?",o:["x² + C","2x² + C","x + C","2 + C"],a:0,t:"Calculus"},
+ {q:"Solve eˣ = 1:",o:["x = 0","x = 1","x = e","x = −1"],a:0,t:"Exponentials"},
+ {q:"ln(e³) = ?",o:["1","3","e","9"],a:1,t:"Logarithms"},
+ {q:"The 6th term of the geometric series 3, 6, 12, … is…",o:["48","96","72","64"],a:1,t:"Series"},
+ {q:"In a normal distribution, about 68% of data lies within…",o:["1 standard deviation","2 standard deviations","3 standard deviations","0.5 standard deviations"],a:0,t:"Statistics"},
+ {q:"A stationary point occurs where…",o:["f(x) = 0","f′(x) = 0","f″(x) = 0","x = 0"],a:1,t:"Calculus"},
+ {q:"If it rains, the match is cancelled. The match was NOT cancelled. Therefore…",o:["It rained","It did not rain","Cannot be determined","The match was moved"],a:1,t:"Logical reasoning"},
+ {q:"A price drops 20% then rises 20%. The net change is…",o:["0%","−4%","+4%","−2%"],a:1,t:"Logical reasoning"},
+ {q:"'Juxtaposition' means…",o:["Repetition of sounds","Placing contrasting ideas side by side","Deliberate exaggeration","Comparison using 'like'"],a:1,t:"English"},
+ {q:"At the maximum height of a projectile, its vertical velocity is…",o:["g","Zero","At its maximum","9.8 m/s"],a:1,t:"Science"},
+ {q:"d/dx (e²ˣ) = ?",o:["2e²ˣ","e²ˣ","2eˣ","e²"],a:0,t:"Calculus"},
+ {q:"∫₀¹ 3x² dx = ?",o:["1","3","1/3","0"],a:0,t:"Calculus"},
+ {q:"d/dx (ln x) = ?",o:["1/x","ln x","x","eˣ"],a:0,t:"Calculus"},
+ {q:"The limit of (sin x)/x as x → 0 is…",o:["0","1","Infinity","Undefined"],a:1,t:"Calculus"},
+ {q:"The sum of the first 10 terms of 2, 5, 8, … is…",o:["155","145","165","135"],a:0,t:"Series"},
+ {q:"At exactly 3:00, the angle between a clock's hands is…",o:["60°","90°","120°","45°"],a:1,t:"Logical reasoning"},
+ {q:"If P(A) = 0.4 and P(B) = 0.5 and A, B are independent, P(A and B) = ?",o:["0.9","0.2","0.1","0.45"],a:1,t:"Probability"},
+ {q:"The gradient of the tangent to y = x² at x = 3 is…",o:["6","9","3","12"],a:0,t:"Calculus"},
+ {q:"A paradox is…",o:["A seemingly contradictory statement that may hold truth","A rhyme scheme","A font style","A type of stanza"],a:0,t:"English"},
+ {q:"'Zeitgeist' refers to…",o:["The defining spirit or mood of an era","A poem type","A camera angle","A grammar rule"],a:0,t:"English"},
+ {q:"Postmodern texts often feature…",o:["Fragmentation and metafiction","Strict realism only","No authors","Only rhyming couplets"],a:0,t:"English"},
+ {q:"The rhetorical triangle consists of ethos, pathos and…",o:["Logos","Logic gates","Lyrics","Lexis"],a:0,t:"English"},
+ {q:"'Verisimilitude' means…",o:["The appearance of being true or real","A musical tempo","Deliberate exaggeration","Repetition of vowel sounds"],a:0,t:"English"},
+ {q:"The rate of change of displacement is…",o:["Velocity","Acceleration","Momentum","Force"],a:0,t:"Science"},
+ {q:"Le Chatelier's principle concerns…",o:["Shifts in chemical equilibrium","DNA replication","Plate tectonics","Lens optics"],a:0,t:"Science"},
+ {q:"ATP is best described as the cell's…",o:["Energy currency","Waste product","Wall material","Pigment"],a:0,t:"Science"},
+ {q:"Half-life is the time taken for…",o:["Half a radioactive sample to decay","A cell to divide","Light to cross a room","A heart to beat"],a:0,t:"Science"},
+ {q:"F = ma is Newton's…",o:["Second law","First law","Third law","Law of gravitation"],a:0,t:"Science"},
+ {q:"The Cold War division of Berlin was symbolised by…",o:["The Berlin Wall","The Great Wall","Hadrian's Wall","The Iron Bridge"],a:0,t:"History"},
+ {q:"Decolonisation after WWII saw…",o:["Colonies gaining independence","Empires expanding","No political change","Only trade deals"],a:0,t:"History"},
+ {q:"The Cuban Missile Crisis occurred in…",o:["1962","1939","1975","1918"],a:0,t:"History"},
+ {q:"'Détente' refers to…",o:["An easing of Cold War tensions","An arms race","A WWII battle","A treaty ending WWI"],a:0,t:"History"},
+ {q:"The United Nations was founded in…",o:["1945","1919","1901","1960"],a:0,t:"History"},
+ {q:"Globalisation increases…",o:["Interconnection between countries","Isolation","Physical distance","Tariffs in all cases"],a:0,t:"Geography"},
+ {q:"An ecological footprint measures…",o:["Human demand on the Earth's ecosystems","Shoe sizes","Farm sizes only","Rainfall"],a:0,t:"Geography"},
+ {q:"Push factors in migration include…",o:["War and poverty in the place of origin","Good jobs at the destination","Family at the destination","Nice beaches"],a:0,t:"Geography"},
+ {q:"The demographic transition model tracks changes in…",o:["Birth and death rates as countries develop","Ocean tides","Soil erosion","Voting patterns"],a:0,t:"Geography"},
+ {q:"Which energy source is non-renewable?",o:["Coal","Solar","Wind","Hydro-electricity"],a:0,t:"Geography"}
+]};
+
+let ptState=null;
+document.getElementById("pt-year").addEventListener("change",e=>{
+  const v=e.target.value;
+  document.getElementById("pt-assist-note").style.display=(v==="K"||v==="1"||v==="2")?"block":"none";
+});
+function startPlacement(){
+  const name=document.getElementById("pt-name").value.trim();
+  const year=document.getElementById("pt-year").value;
+  const contact=document.getElementById("pt-contact").value.trim();
+  const msg=document.getElementById("pt-msg");msg.className="msg";
+  if(!name){msg.className="msg err";msg.textContent="Enter the student's first name first.";return;}
+  ptState={qs:QBANK[year],idx:0,answers:new Array(QBANK[year].length).fill(null),name,year,contact};
+  document.getElementById("pt-setup").style.display="none";
+  document.getElementById("pt-results").style.display="none";
+  document.getElementById("pt-quiz").style.display="block";
+  document.getElementById("pt-quiz-label").textContent=(year==="K"?"Kindergarten":"Year "+year)+" placement test · "+name;
+  ptRenderQ();
+}
+function ptRenderQ(){
+  const {qs,idx,answers}=ptState;
+  const q=qs[idx];
+  document.getElementById("pt-bar").style.width=((idx)/qs.length*100)+"%";
+  document.getElementById("pt-qnum").textContent="Question "+(idx+1)+" of "+qs.length;
+  document.getElementById("pt-qtext").textContent=q.q;
+  document.getElementById("pt-topic-tag").textContent="Topic: "+q.t;
+  document.getElementById("pt-opts").innerHTML=q.o.map((opt,i)=>
+    `<button class="pt-opt ${answers[idx]===i?"sel":""}" onclick="ptSelect(${i})">${String.fromCharCode(65+i)}.&nbsp; ${esc(opt)}</button>`).join("");
+  const next=document.getElementById("pt-next");
+  next.disabled=answers[idx]===null;
+  next.textContent=idx===qs.length-1?"Finish ✓":"Next →";
+}
+function ptSelect(i){ptState.answers[ptState.idx]=i;ptRenderQ();}
+function ptNext(){
+  if(ptState.idx<ptState.qs.length-1){ptState.idx++;ptRenderQ();}
+  else finishPlacement();
+}
+async function finishPlacement(){
+  const {qs,answers,name,year,contact}=ptState;
+  let correct=0;const topics={};
+  qs.forEach((q,i)=>{
+    topics[q.t]=topics[q.t]||{c:0,n:0};
+    topics[q.t].n++;
+    if(answers[i]===q.a){correct++;topics[q.t].c++;}
+  });
+  const pct=Math.round(correct/qs.length*100);
+  let band,bandClass,rec;
+  if(pct>=80){band="Above level";bandClass="b1";rec="working confidently above year level — an extension focus or the next group up would suit.";}
+  else if(pct>=60){band="At level";bandClass="b2";rec="solidly at year level — a standard group with targeted work on the weaker topics below.";}
+  else if(pct>=40){band="Developing";bandClass="b3";rec="some gaps to close — a group focused on rebuilding the topics below would make the fastest difference.";}
+  else{band="Foundations first";bandClass="b4";rec="best served by rebuilding fundamentals before tackling year-level work — that's exactly what the Foundations groups are for.";}
+
+  const result={name,year,contact,score:correct,total:qs.length,pct,band,topics,date:new Date().toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric"})};
+  const all=await sGet("net-placements")||[];
+  all.push(result);
+  await sSet("net-placements",all);
+
+  document.getElementById("pt-quiz").style.display="none";
+  document.getElementById("pt-results").style.display="block";
+  document.getElementById("pt-r-title").textContent=name+" scored "+correct+"/"+qs.length+" ("+pct+"%)";
+  const bandEl=document.getElementById("pt-r-band");
+  bandEl.textContent=band;bandEl.className="pt-band "+bandClass;
+  document.getElementById("pt-r-summary").textContent="Based on this test, "+name+" is "+rec;
+  document.getElementById("pt-r-topics").innerHTML=Object.entries(topics).map(([t,v])=>{
+    const p=Math.round(v.c/v.n*100);
+    return `<div class="pt-topic"><div style="display:flex;justify-content:space-between;font-size:.92rem"><strong>${esc(t)}</strong><span class="muted">${v.c}/${v.n}</span></div>
+      <div class="progress-track"><div class="progress-fill ${fillBarClass(p)}" style="width:0%"></div></div></div>`;
+  }).join("");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll("#pt-r-topics .progress-fill").forEach((el,i)=>{
+      const vals=Object.values(topics);el.style.width=Math.round(vals[i].c/vals[i].n*100)+"%";
+    });
+  }));
+  if(pct>=60)confetti(30);
+}
+function ptReset(){
+  ptState=null;
+  document.getElementById("pt-results").style.display="none";
+  document.getElementById("pt-quiz").style.display="none";
+  document.getElementById("pt-setup").style.display="block";
+  document.getElementById("pt-name").value="";
+}
+
+/* ================= WAITLIST ================= */
+async function joinWaitlist(){
+  const entry={
+    parent:document.getElementById("wl-parent").value.trim(),
+    child:document.getElementById("wl-child").value.trim(),
+    year:document.getElementById("wl-year").value,
+    school:document.getElementById("wl-school").value.trim(),
+    subject:document.getElementById("wl-subject").value.trim(),
+    contact:document.getElementById("wl-contact").value.trim(),
+    ts:new Date().toISOString()
+  };
+  const msg=document.getElementById("wl-msg");msg.className="msg";
+  if(!entry.parent||!entry.child||!entry.contact){msg.className="msg err";msg.textContent="Please fill in the parent name, student name and a contact.";return;}
+  const wl=await sGet("net-waitlist")||[];
+  wl.push(entry);
+  const ok=await sSet("net-waitlist",wl);
+  if(ok){msg.className="msg ok";msg.textContent="You're #"+wl.length+" on the waitlist — you'll be contacted as soon as a suitable place opens.";
+    ["wl-parent","wl-child","wl-school","wl-subject","wl-contact"].forEach(id=>document.getElementById(id).value="");
+  }else{msg.className="msg err";msg.textContent="Something went wrong — please text 0400 000 000 instead.";}
+}
+
+/* ================= FEES ================= */
+function calcInvoice(){
+  const rate=parseInt(document.getElementById("pay-program").value);
+  const weeks=parseInt(document.getElementById("pay-weeks").value);
+  document.getElementById("pay-total").textContent="Total: $"+(rate*weeks);
+}
+calcInvoice();
+</script>
+</body>
+</html>
