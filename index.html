@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New England Tutoring — Armidale tutoring, portal, timetable & enrolments</title>
-<meta name="description" content="Small-group tutoring in Armidale NSW for Years 5–10 and one-on-one HSC coaching, with a live portal, free K–12 placement test and a $175 term prize pool.">
+<title>New England Tutoring, Armidale tutoring, portal, timetable & enrolments</title>
+<meta name="description" content="Small-group tutoring in Armidale NSW for Years 5 to 10 and one-on-one HSC coaching, with a live portal, free K to 12 placement test and a $175 term prize pool.">
 <style>
 /* Self-hosted fonts (embedded so the site works offline and on filtered networks) */
 @font-face {
@@ -56,10 +56,10 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 :root{
-  --bg:#0B0B0A; --panel:#151514; --panel-2:#1D1D1B; --card:#151514;
-  --line:#ffffff26; --line-soft:#ffffff12; --paper:#F5F3EC;
-  --text:#F5F3EC; --ink:#F5F3EC; --ink-soft:#A8A69C;
-  --red:#D9473A; --red-deep:#B23227; --green:#5BB98A; --gold:#D9A431;
+  --bg:#252420; --panel:#2E2D28; --panel-2:#383731; --card:#2E2D28;
+  --line:#ffffff33; --line-soft:#ffffff1a; --paper:#F5F3EC;
+  --text:#F7F5EE; --ink:#F7F5EE; --ink-soft:#BCBAAE;
+  --red:#E25549; --red-deep:#C23D31; --green:#68C497; --gold:#E2B04A;
   --maxw:1160px;
   --display:'Bebas Neue',Impact,sans-serif;
   --body:'EB Garamond',Georgia,serif;
@@ -82,7 +82,8 @@ h3{font-family:var(--mono);font-weight:600;font-size:.86rem;text-transform:upper
 .annotation{font-family:var(--body);font-style:italic;color:var(--red);font-size:1.25rem;display:inline-block}
 a{color:var(--text)}
 /* ============ NAV ============ */
-nav{position:sticky;top:0;z-index:20;background:rgba(11,11,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+nav{position:sticky;top:0;z-index:20;background:rgba(37,36,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--red);z-index:60;width:0}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;flex-wrap:wrap;gap:8px}
 .logo{font-family:var(--display);font-size:1.5rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text);text-decoration:none;white-space:nowrap;line-height:1}
 .logo span{color:var(--red)}
@@ -105,6 +106,24 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-
 @keyframes rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,71,58,.4)}50%{box-shadow:0 0 0 10px rgba(217,71,58,0)}}
 @keyframes drawmark{to{stroke-dashoffset:0}}
+/* scroll reveals + hero entrance */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.cards .card,.steps .step,.tt-grid .tt-day{transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1),background .2s}
+.reveal .card:nth-child(2),.reveal .step:nth-child(2){transition-delay:.12s}
+.reveal .card:nth-child(3),.reveal .step:nth-child(3){transition-delay:.24s}
+.hero>*{animation:fadeUp .7s ease backwards}
+.hero>*:nth-child(1){animation-delay:.05s}
+.hero>*:nth-child(2){animation-delay:.15s}
+.hero>*:nth-child(3){animation-delay:.32s}
+.hero>*:nth-child(4){animation-delay:.46s}
+.hero>*:nth-child(5){animation-delay:.58s}
+.hero>*:nth-child(6){animation-delay:.72s}
+.card,.step{transition:transform .25s ease,background .25s ease}
+.card:hover,.step:hover{transform:translateY(-4px);background:var(--panel-2)}
+.faq summary{transition:color .2s}
+.faq details:hover summary{color:var(--red)}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;transform:none!important}}
 .section-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:14px}
 .section-label::after{content:"";flex:1;max-width:120px;height:1px;background:var(--line)}
 .lede{color:var(--ink-soft);max-width:640px;margin:18px 0 28px;font-size:1.18rem;line-height:1.6}
@@ -167,8 +186,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-
 .faq details p{padding:0 4px 22px;color:var(--ink-soft);font-size:1.02rem;max-width:60ch}
 /* ============ FORMS ============ */
 label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 7px}
-input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:2px;font-family:var(--body);font-size:1.05rem;background:#101010;color:var(--text)}
-input::placeholder,textarea::placeholder{color:#6E6C63}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:2px;font-family:var(--body);font-size:1.05rem;background:#232220;color:var(--text);transition:border-color .2s}
+input::placeholder,textarea::placeholder{color:#87857A}
 input:focus,select:focus,textarea:focus{border-color:var(--red)}
 select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat}
 textarea{resize:vertical;min-height:80px}
@@ -361,6 +380,7 @@ svg text{font-family:var(--mono)}
 </style>
 </head>
 <body>
+<div id="scroll-progress" aria-hidden="true"></div>
 <a class="skip-link" href="#page-home">Skip to content</a>
 
 <nav aria-label="Main">
@@ -382,39 +402,39 @@ svg text{font-family:var(--mono)}
   <div class="wrap">
 
     <div class="hero">
-      <p class="section-label">Armidale &amp; Invergowrie · Years K–12 · NSW syllabus</p>
+      <p class="section-label">Armidale &amp; Invergowrie · Years K to 12 · NSW syllabus</p>
       <h1>Marks go up when the work gets <span class="marked">marked<svg viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path d="M14,42 C8,14 118,4 168,14 C198,20 196,52 160,64 C110,78 22,74 12,50 C8,40 30,28 52,26"/></svg></span>.</h1>
-      <p class="lede">Small-group tutoring for Years 5–10 and one-on-one HSC coaching — with a live portal: homework calendar, progress charts, marked practice papers, a daily bonus question, an AI study helper, and a $175 term prize pool.</p>
+      <p class="lede">Small-group tutoring for Years 5 to 10 and one-on-one HSC coaching, with a live portal: homework calendar, progress charts, marked practice papers, a daily bonus question, an AI study helper, and a $175 term prize pool.</p>
       <div class="hero-cta">
         <button class="btn btn-primary" onclick="showPage('test')">Take the free placement test</button>
         <button class="btn btn-ghost" onclick="showPage('waitlist')">Join the waitlist</button>
       </div>
-      <p style="margin-top:14px"><span class="annotation">20 minutes · all subjects · K–12 ✓</span></p>
+      <p style="margin-top:14px"><span class="annotation">20 minutes · all subjects · K to 12 ✓</span></p>
       <div class="hero-facts">
         <div><strong>5</strong>students max per group</div>
-        <div><strong>$30–$60</strong>per hour, by program</div>
+        <div><strong>$30 to $60</strong>per hour, by program</div>
         <div><strong>$175</strong>term prize pool</div>
         <div><strong>24h</strong>reply time on messages</div>
       </div>
     </div>
 
     <div class="prize-banner">
-      <div class="pz">🏆 $175 term prize pool<small>Study leaderboard — every term</small></div>
-      <div style="font-size:.95rem;color:#C7D0E4">🥇 1st <strong style="color:#fff">$100</strong> · 🥈 2nd <strong style="color:#fff">$50</strong> · 📈 Most improved <strong style="color:#fff">$25</strong><br>Points for homework, the daily question — and stumping the tutor.</div>
+      <div class="pz">🏆 $175 term prize pool<small>Study leaderboard, every term</small></div>
+      <div style="font-size:.95rem;color:#C7D0E4">🥇 1st <strong style="color:#fff">$100</strong> · 🥈 2nd <strong style="color:#fff">$50</strong> · 📈 Most improved <strong style="color:#fff">$25</strong><br>Points for homework, the daily question, and stumping the tutor.</div>
     </div>
 
-    <div style="margin-top:48px">
+    <div class="reveal" style="margin-top:48px">
       <p class="section-label">How it works</p>
       <h2>Three steps from "struggling" to "sorted"</h2>
       <div class="steps" style="margin-top:28px">
         <div class="step">
           <h3>Sit the free placement test</h3>
-          <p>Forty questions written to the NSW syllabus for your child's year — about twenty minutes, online, no obligation. It shows exactly which topics need work.</p>
+          <p>Forty questions written to the NSW syllabus for your child's year, about twenty minutes, online, no obligation. It shows exactly which topics need work.</p>
           <span class="step-note">every result reviewed personally ✓</span>
         </div>
         <div class="step">
           <h3>Get placed in the right group</h3>
-          <p>Groups are built by level, not just by age, and capped at five students. Years 11–12 work one-on-one. If the right group is full, the waitlist holds your place in order.</p>
+          <p>Groups are built by level, not just by age, and capped at five students. Years 11 to 12 work one-on-one. If the right group is full, the waitlist holds your place in order.</p>
           <span class="step-note">max 5 per group, no exceptions</span>
         </div>
         <div class="step">
@@ -425,50 +445,51 @@ svg text{font-family:var(--mono)}
       </div>
     </div>
 
-    <div class="cards" style="margin-top:48px">
+    <div class="cards reveal" style="margin-top:48px">
       <div class="card">
-        <span class="badge">Years 5–8</span>
+        <span class="badge">Years 5 to 8</span>
         <h3>Foundations group</h3>
         <p class="price">$30 <small>/ student / hour</small></p>
-        <p>Maths fluency, times tables to algebra, fractions and core literacy. Groups of 3–5, one session weekly.</p>
+        <p>Maths fluency, times tables to algebra, fractions and core literacy. Groups of 3 to 5, one session weekly.</p>
         <ul class="tick-list"><li>Weekly 60-minute session</li><li>Printed workbook &amp; portal homework</li><li>Parent progress view &amp; term report</li></ul>
       </div>
       <div class="card">
-        <span class="badge">Years 9–10</span>
+        <span class="badge">Years 9 to 10</span>
         <h3>Stage 5 group</h3>
         <p class="price">$35 <small>/ student / hour</small></p>
         <p>Maths (Core → 5.3), Science and essay skills, built around your school's assessment calendar.</p>
         <ul class="tick-list"><li>Weekly 60-minute session</li><li>Marked practice papers linked to results</li><li>Live grades &amp; session logs in the portal</li></ul>
       </div>
       <div class="card">
-        <span class="badge red">Years 11–12 · Limited places</span>
+        <span class="badge red">Years 11 to 12 · Limited places</span>
         <h3>HSC one-on-one</h3>
         <p class="price">$60 <small>/ hour</small></p>
-        <p>Individual, exam-focused coaching from a tutor who sat the current syllabus — past papers marked with feedback.</p>
+        <p>Individual, exam-focused coaching from a tutor who sat the current syllabus, past papers marked with feedback.</p>
         <ul class="tick-list"><li>Fully individual sessions</li><li>Marked past papers with feedback</li><li>Only a handful of places each term</li></ul>
       </div>
     </div>
 
-    <div style="margin-top:56px">
+    <div class="reveal" style="margin-top:56px">
       <p class="section-label">Your tutor</p>
       <h2>Meet Nith</h2>
       <!-- ✏️ Swap the pencil below for a friendly headshot, and adjust this bio
-           however you like — it only states things already claimed on this site. -->
+           however you like, it only states things already claimed on this site. -->
       <div class="tutor-card" style="margin-top:20px">
         <div class="tutor-photo" aria-hidden="true">✏️</div>
         <div>
-          <p><strong>Hi — I'm Nith.</strong> I run New England Tutoring in Armidale, working with local students from Year 5 through to the HSC in small groups that never grow past five.</p>
-          <p>I sat the current HSC syllabus myself, so the courses your child is studying are the ones I actually did — not a version from a decade ago. Sessions cover maths first and foremost, along with science and essay skills for Stage 5, and every piece of practice work comes back marked with feedback.</p>
-          <p>I hold a Working With Children Check, and parents can reach me any time through the portal — messages are answered within 24 hours.</p>
+          <span class="badge gold">UCAT 2560</span>
+          <p><strong>Hi, I'm Nith.</strong> I run New England Tutoring in Armidale, working with local students from Year 5 through to the HSC in small groups that never grow past five.</p>
+          <p>I sat the current HSC syllabus myself and scored 2560 on the UCAT, so the courses your child is studying are the ones I actually did, not a version from a decade ago. Sessions cover maths first and foremost, along with science and essay skills for Stage 5, and every piece of practice work comes back marked with feedback.</p>
+          <p>I hold a Working With Children Check, and parents can reach me any time through the portal. Messages are answered within 24 hours.</p>
         </div>
       </div>
     </div>
 
-    <!-- ⚠️ TESTIMONIALS — hidden until you have real, permissioned quotes.
+    <!-- ⚠️ TESTIMONIALS, hidden until you have real, permissioned quotes.
          When you do, delete this comment block's outer arrows and fill in the cards.
          Only publish genuine quotes: invented reviews breach Australian Consumer Law.
 
-    <div style="margin-top:56px">
+    <div class="reveal" style="margin-top:56px">
       <p class="section-label">What families say</p>
       <h2>Word travels fast in Armidale</h2>
       <div class="testis">
@@ -479,14 +500,14 @@ svg text{font-family:var(--mono)}
     </div>
     -->
 
-    <div class="grid-2" style="margin-top:56px">
+    <div class="grid-2 reveal" style="margin-top:56px">
       <div>
         <h2>One portal. Everyone in the loop.</h2>
         <ul class="tick-list">
-          <li><strong>Students</strong> — homework calendar, points, streaks and badges, podium leaderboard, daily question, AI study helper</li>
-          <li><strong>Parents</strong> — progress charts, grades with marked papers, invoices, and an away-dates calendar</li>
-          <li><strong>Messages</strong> — ask a question any time, answered within 24 hours</li>
-          <li><strong>Noticeboard</strong> — times, changes and news posted daily</li>
+          <li><strong>Students:</strong> homework calendar, points, streaks and badges, podium leaderboard, daily question, AI study helper</li>
+          <li><strong>Parents:</strong> progress charts, grades with marked papers, invoices, and an away-dates calendar</li>
+          <li><strong>Messages:</strong> ask a question any time, answered within 24 hours</li>
+          <li><strong>Noticeboard:</strong> times, changes and news posted daily</li>
         </ul>
       </div>
       <div class="card">
@@ -497,17 +518,17 @@ svg text{font-family:var(--mono)}
       </div>
     </div>
 
-    <div style="margin-top:56px">
+    <div class="reveal" style="margin-top:56px">
       <p class="section-label">Common questions</p>
       <h2>Before you ask</h2>
       <div class="faq">
         <details>
           <summary>Is the placement test really free?</summary>
-          <p>Yes — free and no obligation. It takes about twenty minutes online, and every result is reviewed personally before any group recommendation. It's how groups get built by level rather than just by year.</p>
+          <p>Yes, free and no obligation. It takes about twenty minutes online, and every result is reviewed personally before any group recommendation. It's how groups get built by level rather than just by year.</p>
         </details>
         <details>
           <summary>How do groups stay small?</summary>
-          <p>Every group is capped at five students — no exceptions. When a group is full, the timetable shows it as waitlist-only, and you'll be offered the next place in the right group in order.</p>
+          <p>Every group is capped at five students, no exceptions. When a group is full, the timetable shows it as waitlist-only, and you'll be offered the next place in the right group in order.</p>
         </details>
         <details>
           <summary>What happens if we're away one week?</summary>
@@ -515,14 +536,14 @@ svg text{font-family:var(--mono)}
         </details>
         <details>
           <summary>Do siblings get a discount?</summary>
-          <p>Yes — 10% off the second child's term fees.</p>
+          <p>Yes, 10% off the second child's term fees.</p>
         </details>
         <details>
           <summary>How does payment work?</summary>
-          <p>Itemised invoices appear in the portal under Parent view. Pay by bank transfer or PayID with the invoice number as the reference, and a receipt is sent once payment clears. Fees are due at the end of week 1 each term.</p>
+          <p>Itemised invoices appear in the portal under Parent view, and payment is arranged by email. When your invoice arrives, just reply and it's sorted. A receipt is sent once payment clears, and fees are due at the end of week 1 each term.</p>
         </details>
         <details>
-          <summary>What's the AI Study Helper — and is it doing the homework?</summary>
+          <summary>What's the AI Study Helper, and is it doing the homework?</summary>
           <p>No. It explains the steps and the method between sessions, then leaves the final step to the student. Anything important still gets checked with Nith at the next session.</p>
         </details>
       </div>
@@ -536,7 +557,7 @@ svg text{font-family:var(--mono)}
   <div class="wrap">
     <p class="section-label">Weekly timetable</p>
     <h1>Groups &amp; times</h1>
-    <p class="lede">Every group is capped at five students. Green means places are open — join the waitlist and you'll be offered the next spot in the right group.</p>
+    <p class="lede">Every group is capped at five students. Green means places are open, join the waitlist and you'll be offered the next spot in the right group.</p>
     <div class="tt-grid" id="tt-public"></div>
     <p class="muted" style="margin-top:18px">HSC one-on-one times are arranged individually on Tuesday and Thursday evenings.</p>
   </div>
@@ -598,7 +619,7 @@ svg text{font-family:var(--mono)}
             <h2>🏆 Leaderboard</h2>
             <div class="podium" id="podium"></div>
             <div id="lb-bars"></div>
-            <p class="muted" style="margin-top:10px">📈 Most improved ($25) is judged on progress gains — anyone can win it.</p>
+            <p class="muted" style="margin-top:10px">📈 Most improved ($25) is judged on progress gains, anyone can win it.</p>
           </div>
         </div>
       </div>
@@ -606,7 +627,7 @@ svg text{font-family:var(--mono)}
       <!-- CALENDAR -->
       <div class="subpage" id="sub-calendar">
         <h2>📅 Homework &amp; availability calendar</h2>
-        <p class="muted" style="margin-bottom:16px">Red dots are homework due dates, navy dots are your group session. <strong>Parents:</strong> click any date to mark your family away (gold ✈) so sessions can be rescheduled — click again to unmark.</p>
+        <p class="muted" style="margin-bottom:16px">Red dots are homework due dates, navy dots are your group session. <strong>Parents:</strong> click any date to mark your family away (gold ✈) so sessions can be rescheduled, click again to unmark.</p>
         <div class="grid-2">
           <div class="cal" id="cal-main"></div>
           <div>
@@ -638,10 +659,10 @@ svg text{font-family:var(--mono)}
       <div class="subpage" id="sub-challenges">
         <div class="dq-card" id="dq-card"></div>
         <div class="stump-card">
-          <h3>🧠 Stump the tutor — 15 points</h3>
-          <p class="muted" style="margin:6px 0 12px">Send a maths or science question. If Nith can't answer it at your next session, you get 15 points. (It has to be from your course — no PhD questions!)</p>
+          <h3>🧠 Stump the tutor, 15 points</h3>
+          <p class="muted" style="margin:6px 0 12px">Send a maths or science question. If Nith can't answer it at your next session, you get 15 points. (It has to be from your course, no PhD questions!)</p>
           <div class="inline-form">
-            <input id="stump-text" placeholder="Your toughest question…">
+            <input id="stump-text" aria-label="Your stump-the-tutor question" placeholder="Your toughest question…">
             <button class="btn btn-dark btn-sm" onclick="submitStump()">Submit</button>
           </div>
           <div id="stump-mine" style="margin-top:14px"></div>
@@ -651,12 +672,12 @@ svg text{font-family:var(--mono)}
       <!-- AI -->
       <div class="subpage" id="sub-ai">
         <h2>🤖 AI Study Helper</h2>
-        <p class="muted" style="margin-bottom:14px">Stuck on homework between sessions? Ask here. It explains the steps — it won't just hand you the answer. Anything important still gets checked with Nith.</p>
+        <p class="muted" style="margin-bottom:14px">Stuck on homework between sessions? Ask here. It explains the steps, it won't just hand you the answer. Anything important still gets checked with Nith.</p>
         <div class="chat-box">
-          <div class="chat-scroll" id="ai-scroll"><div class="bubble them"><span class="who">Study Helper</span>Hi! Ask me anything from your homework — I'll walk you through how to solve it.</div></div>
+          <div class="chat-scroll" id="ai-scroll"><div class="bubble them"><span class="who">Study Helper</span>Hi! Ask me anything from your homework, I'll walk you through how to solve it.</div></div>
           <div class="chat-input">
-            <input id="ai-text" placeholder="e.g. How do I factorise x² + 5x + 6?" onkeydown="if(event.key==='Enter')askAI()">
-            <button class="btn btn-dark btn-sm" onclick="askAI()">Ask</button>
+            <input id="ai-text" aria-label="Ask the Study Helper a question" placeholder="e.g. How do I factorise x² + 5x + 6?" onkeydown="if(event.key==='Enter')askAI()">
+            <button class="btn btn-dark btn-sm" id="ai-send" onclick="askAI()">Ask</button>
           </div>
         </div>
       </div>
@@ -664,11 +685,11 @@ svg text{font-family:var(--mono)}
       <!-- MESSAGES -->
       <div class="subpage" id="sub-messages">
         <h2>💬 Message Nith</h2>
-        <p class="muted" style="margin-bottom:14px">Questions about sessions or fees — replies within 24 hours.</p>
+        <p class="muted" style="margin-bottom:14px">Questions about sessions or fees, replies within 24 hours.</p>
         <div class="chat-box">
           <div class="chat-scroll" id="chat-scroll"></div>
           <div class="chat-input">
-            <input id="chat-text" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()">
+            <input id="chat-text" aria-label="Message Nith" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendChat()">
             <button class="btn btn-dark btn-sm" onclick="sendChat()">Send</button>
           </div>
         </div>
@@ -705,8 +726,8 @@ svg text{font-family:var(--mono)}
           <div class="inline-form">
             <input id="new-s-name" placeholder="First name">
             <select id="new-s-program">
-              <option value="Foundations (Years 5–8)">Foundations (Years 5–8)</option>
-              <option value="Stage 5 (Years 9–10)">Stage 5 (Years 9–10)</option>
+              <option value="Foundations (Years 5 to 8)">Foundations (Years 5 to 8)</option>
+              <option value="Stage 5 (Years 9 to 10)">Stage 5 (Years 9 to 10)</option>
               <option value="HSC one-on-one">HSC one-on-one</option>
             </select>
             <select id="new-s-group"></select>
@@ -724,9 +745,9 @@ svg text{font-family:var(--mono)}
         <div class="form-card" style="max-width:none">
           <div class="inline-form">
             <input id="new-g-name" placeholder="Group name e.g. Year 8 Maths A">
-            <select id="new-g-program"><option value="Foundations (Years 5–8)">Foundations (Years 5–8)</option><option value="Stage 5 (Years 9–10)">Stage 5 (Years 9–10)</option></select>
+            <select id="new-g-program"><option value="Foundations (Years 5 to 8)">Foundations (Years 5 to 8)</option><option value="Stage 5 (Years 9 to 10)">Stage 5 (Years 9 to 10)</option></select>
             <select id="new-g-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option></select>
-            <input id="new-g-time" placeholder="Time e.g. 4:00–5:00pm" style="max-width:150px">
+            <input id="new-g-time" placeholder="Time e.g. 4:00 to 5:00pm" style="max-width:150px">
             <input id="new-g-cap" type="number" value="5" min="1" max="8" style="max-width:75px" aria-label="Capacity">
             <button class="btn btn-dark btn-sm" onclick="adminAddGroup()">Add</button>
           </div>
@@ -737,7 +758,7 @@ svg text{font-family:var(--mono)}
 
       <div class="subpage" id="sub-a-calendar">
         <h2>Family away dates &amp; due dates</h2>
-        <p class="muted" style="margin-bottom:14px">Every date a family has marked unavailable, plus all homework due dates — use this to plan make-up sessions.</p>
+        <p class="muted" style="margin-bottom:14px">Every date a family has marked unavailable, plus all homework due dates, use this to plan make-up sessions.</p>
         <div id="admin-calendar"></div>
       </div>
 
@@ -749,7 +770,18 @@ svg text{font-family:var(--mono)}
             <input id="dq-answer" placeholder="Answer (exact match) e.g. 75" style="max-width:200px">
             <button class="btn btn-dark btn-sm" onclick="adminSetDaily()">Publish (+20 pts)</button>
           </div>
-          <p class="muted" style="margin-top:8px">Answers are checked automatically — keep them to a single number or word. Publishing a new question resets who has answered.</p>
+          <p class="muted" style="margin-top:8px">Answers are checked automatically, keep them to a single number or word. Publishing a new question resets who has answered.</p>
+        </div>
+        <h2 style="margin-top:28px">AI Study Helper</h2>
+        <div class="form-card" style="max-width:none">
+          <div class="inline-form">
+            <input id="ai-key" type="password" placeholder="Anthropic API key (sk-ant-…)" aria-label="Anthropic API key">
+            <button class="btn btn-dark btn-sm" onclick="adminSaveAiKey()">Save key</button>
+            <button class="del" onclick="adminClearAiKey()">remove key</button>
+          </div>
+          <p class="muted" style="margin-top:8px" id="ai-key-status"></p>
+          <p class="muted" style="margin-top:8px">This switches on the Study Helper chat for students. Create a key at console.anthropic.com and set a small monthly spend limit there. Treat the key like a shared password: anyone with a portal code could dig it out of this site, so keep the limit low and replace the key each term.</p>
+          <div class="msg" id="ai-key-msg"></div>
         </div>
         <h2 style="margin-top:28px">Stump-the-tutor submissions</h2>
         <div id="admin-stumps"></div>
@@ -760,7 +792,7 @@ svg text{font-family:var(--mono)}
         <div class="form-card" style="max-width:none">
           <div class="inline-form">
             <select id="inv-student"></select>
-            <input id="inv-desc" placeholder="Description e.g. Term 1 2027 — 9 weeks">
+            <input id="inv-desc" placeholder="Description e.g. Term 1 2027, 9 weeks">
             <input id="inv-amount" type="number" placeholder="$" style="max-width:100px">
             <button class="btn btn-dark btn-sm" onclick="adminIssueInvoice()">Issue</button>
           </div>
@@ -787,7 +819,7 @@ svg text{font-family:var(--mono)}
 
       <div class="subpage" id="sub-a-placements">
         <h2>Placement test results</h2>
-        <p class="muted" style="margin-bottom:14px">Every completed test — score, band and topic-by-topic breakdown. Use these to build groups by level, not just by year.</p>
+        <p class="muted" style="margin-bottom:14px">Every completed test, score, band and topic-by-topic breakdown. Use these to build groups by level, not just by year.</p>
         <div id="admin-placements"></div>
       </div>
     </div>
@@ -798,9 +830,9 @@ svg text{font-family:var(--mono)}
 <div class="page" id="page-test">
   <div class="wrap">
     <div id="pt-setup">
-      <p class="section-label">Free placement test · K–12</p>
+      <p class="section-label">Free placement test · K to 12</p>
       <h1>Find your child's starting point.</h1>
-      <p class="lede">Forty multiple-choice questions aligned to the NSW syllabus for their year — Maths, English, Science, History and Geography (with logical-reasoning questions in the senior papers). Takes about twenty minutes and shows exactly which topics need work. Free, no obligation.</p>
+      <p class="lede">Forty multiple-choice questions aligned to the NSW syllabus for their year, Maths, English, Science, History and Geography (with logical-reasoning questions in the senior papers). Takes about twenty minutes and shows exactly which topics need work. Free, no obligation.</p>
       <div class="form-card">
         <label for="pt-name">Student's first name</label>
         <input id="pt-name" placeholder="e.g. Pearl">
@@ -812,9 +844,9 @@ svg text{font-family:var(--mono)}
           <option value="9">Year 9</option><option value="10">Year 10</option><option value="11">Year 11</option>
           <option value="12">Year 12</option>
         </select>
-        <label for="pt-contact">Parent contact (optional — for your results &amp; group recommendation)</label>
+        <label for="pt-contact">Parent contact (optional, for your results &amp; group recommendation)</label>
         <input id="pt-contact" placeholder="Mobile or email">
-        <p class="muted" id="pt-assist-note" style="margin-top:10px;display:none">👪 For K–2, a parent should read the questions aloud and enter the child's answers.</p>
+        <p class="muted" id="pt-assist-note" style="margin-top:10px;display:none">👪 For K to 2, a parent should read the questions aloud and enter the child's answers.</p>
         <button class="btn btn-primary" style="margin-top:16px" onclick="startPlacement()">Start the test</button>
         <div class="msg" id="pt-msg"></div>
       </div>
@@ -879,15 +911,15 @@ svg text{font-family:var(--mono)}
   <div class="wrap">
     <p class="section-label">Fees</p>
     <h1>Fees &amp; payment</h1>
-    <p class="lede">Enrolled families: itemised invoices live in the <a href="#" onclick="showPage('portal');return false">Portal</a> under Parent view. Pay by bank transfer or PayID with your invoice number as reference.</p>
+    <p class="lede">Enrolled families: itemised invoices live in the <a href="#" onclick="showPage('portal');return false">Portal</a> under Parent view. Payment is arranged by email when your invoice arrives.</p>
     <div class="grid-2">
       <div class="form-card">
         <h3 style="margin-bottom:6px">Estimate a term</h3>
         <label for="pay-program">Program</label>
         <select id="pay-program" onchange="calcInvoice()">
-          <option value="30">Foundations group — $30/week</option>
-          <option value="35">Stage 5 group — $35/week</option>
-          <option value="60">HSC one-on-one — $60/week</option>
+          <option value="30">Foundations group, $30/week</option>
+          <option value="35">Stage 5 group, $35/week</option>
+          <option value="60">HSC one-on-one, $60/week</option>
         </select>
         <label for="pay-weeks">Weeks in term</label>
         <select id="pay-weeks" onchange="calcInvoice()"><option>10</option><option selected>9</option><option>8</option><option>7</option><option>6</option><option>5</option></select>
@@ -895,14 +927,11 @@ svg text{font-family:var(--mono)}
         <p class="muted">Sibling discount: 10% off the second child. Fees due end of week 1 each term.</p>
       </div>
       <div class="bank-box">
-        <h3 style="margin-bottom:14px">Payment details</h3>
-        <div class="bank-row"><span>Account name</span><span>New England Tutoring</span></div>
-        <div class="bank-row"><span>BSB</span><span>000-000</span></div>
-        <div class="bank-row"><span>Account</span><span>0000 0000</span></div>
-        <!-- Confirm this number is registered as a PayID with your bank before launch -->
-        <div class="bank-row"><span>PayID</span><span>0482 797 814</span></div>
-        <div class="bank-row"><span>Reference</span><span><code>Your invoice number</code></span></div>
-        <p style="margin-top:16px">Use the invoice number (e.g. INV-0007) as the transfer reference. A receipt is sent once payment clears.</p>
+        <h3 style="margin-bottom:14px">Paying an invoice</h3>
+        <p>When an invoice is issued, it also arrives in your inbox with everything needed to pay. Reply to that email and it's sorted.</p>
+        <p>Quote your invoice number, e.g. <code>INV-0007</code>. A receipt is sent once payment clears.</p>
+        <a class="btn btn-primary" style="margin-top:12px" href="mailto:nithyarajendra49@gmail.com?subject=Invoice%20payment">Email about a payment</a>
+        <p style="margin-top:16px">Or text <a href="tel:+61482797814" style="color:inherit">0482 797 814</a> if email isn't your thing.</p>
       </div>
     </div>
   </div>
@@ -937,38 +966,38 @@ function todayIso(){ return iso(new Date()); }
 
 /* ================= SEED DATA ================= */
 const SEED_GROUPS=[
-  {id:"g1",name:"Year 7–8 Maths A",program:"Foundations (Years 5–8)",day:"Monday",time:"4:00–5:00pm",cap:5,notes:[{date:"Last Monday",text:"Covered fractions → decimals conversion, and short-division speed drills. Homework set: worksheet Q1–20."}]},
-  {id:"g2",name:"Year 9–10 Maths",program:"Stage 5 (Years 9–10)",day:"Wednesday",time:"4:00–5:00pm",cap:5,notes:[{date:"Last Wednesday",text:"Expanding binomials and factorising by grouping. Marked last week's indices quiz in session."}]},
-  {id:"g3",name:"Year 5–6 Foundations",program:"Foundations (Years 5–8)",day:"Thursday",time:"5:15–6:15pm",cap:5,notes:[]}
+  {id:"g1",name:"Year 7 to 8 Maths A",program:"Foundations (Years 5 to 8)",day:"Monday",time:"4:00 to 5:00pm",cap:5,notes:[{date:"Last Monday",text:"Covered fractions → decimals conversion, and short-division speed drills. Homework set: worksheet Q1 to 20."}]},
+  {id:"g2",name:"Year 9 to 10 Maths",program:"Stage 5 (Years 9 to 10)",day:"Wednesday",time:"4:00 to 5:00pm",cap:5,notes:[{date:"Last Wednesday",text:"Expanding binomials and factorising by grouping. Marked last week's indices quiz in session."}]},
+  {id:"g3",name:"Year 5 to 6 Foundations",program:"Foundations (Years 5 to 8)",day:"Thursday",time:"5:15 to 6:15pm",cap:5,notes:[]}
 ];
 function seedStudents(){
   return {
-    "DEMO-2027":{name:"Demo Student",program:"Stage 5 (Years 9–10)",group:"g2",points:120,tasksDone:12,timeOnSite:8460,
+    "DEMO-2027":{name:"Demo Student",program:"Stage 5 (Years 9 to 10)",group:"g2",points:120,tasksDone:12,timeOnSite:8460,
       homework:[
-        {id:"h1",text:"Indices worksheet Q1–15",due:offsetDate(2),done:false},
+        {id:"h1",text:"Indices worksheet Q1 to 15",due:offsetDate(2),done:false},
         {id:"h2",text:"Finish linear equations set B",due:offsetDate(-1),done:true},
         {id:"h3",text:"10 mins times-table drill, 3 days",due:offsetDate(5),done:false},
         {id:"h4",text:"Measurement revision sheet",due:offsetDate(-2),done:false}
       ],
-      progress:[{topic:"Algebra — expanding & factorising",pct:80},{topic:"Indices & scientific notation",pct:55},{topic:"Linear equations",pct:90},{topic:"Measurement",pct:30}],
+      progress:[{topic:"Algebra, expanding & factorising",pct:80},{topic:"Indices & scientific notation",pct:55},{topic:"Linear equations",pct:90},{topic:"Measurement",pct:30}],
       grades:[
-        {task:"Week 3 quiz — algebra",mark:17,outOf:20,date:"14 Feb",link:"https://example.com/marked-paper-algebra"},
-        {task:"Week 6 quiz — indices",mark:13,outOf:20,date:"7 Mar",link:"https://example.com/marked-paper-indices"},
+        {task:"Week 3 quiz, algebra",mark:17,outOf:20,date:"14 Feb",link:"https://example.com/marked-paper-algebra"},
+        {task:"Week 6 quiz, indices",mark:13,outOf:20,date:"7 Mar",link:"https://example.com/marked-paper-indices"},
         {task:"School assessment (reported)",mark:72,outOf:100,date:"21 Mar",link:""}
       ],
       invoices:[
-        {id:"INV-0001",desc:"Term 1 2027 — Stage 5 group, 9 weeks",amount:315,status:"paid",date:"3 Feb"},
-        {id:"INV-0002",desc:"Term 2 2027 — Stage 5 group, 10 weeks",amount:350,status:"unpaid",date:"20 Apr"}
+        {id:"INV-0001",desc:"Term 1 2027, Stage 5 group, 9 weeks",amount:315,status:"paid",date:"3 Feb"},
+        {id:"INV-0002",desc:"Term 2 2027, Stage 5 group, 10 weeks",amount:350,status:"unpaid",date:"20 Apr"}
       ],
       log:[{d:offsetDate(-28),p:20},{d:offsetDate(-21),p:45},{d:offsetDate(-14),p:70},{d:offsetDate(-7),p:100},{d:todayIso(),p:120}]
     },
-    "SAMPLE-2":{name:"Alex",program:"Foundations (Years 5–8)",group:"g1",points:180,tasksDone:18,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
-    "SAMPLE-3":{name:"Ruby",program:"Stage 5 (Years 9–10)",group:"g2",points:95,tasksDone:9,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
-    "SAMPLE-4":{name:"Tom",program:"Foundations (Years 5–8)",group:"g3",points:60,tasksDone:6,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]}
+    "SAMPLE-2":{name:"Alex",program:"Foundations (Years 5 to 8)",group:"g1",points:180,tasksDone:18,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
+    "SAMPLE-3":{name:"Ruby",program:"Stage 5 (Years 9 to 10)",group:"g2",points:95,tasksDone:9,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]},
+    "SAMPLE-4":{name:"Tom",program:"Foundations (Years 5 to 8)",group:"g3",points:60,tasksDone:6,timeOnSite:0,homework:[],progress:[],grades:[],invoices:[],log:[]}
   };
 }
-const SEED_NEWS=[{id:"n1",date:"Today",title:"Welcome to Term 1!",body:"All groups start this week at their usual times. Don't forget the daily question in Challenges — 20 points, first come first served each day."}];
-const SEED_MSGS={"DEMO-2027":[{from:"parent",text:"Hi Nith — is there extra work we can do on measurement at home?",ts:"Mon 10:12am"},{from:"tutor",text:"Absolutely — I've added a measurement drill to this week's homework. Ten minutes a day beats an hour on Sunday!",ts:"Mon 4:45pm"}]};
+const SEED_NEWS=[{id:"n1",date:"Today",title:"Welcome to Term 1!",body:"All groups start this week at their usual times. Don't forget the daily question in Challenges, 20 points, first come first served each day."}];
+const SEED_MSGS={"DEMO-2027":[{from:"parent",text:"Hi Nith, is there extra work we can do on measurement at home?",ts:"Mon 10:12am"},{from:"tutor",text:"Absolutely, I've added a measurement drill to this week's homework. Ten minutes a day beats an hour on Sunday!",ts:"Mon 4:45pm"}]};
 const SEED_DAILY={id:"d1",question:"What is 7 × 13 − 4²?",answer:"75",answeredBy:{}};
 
 async function loadAll(){
@@ -990,7 +1019,8 @@ async function loadAll(){
 }
 
 /* ================= NAV / FX ================= */
-let currentCode=null, calYear, calMonth, timeTimer=null, sessionSecs=0, aiHistory=[];
+let currentCode=null, calYear, calMonth, timeTimer=null, sessionSecs=0, aiHistory=[], aiBusy=false;
+const AI_SYSTEM="You are the Study Helper for New England Tutoring, a small tutoring business in Armidale NSW for Years 5-12 students following the NSW curriculum. A student is asking for homework help between sessions. Explain concepts step by step in plain, encouraging language suited to their level. Guide them to the answer rather than just handing it over: show the method, then let them try the final step where sensible. Keep answers concise (under 200 words). If asked about fees, scheduling or anything non-academic, tell them to use the Messages tab to ask Nith directly. Never help with anything that isn't schoolwork.";
 function showPage(p){
   document.querySelectorAll(".page").forEach(el=>el.classList.remove("active"));
   document.getElementById("page-"+p).classList.add("active");
@@ -1026,7 +1056,7 @@ async function renderPublicTimetable(){
     const dv=document.createElement("div");dv.className="tt-day";
     dv.innerHTML=`<div class="tt-day-head">${day}</div>`+(dg.length
       ?dg.map(g=>{const used=counts[g.id]||0,left=Math.max(0,g.cap-used);
-        return `<div class="tt-slot"><div class="t">${esc(g.time)}</div><h4>${esc(g.name)}</h4><div class="muted" style="font-size:.82rem">${esc(g.program)}</div><div class="spots ${left?"open":"full"}">${left?left+" place"+(left>1?"s":"")+" open ✓":"Full — waitlist only"}</div></div>`;}).join("")
+        return `<div class="tt-slot"><div class="t">${esc(g.time)}</div><h4>${esc(g.name)}</h4><div class="muted" style="font-size:.82rem">${esc(g.program)}</div><div class="spots ${left?"open":"full"}">${left?left+" place"+(left>1?"s":"")+" open ✓":"Full, waitlist only"}</div></div>`;}).join("")
       :`<div class="tt-slot"><p class="muted">No groups this day.</p></div>`);
     wrap.appendChild(dv);
   });
@@ -1038,20 +1068,31 @@ async function portalLogin(){
   const code=document.getElementById("access-code").value.trim().toUpperCase();
   const msg=document.getElementById("login-msg");msg.className="msg";
   if(!code){msg.className="msg err";msg.textContent="Enter your access code.";return;}
-  if(code===ADMIN_CODE){currentCode=code;renderAdmin();return;}
+  if(code===ADMIN_CODE){currentCode=code;rememberCode(code);renderAdmin();return;}
   const {students}=await loadAll();
-  if(!students[code]){msg.className="msg err";msg.textContent="Code not recognised — check your enrolment email, or text 0482 797 814.";return;}
+  if(!students[code]){rememberCode(null);msg.className="msg err";msg.textContent="Code not recognised, check your enrolment email, or text 0482 797 814.";return;}
   currentCode=code;
+  rememberCode(code);
   const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();
   startTimeTracking();
   renderDashboard();
 }
 function portalLogout(){
   currentCode=null;stopTimeTracking();aiHistory=[];
+  rememberCode(null);
   document.getElementById("portal-dash").style.display="none";
   document.getElementById("portal-admin").style.display="none";
   document.getElementById("portal-login").style.display="block";
   document.getElementById("access-code").value="";
+}
+/* stay logged in on this device between visits */
+function rememberCode(code){try{if(code)localStorage.setItem("net-code",code);else localStorage.removeItem("net-code");}catch(e){}}
+async function resumeSession(){
+  let saved=null;try{saved=localStorage.getItem("net-code");}catch(e){}
+  if(!saved)return;
+  document.getElementById("access-code").value=saved;
+  showPage('portal');
+  portalLogin();
 }
 
 /* ================= TIME TRACKING ================= */
@@ -1071,13 +1112,13 @@ function stopTimeTracking(){if(timeTimer){clearInterval(timeTimer);timeTimer=nul
 
 /* ================= CHARTS (hand-rolled SVG) ================= */
 function chartLine(values,labels,color){
-  if(values.length<2)return "<p class='muted'>Not enough data yet — check back after a few weeks.</p>";
+  if(values.length<2)return "<p class='muted'>Not enough data yet, check back after a few weeks.</p>";
   const W=340,H=150,pad=26,max=Math.max(...values,1);
   const pts=values.map((v,i)=>[pad+i*(W-2*pad)/(values.length-1),H-pad-(v/max)*(H-2*pad)]);
   const path=pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
   const area=path+` L${pts[pts.length-1][0]},${H-pad} L${pts[0][0]},${H-pad} Z`;
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:420px">
-    <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#3A3A38"/>
+    <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#54524B"/>
     <path d="${area}" fill="${color}" opacity=".12"/>
     <path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
     ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${color}"/><text x="${p[0]}" y="${p[1]-8}" font-size="9" text-anchor="middle" fill="#A8A69C">${values[i]}</text>`).join("")}
@@ -1088,7 +1129,7 @@ function chartDonut(done,total){
   const pct=total?Math.round(done/total*100):0;
   const r=44,c=2*Math.PI*r,off=c*(1-pct/100);
   return `<svg viewBox="0 0 110 110" style="width:110px">
-    <circle cx="55" cy="55" r="${r}" fill="none" stroke="#2A2A28" stroke-width="12"/>
+    <circle cx="55" cy="55" r="${r}" fill="none" stroke="#45443E" stroke-width="12"/>
     <circle cx="55" cy="55" r="${r}" fill="none" stroke="#5BB98A" stroke-width="12" stroke-linecap="round"
       stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1s ease"/>
     <text x="55" y="61" text-anchor="middle" font-size="20" font-weight="800" fill="#F5F3EC">${pct}%</text>
@@ -1134,16 +1175,16 @@ async function renderCalendar(){
   const items=[];
   s.homework.filter(h=>!h.done&&h.due).sort((a,b)=>a.due.localeCompare(b.due)).forEach(h=>{
     const overdue=h.due<todayIso();
-    items.push(`<div class="cl-item">${overdue?"⚠️ <strong style='color:var(--red)'>OVERDUE</strong> — ":""}<strong>${fmtDate(h.due)}</strong> · ${esc(h.text)}</div>`);
+    items.push(`<div class="cl-item">${overdue?"⚠️ <strong style='color:var(--red)'>OVERDUE</strong>, ":""}<strong>${fmtDate(h.due)}</strong> · ${esc(h.text)}</div>`);
   });
   [...myAway].sort().filter(d=>d>=todayIso()).forEach(d=>items.push(`<div class="cl-item">✈ <strong>${fmtDate(d)}</strong> · Family marked away</div>`));
-  document.getElementById("cal-upcoming").innerHTML=items.join("")||"<p class='muted'>Nothing coming up — all clear.</p>";
+  document.getElementById("cal-upcoming").innerHTML=items.join("")||"<p class='muted'>Nothing coming up, all clear.</p>";
 }
 function calNav(dir){calMonth+=dir;if(calMonth<0){calMonth=11;calYear--;}if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
 async function toggleAway(ds){
   const away=await sGet("net-away")||{};
   const list=new Set(away[currentCode]||[]);
-  if(list.has(ds)){list.delete(ds);toast("Away date removed");}else{list.add(ds);toast("Marked away ✈ — Nith will see this");}
+  if(list.has(ds)){list.delete(ds);toast("Away date removed");}else{list.add(ds);toast("Marked away ✈, Nith will see this");}
   away[currentCode]=[...list];
   await sSet("net-away",away);
   renderCalendar();
@@ -1186,11 +1227,11 @@ async function renderDashboard(){
 
   document.getElementById("dash-prize").innerHTML=
     `<div class="pz">🏆 $${PRIZES.first+PRIZES.second+PRIZES.improved} prize pool<small>${PRIZES.label}</small></div>
-     <div style="font-size:.93rem;color:#C7D0E4">🥇 $${PRIZES.first} · 🥈 $${PRIZES.second} · 📈 Most improved $${PRIZES.improved}${rank===1?"<br><strong style='color:#fff'>You're in 1st — defend it!</strong>":(rank===2?"<br><strong style='color:#fff'>You're 2nd — "+(ranked[0].points-s.points)+" points off the lead.</strong>":"<br><strong style='color:#fff'>"+(ranked[rank-2]?(ranked[rank-2].points-s.points+1)+" points to move up a place.":"")+"</strong>")}</div>`;
+     <div style="font-size:.93rem;color:#C7D0E4">🥇 $${PRIZES.first} · 🥈 $${PRIZES.second} · 📈 Most improved $${PRIZES.improved}${rank===1?"<br><strong style='color:#fff'>You're in 1st, defend it!</strong>":(rank===2?"<br><strong style='color:#fff'>You're 2nd, "+(ranked[0].points-s.points)+" points off the lead.</strong>":"<br><strong style='color:#fff'>"+(ranked[rank-2]?(ranked[rank-2].points-s.points+1)+" points to move up a place.":"")+"</strong>")}</div>`;
 
   // homework
   const hw=document.getElementById("hw-list");
-  hw.innerHTML=s.homework.length?"":"<p class='muted'>No homework set — enjoy it while it lasts.</p>";
+  hw.innerHTML=s.homework.length?"":"<p class='muted'>No homework set, enjoy it while it lasts.</p>";
   s.homework.slice().sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999")).forEach(h=>{
     const overdue=!h.done&&h.due&&h.due<todayIso();
     const d=document.createElement("div");
@@ -1260,7 +1301,7 @@ async function renderDashboard(){
     ?s.invoices.slice().reverse().map(inv=>`<div class="invoice">
       <div class="inv-head"><span class="inv-num">${esc(inv.id)}</span><span class="inv-status ${inv.status}">${inv.status}</span></div>
       <div class="muted">${esc(inv.desc)} · issued ${esc(inv.date)}</div><div class="inv-amount">$${inv.amount}</div>
-      ${inv.status==="unpaid"?`<div class="muted">Pay by transfer/PayID with reference <strong>${esc(inv.id)}</strong> — details on the Fees page.</div>`:""}</div>`).join("")
+      ${inv.status==="unpaid"?`<div class="muted">This invoice arrives by email too. Reply to it quoting <strong>${esc(inv.id)}</strong> to arrange payment.</div>`:""}</div>`).join("")
     :"<p class='muted'>No invoices issued yet.</p>";
 
   // challenges
@@ -1277,15 +1318,15 @@ async function renderDashboard(){
 function renderChallenges(daily,stumps,s){
   const answered=daily&&daily.answeredBy&&daily.answeredBy[currentCode];
   document.getElementById("dq-card").innerHTML=daily&&daily.question
-    ?`<h3>⭐ Daily question — ${POINTS_DAILY} points</h3>
+    ?`<h3>⭐ Daily question, ${POINTS_DAILY} points</h3>
       <div class="dq-q">${esc(daily.question)}</div>
-      ${answered?`<p style="color:var(--green);font-weight:800">✓ You've answered today's question — +${POINTS_DAILY} points banked!</p>`
+      ${answered?`<p style="color:var(--green);font-weight:800">✓ You've answered today's question, +${POINTS_DAILY} points banked!</p>`
       :`<div class="inline-form"><input id="dq-input" placeholder="Your answer…" onkeydown="if(event.key==='Enter')answerDaily()"><button class="btn btn-dark btn-sm" onclick="answerDaily()">Answer</button></div>
         <div class="msg" id="dq-msg"></div>`}`
-    :`<h3>⭐ Daily question</h3><p class="muted">No question published yet — check back soon.</p>`;
+    :`<h3>⭐ Daily question</h3><p class="muted">No question published yet, check back soon.</p>`;
   const mine=stumps.filter(x=>x.code===currentCode);
   document.getElementById("stump-mine").innerHTML=mine.length
-    ?mine.slice().reverse().map(x=>`<div class="session-log"><span class="sd">${x.status==="awarded"?"🏅 STUMPED — +"+POINTS_STUMP+" pts":(x.status==="answered"?"Answered at session":"Pending review")}</span><br>${esc(x.question)}</div>`).join("")
+    ?mine.slice().reverse().map(x=>`<div class="session-log"><span class="sd">${x.status==="awarded"?"🏅 STUMPED, +"+POINTS_STUMP+" pts":(x.status==="answered"?"Answered at session":"Pending review")}</span><br>${esc(x.question)}</div>`).join("")
     :"";
 }
 async function answerDaily(){
@@ -1308,7 +1349,7 @@ async function answerDaily(){
     toast("+"+POINTS_DAILY+" points! ⭐");confetti(36);
     renderDashboard();showSub("challenges");
   } else {
-    msg.className="msg err";msg.textContent="Not quite — think it through and try again.";
+    msg.className="msg err";msg.textContent="Not quite, think it through and try again.";
   }
 }
 async function submitStump(){
@@ -1325,32 +1366,48 @@ async function submitStump(){
 /* ================= AI HELPER ================= */
 async function askAI(){
   const inp=document.getElementById("ai-text");
-  const q=inp.value.trim();if(!q)return;
+  const btn=document.getElementById("ai-send");
+  const q=inp.value.trim();if(!q||aiBusy)return;
   const box=document.getElementById("ai-scroll");
   box.insertAdjacentHTML("beforeend",`<div class="bubble me"><span class="who">You</span>${esc(q)}</div>`);
   inp.value="";box.scrollTop=box.scrollHeight;
   aiHistory.push({role:"user",content:q});
+  aiBusy=true;if(btn)btn.disabled=true;
   const typing=document.createElement("div");typing.className="typing";typing.textContent="Study Helper is thinking…";
   box.appendChild(typing);box.scrollTop=box.scrollHeight;
+  const key=await sGet("net-ai-key");
   try{
+    if(!key)throw new Error("no-key");
     const response=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",headers:{"Content-Type":"application/json"},
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "x-api-key":key,
+        "anthropic-version":"2023-06-01",
+        "anthropic-dangerous-direct-browser-access":"true"
+      },
       body:JSON.stringify({
-        model:"claude-sonnet-4-6",max_tokens:1000,
-        system:"You are the Study Helper for New England Tutoring, a small tutoring business in Armidale NSW for Years 5-12 students following the NSW curriculum. A student is asking for homework help between sessions. Explain concepts step by step in plain, encouraging language suited to their level. Guide them to the answer rather than just handing it over - show the method, then let them try the final step where sensible. Keep answers concise (under 200 words). If asked about fees, scheduling or anything non-academic, tell them to use the Messages tab to ask Nith directly. Never help with anything that isn't schoolwork.",
+        model:"claude-sonnet-5",max_tokens:1000,
+        system:AI_SYSTEM,
         messages:aiHistory
       })
     });
     const data=await response.json();
     typing.remove();
-    const text=(data.content||[]).map(i=>i.type==="text"?i.text:"").filter(Boolean).join("\n")||"Hmm, I couldn't work that one out — try rephrasing, or send it to Nith in Messages.";
+    if(data.error)throw new Error(data.error.message||"api-error");
+    const text=(data.content||[]).map(i=>i.type==="text"?i.text:"").filter(Boolean).join("\n")||"Hmm, I couldn't work that one out. Try rephrasing, or send it to Nith in Messages.";
     aiHistory.push({role:"assistant",content:text});
     if(aiHistory.length>16)aiHistory=aiHistory.slice(-16);
     box.insertAdjacentHTML("beforeend",`<div class="bubble them"><span class="who">Study Helper</span>${esc(text)}</div>`);
   }catch(e){
     typing.remove();
-    box.insertAdjacentHTML("beforeend",`<div class="bubble them"><span class="who">Study Helper</span>I can't connect right now — send your question to Nith in the Messages tab instead.</div>`);
+    aiHistory.pop();
+    const why=(e&&e.message==="no-key")
+      ?"The Study Helper isn't switched on yet. Nith needs to add an AI key in the admin panel. In the meantime, send your question through the Messages tab."
+      :"I couldn't connect just now. Try again in a minute, or send your question to Nith in the Messages tab.";
+    box.insertAdjacentHTML("beforeend",`<div class="bubble them"><span class="who">Study Helper</span>${why}</div>`);
   }
+  aiBusy=false;if(btn)btn.disabled=false;
   box.scrollTop=box.scrollHeight;
 }
 
@@ -1359,7 +1416,7 @@ function renderChat(thread){
   const box=document.getElementById("chat-scroll");
   box.innerHTML=thread.length
     ?thread.map(m=>`<div class="bubble ${m.from==='tutor'?'them':'me'}"><span class="who">${m.from==='tutor'?'Nith (tutor)':'You'} · ${esc(m.ts)}</span>${esc(m.text)}</div>`).join("")
-    :"<p class='muted' style='padding:8px'>No messages yet — ask anything.</p>";
+    :"<p class='muted' style='padding:8px'>No messages yet, ask anything.</p>";
   box.scrollTop=box.scrollHeight;
 }
 async function sendChat(){
@@ -1394,7 +1451,7 @@ async function renderAdmin(){
   document.getElementById("portal-dash").style.display="none";
   document.getElementById("portal-admin").style.display="block";
 
-  const gOpts=`<option value="">No group (HSC 1:1)</option>`+groups.map(g=>`<option value="${g.id}">${esc(g.name)} — ${g.day} ${esc(g.time)}</option>`).join("");
+  const gOpts=`<option value="">No group (HSC 1:1)</option>`+groups.map(g=>`<option value="${g.id}">${esc(g.name)}, ${g.day} ${esc(g.time)}</option>`).join("");
   document.getElementById("new-s-group").innerHTML=gOpts;
   document.getElementById("inv-student").innerHTML=Object.entries(students).map(([c,s])=>`<option value="${c}">${esc(s.name)} (${c})</option>`).join("");
 
@@ -1403,14 +1460,14 @@ async function renderAdmin(){
   Object.entries(students).forEach(([code,s])=>{
     const det=document.createElement("details");det.className="admin-student";
     det.innerHTML=`
-      <summary>${esc(s.name)} — ${esc(s.program)} · <code>${code}</code> · ${s.points} pts · ${s.tasksDone||0} tasks · ${fmtSecs(s.timeOnSite||0)} on portal</summary>
+      <summary>${esc(s.name)}, ${esc(s.program)} · <code>${code}</code> · ${s.points} pts · ${s.tasksDone||0} tasks · ${fmtSecs(s.timeOnSite||0)} on portal</summary>
       <div style="margin-top:12px">
         <div class="inline-form"><label style="margin:0;align-self:center;font-size:.84rem">Group:</label><select id="grp-${code}">${gOpts}</select><button class="btn btn-dark btn-sm" onclick="adminSetGroup('${code}')">Save</button></div>
         <strong style="font-size:.87rem;display:block;margin-top:14px">Homework</strong>
         ${s.homework.map(h=>`<div style="font-size:.9rem;margin:4px 0">${h.done?"✅":"⬜"} ${esc(h.text)} ${h.due?"<span class='muted'>(due "+fmtDate(h.due)+")</span>":""} <button class="del" onclick="adminDelHw('${code}','${h.id}')">remove</button></div>`).join("")||"<p class='muted'>None set.</p>"}
         <div class="inline-form"><input id="hw-text-${code}" placeholder="New homework task"><input id="hw-due-${code}" type="date" style="max-width:160px"><button class="btn btn-dark btn-sm" onclick="adminAddHw('${code}')">Add</button></div>
         <strong style="font-size:.87rem;display:block;margin-top:14px">Progress topics</strong>
-        ${s.progress.map((p,i)=>`<div style="font-size:.9rem;margin:4px 0">${esc(p.topic)} — ${p.pct}% <button class="del" onclick="adminDelProg('${code}',${i})">remove</button></div>`).join("")||"<p class='muted'>None yet.</p>"}
+        ${s.progress.map((p,i)=>`<div style="font-size:.9rem;margin:4px 0">${esc(p.topic)}, ${p.pct}% <button class="del" onclick="adminDelProg('${code}',${i})">remove</button></div>`).join("")||"<p class='muted'>None yet.</p>"}
         <div class="inline-form"><input id="pr-topic-${code}" placeholder="Topic"><input id="pr-pct-${code}" type="number" min="0" max="100" placeholder="%" style="max-width:85px"><button class="btn btn-dark btn-sm" onclick="adminSetProg('${code}')">Set</button></div>
         <strong style="font-size:.87rem;display:block;margin-top:14px">Grades (with marked-paper link)</strong>
         ${s.grades.map((g,i)=>`<div style="font-size:.9rem;margin:4px 0">${esc(g.task)}: ${g.mark}/${g.outOf} (${esc(g.date)}) ${g.link?"🔗":""} <button class="del" onclick="adminDelGrade('${code}',${i})">remove</button></div>`).join("")||"<p class='muted'>None yet.</p>"}
@@ -1430,7 +1487,7 @@ async function renderAdmin(){
   // groups
   const counts={};Object.values(students).forEach(s=>{if(s.group)counts[s.group]=(counts[s.group]||0)+1;});
   document.getElementById("admin-groups").innerHTML=groups.map(g=>`
-    <details class="admin-student"><summary>${esc(g.name)} — ${g.day} ${esc(g.time)} · ${counts[g.id]||0}/${g.cap} enrolled</summary>
+    <details class="admin-student"><summary>${esc(g.name)}, ${g.day} ${esc(g.time)} · ${counts[g.id]||0}/${g.cap} enrolled</summary>
       <div style="margin-top:10px"><strong style="font-size:.87rem">Session log</strong>
         ${g.notes.slice().reverse().map((n,i)=>`<div class="session-log"><span class="sd">${esc(n.date)}</span><br>${esc(n.text)} <button class="del" onclick="adminDelNote('${g.id}',${g.notes.length-1-i})">remove</button></div>`).join("")||"<p class='muted'>No entries yet.</p>"}
         <div class="inline-form"><input id="note-date-${g.id}" placeholder="Date e.g. Mon 16 Feb" style="max-width:140px"><input id="note-text-${g.id}" placeholder="This week we covered…"><button class="btn btn-dark btn-sm" onclick="adminAddNote('${g.id}')">Add</button></div>
@@ -1444,7 +1501,7 @@ async function renderAdmin(){
     dates.filter(d=>d>=todayIso()).sort().forEach(d=>awayRows.push(`<tr><td>${esc(nm)}</td><td>✈ Away</td><td>${fmtDate(d)}</td></tr>`));
   });
   Object.entries(students).forEach(([code,s])=>{
-    s.homework.filter(h=>!h.done&&h.due).forEach(h=>awayRows.push(`<tr><td>${esc(s.name)}</td><td>${esc(h.text)}</td><td>${h.due<todayIso()?"⚠️ OVERDUE — ":""}${fmtDate(h.due)}</td></tr>`));
+    s.homework.filter(h=>!h.done&&h.due).forEach(h=>awayRows.push(`<tr><td>${esc(s.name)}</td><td>${esc(h.text)}</td><td>${h.due<todayIso()?"⚠️ OVERDUE, ":""}${fmtDate(h.due)}</td></tr>`));
   });
   document.getElementById("admin-calendar").innerHTML=awayRows.length
     ?"<table><tr><th>Student</th><th>Item</th><th>Date</th></tr>"+awayRows.join("")+"</table>"
@@ -1454,7 +1511,7 @@ async function renderAdmin(){
   document.getElementById("admin-stumps").innerHTML=stumps.length
     ?stumps.slice().reverse().map((x,ri)=>{const i=stumps.length-1-ri;
       return `<div class="session-log"><span class="sd">${esc(x.name)} · ${x.status}</span><br>${esc(x.question)}
-        ${x.status==="pending"?`<div class="inline-form"><button class="btn btn-dark btn-sm" onclick="adminStump(${i},'awarded')">Stumped me — award ${POINTS_STUMP} pts</button><button class="btn btn-ghost btn-sm" onclick="adminStump(${i},'answered')">Answered it</button></div>`:""}</div>`;}).join("")
+        ${x.status==="pending"?`<div class="inline-form"><button class="btn btn-dark btn-sm" onclick="adminStump(${i},'awarded')">Stumped me, award ${POINTS_STUMP} pts</button><button class="btn btn-ghost btn-sm" onclick="adminStump(${i},'answered')">Answered it</button></div>`:""}</div>`;}).join("")
     :"<p class='muted'>No submissions yet.</p>";
 
   // invoices
@@ -1468,7 +1525,7 @@ async function renderAdmin(){
   document.getElementById("admin-messages").innerHTML=Object.keys(msgs).length
     ?Object.entries(msgs).map(([code,thread])=>{
       const nm=students[code]?students[code].name:code;
-      return `<details class="admin-student"><summary>${esc(nm)} (${code}) — ${thread.length} message${thread.length!==1?"s":""}</summary>
+      return `<details class="admin-student"><summary>${esc(nm)} (${code}), ${thread.length} message${thread.length!==1?"s":""}</summary>
         <div style="margin-top:10px">${thread.map(m=>`<div class="bubble ${m.from==='tutor'?'me':'them'}" style="margin:6px 0;max-width:100%"><span class="who">${m.from==='tutor'?'You':'Family'} · ${esc(m.ts)}</span>${esc(m.text)}</div>`).join("")}
         <div class="inline-form"><input id="reply-${code}" placeholder="Reply…"><button class="btn btn-dark btn-sm" onclick="adminReply('${code}')">Send</button></div></div></details>`;}).join("")
     :"<p class='muted'>No message threads yet.</p>";
@@ -1494,13 +1551,15 @@ async function renderAdmin(){
         return `<div class="pt-topic"><div style="display:flex;justify-content:space-between;font-size:.9rem"><strong>${esc(t)}</strong><span class="muted">${v.c}/${v.n}</span></div>
           <div class="progress-track"><div class="progress-fill ${fillBarClass(tp)}" style="width:${tp}%"></div></div></div>`;}).join("");
       return `<details class="admin-student">
-        <summary>${esc(p.name)} — ${p.year==="K"?"Kindergarten":"Year "+p.year} · ${p.score}/${p.total} (${p.pct}%) · <strong>${esc(p.band)}</strong> · ${esc(p.date)}</summary>
+        <summary>${esc(p.name)}, ${p.year==="K"?"Kindergarten":"Year "+p.year} · ${p.score}/${p.total} (${p.pct}%) · <strong>${esc(p.band)}</strong> · ${esc(p.date)}</summary>
         <div style="margin-top:12px">
           <p class="muted" style="margin-bottom:10px">Contact: ${p.contact?esc(p.contact):"not provided"}</p>
           ${topicRows}
           <button class="del" style="margin-top:8px" onclick="adminDelPlacement(${i})">Delete result</button>
         </div></details>`;}).join("")
     :"<p class='muted'>No placement tests completed yet.</p>";
+
+  renderAiKeyStatus();
 }
 async function adminDelPlacement(i){const p=await sGet("net-placements")||[];p.splice(i,1);await sSet("net-placements",p);renderAdmin();}
 
@@ -1555,7 +1614,7 @@ async function adminAddGroup(){
   const name=document.getElementById("new-g-name").value.trim();
   const program=document.getElementById("new-g-program").value;
   const day=document.getElementById("new-g-day").value;
-  const time=document.getElementById("new-g-time").value.trim()||"4:00–5:00pm";
+  const time=document.getElementById("new-g-time").value.trim()||"4:00 to 5:00pm";
   const cap=Math.max(1,parseInt(document.getElementById("new-g-cap").value)||5);
   if(!name)return;
   mutGroups(g=>{g.push({id:"g"+Date.now(),name,program,day,time,cap,notes:[]});});
@@ -1606,6 +1665,27 @@ async function adminPostNews(){
 }
 async function adminDelNews(id){const news=await sGet("net-news")||[];const i=news.findIndex(n=>n.id===id);if(i>-1)news.splice(i,1);await sSet("net-news",news);renderAdmin();}
 async function adminDelWl(i){const wl=await sGet("net-waitlist")||[];wl.splice(i,1);await sSet("net-waitlist",wl);renderAdmin();}
+async function adminSaveAiKey(){
+  const inp=document.getElementById("ai-key");
+  const msg=document.getElementById("ai-key-msg");msg.className="msg";
+  const key=inp.value.trim();
+  if(!key){msg.className="msg err";msg.textContent="Paste a key first.";return;}
+  await sSet("net-ai-key",key);
+  inp.value="";
+  msg.className="msg ok";msg.textContent="Key saved. The Study Helper is now live for students.";
+  renderAiKeyStatus();
+}
+async function adminClearAiKey(){
+  await sSet("net-ai-key",null);
+  const msg=document.getElementById("ai-key-msg");
+  msg.className="msg ok";msg.textContent="Key removed. The Study Helper is switched off.";
+  renderAiKeyStatus();
+}
+async function renderAiKeyStatus(){
+  const el=document.getElementById("ai-key-status");if(!el)return;
+  const key=await sGet("net-ai-key");
+  el.textContent=key?"Status: ON. A key is saved and the Study Helper is answering students.":"Status: OFF. No key saved, students see a message telling them to use the Messages tab.";
+}
 async function adminSetDaily(){
   const question=document.getElementById("dq-question").value.trim();
   const answer=document.getElementById("dq-answer").value.trim();
@@ -1632,7 +1712,7 @@ async function adminStump(i,status){
 /* q: question, o: options, a: index of correct answer, t: topic tag */
 const QBANK={
 "K":[
- {q:"Count: 🍎🍎🍎🍎🍎 — how many apples?",o:["3","4","5","6"],a:2,t:"Counting"},
+ {q:"Count: 🍎🍎🍎🍎🍎, how many apples?",o:["3","4","5","6"],a:2,t:"Counting"},
  {q:"Which number comes after 7?",o:["6","8","9","5"],a:1,t:"Counting"},
  {q:"Which shape has 3 sides?",o:["Square","Triangle","Circle","Rectangle"],a:1,t:"Shapes"},
  {q:"2 + 1 = ?",o:["2","3","4","1"],a:1,t:"Addition"},
@@ -1822,7 +1902,7 @@ const QBANK={
  {q:"A polygon with 5 sides is a…",o:["Hexagon","Pentagon","Octagon","Quadrilateral"],a:1,t:"Geometry"},
  {q:"Which of these is a compound word?",o:["Sunflower","Happy","Running","Blue"],a:0,t:"English"},
  {q:"The contraction of 'do not' is…",o:["Don't","Dont'","Do'nt","Donot"],a:0,t:"English"},
- {q:"Which pair are antonyms (opposites)?",o:["Hot – cold","Big – large","Quick – fast","Happy – glad"],a:0,t:"English"},
+ {q:"Which pair are antonyms (opposites)?",o:["Hot / cold","Big / large","Quick / fast","Happy / glad"],a:0,t:"English"},
  {q:"A fact is something that…",o:["Can be proven true","Is someone's opinion","Is always a guess","Must rhyme"],a:0,t:"English"},
  {q:"In 'the enormous elephant', the word 'enormous' is a…",o:["Verb","Adjective","Noun","Adverb"],a:1,t:"English"},
  {q:"Sound travels as…",o:["Vibrations","Light","Smells","Heat only"],a:0,t:"Science"},
@@ -1849,7 +1929,7 @@ const QBANK={
  {q:"The area of a triangle with base 10 cm and height 6 cm is…",o:["60 cm²","30 cm²","16 cm²","26 cm²"],a:1,t:"Measurement"},
  {q:"25% of 80 = ?",o:["15","20","25","40"],a:1,t:"Percentages"},
  {q:"Which of these is a factor of 18?",o:["4","5","6","7"],a:2,t:"Number"},
- {q:"'The bone belongs to one dog' — the correct phrase is…",o:["The dogs' bone","The dog's bone","The dogss bone","The dogs bone"],a:1,t:"English"},
+ {q:"'The bone belongs to one dog', the correct phrase is…",o:["The dogs' bone","The dog's bone","The dogss bone","The dogs bone"],a:1,t:"English"},
  {q:"'As brave as a lion' is a…",o:["Metaphor","Simile","Idiom","Pun"],a:1,t:"English"},
  {q:"The force that pulls objects toward Earth is…",o:["Friction","Gravity","Magnetism","Electricity"],a:1,t:"Science"},
  {q:"In the water cycle, vapour turning into liquid is called…",o:["Evaporation","Condensation","Precipitation","Freezing"],a:1,t:"Science"},
@@ -1949,7 +2029,7 @@ const QBANK={
  {q:"Which word is an example of onomatopoeia?",o:["Buzz","Blue","Bright","Bold"],a:0,t:"English"},
  {q:"A simile compares things using…",o:["'Like' or 'as'","Opposites","Numbers","Capital letters"],a:0,t:"English"},
  {q:"A story told using 'he', 'she' and 'they' is in…",o:["Third person","First person","Second person","No person"],a:0,t:"English"},
- {q:"Which sentence has correct subject–verb agreement?",o:["The dogs bark","The dogs barks","The dog bark","The dog barking"],a:0,t:"English"},
+ {q:"Which sentence has correct subject to verb agreement?",o:["The dogs bark","The dogs barks","The dog bark","The dog barking"],a:0,t:"English"},
  {q:"The purpose of an information report is to…",o:["Inform","Persuade","Rhyme","Confuse"],a:0,t:"English"},
  {q:"The process plants use to make their own food is…",o:["Photosynthesis","Respiration","Digestion","Fermentation"],a:0,t:"Science"},
  {q:"The chemical formula for water is…",o:["H₂O","CO₂","O₂","NaCl"],a:0,t:"Science"},
@@ -2224,10 +2304,10 @@ async function finishPlacement(){
   });
   const pct=Math.round(correct/qs.length*100);
   let band,bandClass,rec;
-  if(pct>=80){band="Above level";bandClass="b1";rec="working confidently above year level — an extension focus or the next group up would suit.";}
-  else if(pct>=60){band="At level";bandClass="b2";rec="solidly at year level — a standard group with targeted work on the weaker topics below.";}
-  else if(pct>=40){band="Developing";bandClass="b3";rec="some gaps to close — a group focused on rebuilding the topics below would make the fastest difference.";}
-  else{band="Foundations first";bandClass="b4";rec="best served by rebuilding fundamentals before tackling year-level work — that's exactly what the Foundations groups are for.";}
+  if(pct>=80){band="Above level";bandClass="b1";rec="working confidently above year level, an extension focus or the next group up would suit.";}
+  else if(pct>=60){band="At level";bandClass="b2";rec="solidly at year level, a standard group with targeted work on the weaker topics below.";}
+  else if(pct>=40){band="Developing";bandClass="b3";rec="some gaps to close, a group focused on rebuilding the topics below would make the fastest difference.";}
+  else{band="Foundations first";bandClass="b4";rec="best served by rebuilding fundamentals before tackling year-level work, that's exactly what the Foundations groups are for.";}
 
   const result={name,year,contact,score:correct,total:qs.length,pct,band,topics,date:new Date().toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric"})};
   const all=await sGet("net-placements")||[];
@@ -2276,9 +2356,9 @@ async function joinWaitlist(){
   const wl=await sGet("net-waitlist")||[];
   wl.push(entry);
   const ok=await sSet("net-waitlist",wl);
-  if(ok){msg.className="msg ok";msg.textContent="You're #"+wl.length+" on the waitlist — you'll be contacted as soon as a suitable place opens.";
+  if(ok){msg.className="msg ok";msg.textContent="You're #"+wl.length+" on the waitlist, you'll be contacted as soon as a suitable place opens.";
     ["wl-parent","wl-child","wl-school","wl-subject","wl-contact"].forEach(id=>document.getElementById(id).value="");
-  }else{msg.className="msg err";msg.textContent="Something went wrong — please text 0482 797 814 or email nithyarajendra49@gmail.com instead.";}
+  }else{msg.className="msg err";msg.textContent="Something went wrong, please text 0482 797 814 or email nithyarajendra49@gmail.com instead.";}
 }
 
 /* ================= FEES ================= */
@@ -2288,6 +2368,27 @@ function calcInvoice(){
   document.getElementById("pay-total").textContent="Total: $"+(rate*weeks);
 }
 calcInvoice();
+
+/* ================= MOTION & BOOT ================= */
+(function(){
+  // scroll-linked reading progress bar
+  const bar=document.getElementById("scroll-progress");
+  if(bar){
+    const upd=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+"%";};
+    addEventListener("scroll",upd,{passive:true});upd();
+  }
+  // reveal sections as they scroll into view
+  const els=document.querySelectorAll(".reveal");
+  if(!("IntersectionObserver" in window)){els.forEach(e=>e.classList.add("in"));}
+  else{
+    const io=new IntersectionObserver(entries=>entries.forEach(en=>{
+      if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}
+    }),{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    els.forEach(e=>io.observe(e));
+  }
+  // pick up where you left off on this device
+  resumeSession();
+})();
 </script>
 </body>
 </html>
